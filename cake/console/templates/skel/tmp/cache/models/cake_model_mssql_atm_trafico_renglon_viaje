@@ -1,0 +1,14 @@
+1517500869
+a:10:{s:7:"id_area";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:8:"no_viaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:7:"no_guia";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:8:"id_tramo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:17:"consecutivo_viaje";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:9;}s:15:"direccion_tramo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:9:"status_km";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:5:"ramal";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:10:"desc_tramo";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:39:"
+CREATE DEFAULT Set_To_Empty
+	AS ''
+";s:6:"length";i:100;}s:9:"kms_tramo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}}

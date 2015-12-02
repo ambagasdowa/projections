@@ -1,0 +1,167 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.7
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Nov 05, 2014 at 06:15 PM
+-- Server version: 5.5.37-1
+-- PHP Version: 5.6.0-1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `presupuesto`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `presupuesto`
+--
+
+CREATE TABLE IF NOT EXISTS `presupuesto` (
+  `id_presupuesto` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_empresa` int(11) NOT NULL,
+  `id_area` int(11) unsigned DEFAULT NULL,
+  `id_flota` int(11) unsigned DEFAULT NULL,
+  `area` varchar(255) DEFAULT NULL,
+  `unidadNegocio` varchar(255) DEFAULT NULL,
+  `presupuesto` decimal(18,6) DEFAULT NULL,
+  `year` year(4) DEFAULT NULL,
+  `month` int(3) DEFAULT NULL,
+  `week` int(3) DEFAULT NULL,
+  `fdatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('Active','Inactive') NOT NULL DEFAULT 'Active',
+  PRIMARY KEY (`id_presupuesto`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
+
+--
+-- Dumping data for table `presupuesto`
+--
+
+INSERT INTO `presupuesto` (`id_presupuesto`, `id_empresa`, `id_area`, `id_flota`, `area`, `unidadNegocio`, `presupuesto`, `year`, `month`, `week`, `fdatetime`, `status`) VALUES
+(11, 1, 1, 1, 'Orizaba', 'Orizaba', 22328.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(2, 1, 2, 6, 'Guadalajara', 'Culiacan', 3342.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(3, 1, 2, 5, 'Guadalajara', 'Guadalajara', 30991.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(4, 1, 2, 7, 'Guadalajara', 'La Paz', 5238.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(5, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 1011.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(6, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 9040.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(7, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 26295.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(8, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1508.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(9, 1, 4, 14, 'Tijuana', 'Tijuana', 11633.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(10, 1, 5, 8, 'Hermosillo', 'Hermosillo', 6035.000000, 2014, 10, NULL, '2014-10-31 21:10:38', 'Active'),
+(12, 1, 1, 1, 'Orizaba', 'Orizaba', 17290.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(13, 2, 1, 1, 'Macuspana', 'Macuspana', 123333.000000, 2014, 10, NULL, '2014-10-31 21:10:09', 'Active'),
+(14, 2, 1, 2, 'Macuspana', 'Merida', 123344.000000, 2014, 10, NULL, '2014-10-31 21:10:09', 'Active'),
+(15, 3, 1, 2, 'Teisa', 'Acapulco', 123344.000000, 2014, 10, NULL, '2014-10-31 22:10:15', 'Active'),
+(16, 3, 1, 1, 'Teisa', 'Cuautitlan', 122333.000000, 2014, 10, NULL, '2014-10-31 22:10:15', 'Active'),
+(17, 1, 1, 1, 'Orizaba', 'Orizaba', 22328.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(18, 1, 2, 6, 'Guadalajara', 'Culiacan', 3342.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(19, 1, 2, 5, 'Guadalajara', 'Guadalajara', 30991.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(20, 1, 2, 7, 'Guadalajara', 'La Paz', 5238.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(21, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 1011.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(22, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 9040.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(23, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 26295.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(24, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1508.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(25, 1, 4, 14, 'Tijuana', 'Tijuana', 11633.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(26, 1, 5, 8, 'Hermosillo', 'Hermosillo', 6035.000000, 2014, 11, NULL, '2014-11-03 15:11:20', 'Active'),
+(27, 1, 1, 1, 'Orizaba', 'Orizaba', 17897.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(28, 1, 2, 6, 'Guadalajara', 'Culiacan', 2679.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(29, 1, 2, 5, 'Guadalajara', 'Guadalajara', 24841.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(30, 1, 2, 7, 'Guadalajara', 'La Paz', 4198.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(31, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 811.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(32, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 7246.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(33, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 21077.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(34, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1209.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(35, 1, 4, 14, 'Tijuana', 'Tijuana', 9104.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(36, 1, 5, 8, 'Hermosillo', 'Hermosillo', 4837.000000, 2014, 1, NULL, '2014-11-05 15:11:58', 'Active'),
+(37, 1, 1, 1, 'Orizaba', 'Orizaba', 17474.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(38, 1, 2, 6, 'Guadalajara', 'Culiacan', 2616.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(39, 1, 2, 5, 'Guadalajara', 'Guadalajara', 24254.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(40, 1, 2, 7, 'Guadalajara', 'La Paz', 4099.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(41, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 791.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(42, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 7075.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(43, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 20579.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(44, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1180.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(45, 1, 4, 14, 'Tijuana', 'Tijuana', 9104.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(46, 1, 5, 8, 'Hermosillo', 'Hermosillo', 4723.000000, 2014, 2, NULL, '2014-11-05 15:11:51', 'Active'),
+(47, 1, 1, 1, 'Orizaba', 'Orizaba', 18067.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(48, 1, 2, 6, 'Guadalajara', 'Culiacan', 2705.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(49, 1, 2, 5, 'Guadalajara', 'Guadalajara', 25078.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(50, 1, 2, 7, 'Guadalajara', 'La Paz', 4238.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(51, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 818.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(52, 1, 3, 12, 'Ramos Arizpe', 'Chihuahua', 7315.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(53, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 21278.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(54, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1220.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(55, 1, 4, 14, 'Tijuana', 'Tijuana', 9413.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(56, 1, 5, 8, 'Hermosillo', 'Hermosillo', 4884.000000, 2014, 3, NULL, '2014-11-05 15:11:03', 'Active'),
+(57, 1, 1, 1, 'Orizaba', 'Orizaba', 19070.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(58, 1, 2, 6, 'Guadalajara', 'Culiacan', 2855.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(59, 1, 2, 5, 'Guadalajara', 'Guadalajara', 26470.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(60, 1, 5, 8, 'Hermosillo', 'Hermosillo', 5155.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(61, 1, 2, 7, 'Guadalajara', 'La Paz', 4473.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(62, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 864.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(63, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 7721.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(64, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 22459.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(65, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1288.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(66, 1, 4, 14, 'Tijuana', 'Tijuana', 9936.000000, 2014, 4, NULL, '2014-11-05 15:11:45', 'Active'),
+(67, 1, 1, 1, 'Orizaba', 'Orizaba', 18392.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(68, 1, 2, 6, 'Guadalajara', 'Culiacan', 2753.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(69, 1, 2, 5, 'Guadalajara', 'Guadalajara', 25528.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(70, 1, 2, 7, 'Guadalajara', 'La Paz', 4314.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(71, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 833.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(72, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 7447.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(73, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 21661.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(74, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1242.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(75, 1, 4, 14, 'Tijuana', 'Tijuana', 9583.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(76, 1, 5, 8, 'Hermosillo', 'Hermosillo', 4971.000000, 2014, 5, NULL, '2014-11-05 15:11:09', 'Active'),
+(77, 1, 1, 1, 'Orizaba', 'Orizaba', 18481.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(78, 1, 2, 6, 'Guadalajara', 'Culiacan', 2767.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(79, 1, 2, 5, 'Guadalajara', 'Guadalajara', 25652.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(80, 1, 2, 7, 'Guadalajara', 'La Paz', 4335.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(81, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 837.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(82, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 7483.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(83, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 21765.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(84, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1248.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(85, 1, 4, 14, 'Tijuana', 'Tijuana', 9629.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(86, 1, 5, 8, 'Hermosillo', 'Hermosillo', 4995.000000, 2014, 6, NULL, '2014-11-05 15:11:23', 'Active'),
+(87, 1, 1, 1, 'Orizaba', 'Orizaba', 19950.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(88, 1, 2, 6, 'Guadalajara', 'Culiacan', 2986.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(89, 1, 2, 5, 'Guadalajara', 'Guadalajara', 27690.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(90, 1, 2, 7, 'Guadalajara', 'La Paz', 4680.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(91, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 903.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(92, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 8077.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(93, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 23495.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(94, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1347.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(95, 1, 4, 14, 'Tijuana', 'Tijuana', 10394.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(96, 1, 5, 8, 'Hermosillo', 'Hermosillo', 5392.000000, 2014, 7, NULL, '2014-11-05 15:11:59', 'Active'),
+(97, 1, 1, 1, 'Orizaba', 'Orizaba', 19538.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(98, 1, 2, 6, 'Guadalajara', 'Culiacan', 2925.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(99, 1, 2, 5, 'Guadalajara', 'Guadalajara', 27118.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(100, 1, 2, 7, 'Guadalajara', 'La Paz', 4583.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(101, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 885.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(102, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 7910.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(103, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 23009.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(104, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1320.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(105, 1, 4, 14, 'Tijuana', 'Tijuana', 10179.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(106, 1, 5, 8, 'Hermosillo', 'Hermosillo', 5281.000000, 2014, 8, NULL, '2014-11-05 15:11:11', 'Active'),
+(107, 1, 2, 6, 'Guadalajara', 'Culiacan', 2588.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(108, 1, 2, 5, 'Guadalajara', 'Guadalajara', 23999.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(109, 1, 2, 7, 'Guadalajara', 'La Paz', 4056.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(110, 1, 3, 10, 'Ramos Arizpe', 'Altamira', 783.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(111, 1, 3, 4, 'Ramos Arizpe', 'Escobedo', 7001.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(112, 1, 3, 3, 'Ramos Arizpe', 'Ramos Arizpe', 20363.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(113, 1, 3, 11, 'Ramos Arizpe', 'San Luis', 1168.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(114, 1, 4, 14, 'Tijuana', 'Tijuana', 9009.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active'),
+(115, 1, 5, 8, 'Hermosillo', 'Hermosillo', 4674.000000, 2014, 9, NULL, '2014-11-05 15:11:55', 'Active');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

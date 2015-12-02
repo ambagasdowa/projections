@@ -1,0 +1,75 @@
+<?php 
+
+?>
+<?php
+// e($ajax->form(array("type"=>"post",
+//                     "options"=>array("model"=>"disponibilidad",
+//                     'update' => 'divIndDispon',
+//                     "url"=>array("controller"=>'Indicadores',"action"=>"ind_disponibilidad"),
+// 			            )
+//                    )
+//              )
+//  );
+//  $options=>array('url'=>array('controller'=>'admin','action'=>'update_list'),'update'=>'divIdToUpdate','frequency'=>'0.2','with'=>'Form.serialize elements($('elementid1','elementid2','elementid3')));
+// Form.Element.serialize('$fieldId')
+// $options['with'] = Form.serialize( $('Form ID') )
+
+?>
+
+
+   <!--this is for Controller-->
+		<table id="<?php e(idTotalIndex);?>" >
+		  <tr />
+				<td />Meses/Años Anteriores
+				<td widht="40%" />
+				<?php
+					  e($this->Form->text('Projections.disponibilidad',
+							  array('type' => 'month',
+								'label'=>false,
+								'class'=>'in_cal',
+								'value'=>date('Y-m-d'),
+// 								'value'=>$fecha,
+								'dateFormat' => 'DMY',
+								'min' => '2010-08-14',
+								'max' => '2036-12-31',
+								'separator'=>'/',
+		  // 					  'onclick'=>"confirmInput()",
+								"onKeyPress"=>"return soloNumeros(event)",
+		  // 					  'value'=>null,
+								'placeholder'=>'Buscar registro => Ingresa Fecha en formato (yy-mm-dd) (alt+shift+b)'
+							  )
+						  )
+					  );
+					  e($ajax->observeField('ProjectionsDisponibilidad',
+								  array("url"=>array("controller"=>"Indicadores",
+													"action"=>"ind_disponibilidad",
+// 													"action"=>"getDateDisponibilidad",
+											  ),
+// 										'with'=>'Form.Element.serialize($("Projections.id_area","Projections.disponibilidad"))',
+// 										'with'=>'Form.serialize($("Projections"))',
+// 										'form'=>'Projections',
+										'update' => 'divIndDispon'
+								  )
+							  )
+					  );
+// 					  $options['with'] = Form.serialize( $('Form ID') )
+// 					  e($ajax->observeForm('Projections',
+// 								  array("url"=>array("controller"=>"Indicadores",
+// 													"action"=>"ind_disponibilidad",
+// // 													"action"=>"getDateDisponibilidad",
+// 											  ),
+// 										'with'=>"Form.Element.serialize($('id_area','disponibilidad'))",
+// 										'update' => 'divIndDispon'
+// 								  )
+// 							  )
+// 					  );
+				?>
+				<td width="10%" />&nbsp;
+		</table>
+		
+	  <div id="divIndDispon">
+		  <?php
+			  echo $this->element('ind_disponibilidad',array('disponibilidad'=>$this->requestAction('Indicadores/ind_disponibilidad')));
+		  ?>
+	  </div>
+

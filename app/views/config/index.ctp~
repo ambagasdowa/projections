@@ -1,0 +1,9 @@
+<?php
+//   Config/index.ctp
+?>
+    <table id="menu_info">
+    	<tr />
+
+		<td width="2%" /><a href="<?php e($this->webroot)?>/Reportes">Flujo</a>
+	    <td />
+	<table>

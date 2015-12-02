@@ -1,0 +1,973 @@
+<?php
+//   projections/index.ctp
+	    if($_SESSION['Auth']['User']['id_empresa'] == '1'){
+		  if(isset($areas['4'])){
+			if($areas['4'] == 'Tijuana'){
+			  $areas['4'] = 'Mexicali';
+			}
+		  }
+		}
+
+?>
+
+<?php
+	  if(dropTabs( $_SESSION['Auth']['User']['email'], null, null ) != null){
+		$viewConfig = dropTabs($_SESSION['Auth']['User']['email'],null,null);
+	  }
+?>
+<script type="text/javascript">
+  function reloading(){
+	window.location='/projections/projections/';
+  }
+  
+  function getId() {
+	if (document.getElementById("ProjectionsArea").value === '0') {
+		reloading();
+	}
+  }
+
+</script>
+
+    <br />
+        <div class="row">
+		<div class="form-group">
+    	  <table id="<?php e(idTotalIndexGray);?>" class="table table-responsive">
+			<tr />
+			  <td />
+			  <td />
+			  <div class="col-xs-4">
+			  <?php
+				e($form->input('Projections.area',
+						array('type'=>'select',
+							  'selected'=>'empty',
+							  'label'=>false,
+							  'options'=>array_map('strtoupper',$areas),
+// 							  'onChange'=>"getId()",
+							  'class'=>'form-control',
+							  'style'=>"font-size:70%;"
+	// 					      'empty'=>'Seleccionar Area'
+						)
+				  )
+				);
+				
+	// 	    e($form->end());
+			
+			e($ajax->observeField('ProjectionsArea',
+								array(	"url"=>array(	"controller"=>"Projections",
+												"action"=>"UpdateArea"
+	// 						       "model"=>"Ingresos"
+										),
+								"before" => 'getId()',
+								"loading" => "Element.hide('hide');Element.show('waiting');",
+								"update" => "divArea",
+								"complete" => "Element.hide('waiting');Effect.Appear('hide',{duration: 2.0});"
+// 								'condition' => "getId()"
+						)
+					)
+			);
+			
+			e($ajax->observeField('ProjectionsArea',
+						array("url"=>array("controller"=>"Projections",
+								  "action"=>"Kms"
+	// 						       "model"=>"Ingresos"
+								  ),
+						  "update" => "divKms"
+						)
+					)
+			);
+			
+			e($ajax->observeField('ProjectionsArea',
+						array("url"=>array("controller"=>"Projections",
+								  "action"=>"Ingresos"
+	// 						       "model"=>"Ingresos"
+								  ),
+						  "update" => "divIngresos"
+						)
+					)
+			);
+			
+			e($ajax->observeField('ProjectionsArea',
+						array("url"=>array("controller"=>"Projections",
+								  "action"=>"ModalProjections"
+	// 						       "model"=>"Ingresos"
+								  ),
+// 						  "update" => "divTachion"
+						)
+					)
+			);
+			
+		    e($ajax->observeField('ProjectionsArea',
+					    array("url"=>array("controller"=>"Projections",
+							       "action"=>"Viajes"
+	// 						       "model"=>"Ingresos"
+							      ),
+						  "update" => "divTrips"
+						 )
+					 )
+		    );
+
+			e($ajax->observeField('ProjectionsArea',
+						array("url"=>array("controller"=>"Projections",
+								  "action"=>"Acumulado"
+	// 						       "model"=>"Ingresos"
+								  ),
+						  "update" => "divAcumulado"
+						)
+					)
+			);
+			
+// 		    e($ajax->observeField('ProjectionsArea',
+// 					    array("url"=>array("controller"=>"Projections",
+// 							       "action"=>"Programs"
+// 	// 						       "model"=>"Ingresos"
+// 							      ),
+// 						  "update" => "divPrograms"
+// 						 )
+// 					 )
+// 		    );
+			  ?>
+			  </div>
+			  <td width="5%" /><!--A&ntilde;o &#58;-->
+			  <td width="10%" />
+				  <?php
+					  e($form->input('Projections.year',
+								array(
+									'type'=>'select',
+									'selected'=>array_search($_SESSION['Auth']['User']['year'],$tau),
+									'label'=>false,
+									'class'=>'form-control',
+									'options'=>$tau
+								)
+							)
+					  );
+					  e($ajax->observeField('ProjectionsYear',
+									  array('url'=>array('controller'=>'Projections',
+														  'action'=>'blackWars',
+												   ),
+											"loading"=>"Element.hide(hide);Element.show('waiting');",
+											"complete"=>"reloading()"
+// 											"update"=>"divYear"
+									  )
+						)
+					  );
+				  ?>
+		<?php if($_SESSION['Auth']['User']['level'] !== '7'){ ?>
+		  <?php 
+				if($_SESSION['Auth']['User']['level'] === '2'){
+				  unset($unidadDeNegocio['3']);
+				}if($_SESSION['Auth']['User']['level'] === '3'){
+				  unset($unidadDeNegocio['2']);
+				}
+		  ?>
+			  
+			  <td width="6%"/><!--Empresa &#58;-->
+			  <td width="10%" />
+				  <?php
+						e($form->input('Projections.id_empresa',
+										array('type'=>'select',
+											  'selected'=>$_SESSION['Auth']['User']['id_empresa'],
+											  'label'=>false,
+											  'options'=>array_map('strtoupper',$unidadDeNegocio),
+											  'class'=>'form-control',
+											  'style'=>"font-size:70%;"
+	// 									      'empty'=>'Empresa'
+										)
+								)
+						);
+
+						e($ajax->observeField('ProjectionsIdEmpresa',
+									array("url"=>array("controller"=>"Projections",
+													  "action"=>"shiftCorp",
+												),
+										  "loading" => "Element.hide('hide');Element.show('waiting');",
+	// 									  "after" => "Effect.Grow(reloading(),{duration: 2.0});",
+										  "complete" => "reloading();",
+									)
+								)
+						);
+				?>
+
+		<?php }//End Auth?>
+			  <td width="5%" />
+				<div id="logo">
+				<?php
+				  e($this->Html->link('·',
+										array(
+											  'controller'=>'Users',
+											  'action'=>'edit',
+											  $_SESSION['Auth']['User']['id'],
+											  '?'=>array('chpass'=>true)
+											)
+									  )
+				  );
+				?>
+			  <td width="1%" />
+		
+	</table>
+	</div>
+	</div>
+
+<!-- 	<div id="divYear">...</div> -->
+	
+    <div id="waiting" style="display:none;">
+	<table id="<?php e(idTotalIndexGray);?>" class="table table-responsive">
+	  <tr />
+		  <td width="20%"/>&nbsp;
+	      <td />Actualizando ...
+		    <?php 
+// 				echo $html->image("loaders/loader_text.gif",
+// 					      array("width"=>280,
+// 						    "height"=>10,
+// 					      )
+// 				); 
+		    ?>
+	      <td />
+		    <?php echo $html->image("loaders/loading.gif"/*,
+					      array("width"=>280,
+						    "height"=>10,
+					      )*/
+				); 
+		    ?>
+<!-- 		</div> -->
+	      <td />&nbsp;
+	</table>
+    </div>
+
+    <div id='hide'>
+
+<div class="simpleTabs"> <!--Container-->
+  <ul class="simpleTabsNavigation">
+	<?php if((!isset($viewConfig['dropToneladas'])) OR (isset($viewConfig['dropToneladas']) and $viewConfig['dropToneladas'] === false)){?>
+    <li><a href="#">Toneladas</a></li>
+	<?php }?>
+	<?php if((!isset($viewConfig['dropKilometros'])) OR (isset($viewConfig['dropKilometros']) and $viewConfig['dropKilometros'] === false)){?>
+    <li><a href="#">Kms</a></li>
+    <?php }?>
+    <?php
+//       if($_SESSION['Auth']['User']['level'] !== '7'){ // Means Normal User
+    ?>
+	<?php if((!isset($viewConfig['dropIngresos'])) OR (isset($viewConfig['dropIngresos']) and $viewConfig['dropIngresos'] === false)){?>
+	  <li><a href="#">Ingresos</a></li>  <!--Uncomment for enable-->
+	<?php }?>
+    <?php
+//     } // En options for users
+    ?>
+	<?php if((!isset($viewConfig['dropViajes'])) OR (isset($viewConfig['dropViajes']) and $viewConfig['dropViajes'] === false)){?>
+	  <li><a href="#">Viajes</a></li>
+	<?php }?>
+    <?php
+      if($_SESSION['Auth']['User']['level'] !== '7'){ // Means Normal User
+    ?>
+<!-- 	  <li><a href="#">Indicadores de Ingresos</a></li> -->
+<!-- 	  <li><a href="#">Indicadores de Costos</a></li> -->
+
+    <?php
+    } // En options for users
+    ?>
+<!--       <li><a href="#">Indicadores de Disponibilidad</a></li> -->
+	<?php if((!isset($viewConfig['dropProjection'])) OR (isset($viewConfig['dropProjection']) and $viewConfig['dropProjection'] === false)){?>
+	  <li><a href="#">Proyecciones</a></li>
+	<?php }?>
+	<?php if((!isset($viewConfig['dropAcumulado'])) OR (isset($viewConfig['dropAcumulado']) and $viewConfig['dropAcumulado'] === false)){?>
+	  <li><a href="#">Acumulado</a></li>
+	<?php }?>
+	
+	<?php if((isset($viewConfig['dropConfig']) and $viewConfig['dropConfig'] === false)){ ?>
+    <?php
+//       if($_SESSION['Auth']['User']['level'] === '0' and $_SESSION['Auth']['User']['status'] === 'Inactive'){ // Means Super User with SuperCow powa
+    ?>
+     <li><a href="#">Configuraci&oacute;n</a></li>  <!--Uncomment for enable-->
+    <?php
+    } // En options for administrators
+    ?>
+  </ul>
+
+<?php if((!isset($viewConfig['dropToneladas'])) OR (isset($viewConfig['dropToneladas']) and $viewConfig['dropToneladas'] === false)){?>
+	<div class="simpleTabsContent">
+		  <table id="<?php e(idTblHeaders);?>" class="table-responsive">
+		  <tr />
+			<td colspan="3" style="text-align:center;font-size:120%;font-weight:bold;" />Toneladas
+		  </table>
+		  
+	  <div id="divArea">
+		  <table id="<?php e(idTotalIndex);?>" class="table-responsive" >
+
+			<tr />
+			<td width="520" style="text-align:center;" />
+	<!-- 		    this is going to update -->
+	<!-- 		    <div id="divArea"> -->
+				
+				<table id="<?php e(idTotalIndex);?>" class="table table-responsive">
+				  <tr />
+					<td height="140" style="font-size:180%;"  />
+					<?php
+						e($AreaCorp['Area']);
+					?>   
+					  <br />
+					<p style="text-align:center;font-size:160%;">
+					<?php
+					  if(isset($_SESSION['projections']['decimals'])){
+						e(number_format($TonsIndex, 2, '.', ','));
+					  }else{
+						e(number_format(round($TonsIndex)));
+					  }
+					?>   
+					</p>    
+				  <tr />
+					<td id="<?php e(idDateBottom);?>" />
+					  <?php e(date('Y-m-d'));?>
+				  <tr />
+					<td style="text-align:center;" />&nbsp;
+				<?php 
+	// 		      echo $this->Html->link( 
+	// 			   $this->Html->image("thumbs/bottom.png", 
+	// 			                array("alt" => "Detalles",
+	// 								  'title' => 'Detalles',
+	// 								  'width' => '320',
+	// 								  'height' => '60'
+	// 							)
+	// 				),
+	// 					array(
+	// 					  'action'=>'Projections',
+	// // 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='enero'
+	// 					) ,
+	// 					array('escape' => false),
+	// 					null
+	// 			);
+				?>
+				</table>
+
+			<td colspan="2" style="text-align:center;" />
+				<?php 
+				  $today = date('Y-m-d');
+				  $CurrentYear = $_SESSION['Auth']['User']['year'];
+				  echo $this->Html->link( 
+				  $this->Html->image("thumbs/daily/toneladas_".strtolower($_SESSION['Auth']['User']['empresa'])."_".$CurrentYear.".png",
+								array("alt" => "Detalles",
+												'class'=>'img-responsive',
+												'title' => 'Detalles',
+												'width' => '680',
+												'height' => '180'
+						)
+				  ),
+						array(
+						  'action'=>'detail',
+						  $CurrentYear,
+						  $all='0',
+						  $fraccion = '1'
+	// 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='var'
+						) ,
+						array('escape' => false),
+						null
+				);
+				?>
+			<span style="float:right;margin-top:10px;">
+			<?php
+	// 		  e($flt[$key][0]);
+			  echo $this->Html->link("detalles",
+						array(
+	// 					  'title'=>'test',
+						  'action'=>'detail',
+						  $CurrentYear,
+						  $all='0',
+						  $fraccion = '0'
+	// 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='var'
+						),
+						array(
+							'class'=>'btn btn-default button_link',
+							'role'=>'button',
+							'title'=>'Ver Detalle de las Flotas',
+							'alt'=>'Ver Detalles de las Flotas'
+						)
+						);
+			?>
+			</span>
+		
+		  </table>
+
+		  </div> <!--End of observeField=> divArea-->
+
+	</div><!-- End simpleTabsContent Toneladas-->
+<?php }//end Filter?>
+
+<?php if((!isset($viewConfig['dropKilometros'])) OR (isset($viewConfig['dropKilometros']) and $viewConfig['dropKilometros'] === false)){?>
+	<div class="simpleTabsContent">
+		  <table id="<?php e(idTblHeaders);?>" class="table-responsive">
+		  <tr />
+			<td colspan="3" style="text-align:center;font-size:120%;font-weight:bold;" />Kilometros
+		  </table>
+	  <div id="divKms"> 
+		  <table id="<?php e(idTotalIndex);?>" class="table-responsive">
+			<tr />
+			<td width="520" style="text-align:center;" />
+	<!-- 		    this is going to update -->
+	<!-- 		    <div id="divArea"> -->
+				
+				<table id="<?php e(idTotalIndex);?>" class="table table-responsive">
+				  <tr />
+					<td height="140" style="text-align:center;font-size:180%;" />
+					<?php
+						  if($AreaCorp['Area'] == 'Tijuana'){
+							e('Mexicali');
+						  }else{
+							e($AreaCorp['Area']);
+						  }
+					?>   
+					  <br />
+					<p style="text-align:center;font-size:160%;">
+					<?php
+					  if(isset($_SESSION['projections']['decimals'])){
+						e(number_format($AreaCorp['kms_all']=$KmsIndex, 2, '.', ','));
+					  }else{
+						e(number_format(round($KmsIndex)));
+					  }
+					  
+	// 				  e(number_format($AreaCorp['kms_all'], 2, '.', ','));
+					?>   
+					</p>    
+				  <tr />
+					<td id="<?php e(idDateBottom);?>" />
+					  <?php e(date('Y-m-d'));?>
+				  <tr />
+					<td style="text-align:center;" />&nbsp;
+				<?php 
+	// 		      echo $this->Html->link( 
+	// 			   $this->Html->image("thumbs/bottom.png", 
+	// 			                array("alt" => "Detalles",
+	// 					      'title' => 'Detalles',
+	// 				              'width' => '320',
+	// 				              'height' => '60'
+	// 					)
+	// 			   ),
+	// 					array(
+	// 					  'action'=>'Projections',
+	// // 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='enero'
+	// 					) ,
+	// 					array('escape' => false),
+	// 					null
+	// 			);
+				?>
+				</table>
+
+			<td colspan="2" style="text-align:center;" />
+			
+				<?php 
+				  $today = date('Y-m-d');
+				  $CurrentYear = $_SESSION['Auth']['User']['year'];
+				  echo $this->Html->link( 
+				  $this->Html->image("thumbs/daily/kilometros_".strtolower($_SESSION['Auth']['User']['empresa'])."_".$CurrentYear.".png", 
+								array("alt" => "Detalles",
+									'class'=>'img-responsive',
+									'title' => 'Detalles',
+									'width' => '680',
+									'height' => '180'
+						)
+				  ),
+						array(
+						  'action'=>'KmsDetail',
+						  $CurrentYear,
+						  $all='0',
+						  $fraccion = '0'
+	// 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='var'
+						) ,
+						array('escape' => false),
+						null
+				);
+				?>
+			<span style="float:right;margin-top:10px;">
+			<?php
+	// 		  e($flt[$key][0]);
+			  echo $this->Html->link("detalles",
+						array(
+	// 					  'title'=>'test',
+						  'action'=>'KmsDetail',
+						  $CurrentYear,
+						  $all='0',
+						  $fraccion = '0'
+	// 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='var'
+						),
+						array(
+							'class'=>'btn btn-default button_link',
+							'title'=>'Ver Detalle de las Flotas',
+							'alt'=>'Ver Detalles de las Flotas'
+						)
+						);
+			?>
+			</span>
+
+		  </table>
+	  </div> <!--End of divKms-->
+	</div> <!--End of simpleTabsContent=>Kms-->
+<?php }//end filterKilometros?>
+
+    <?php
+//       if($_SESSION['Auth']['User']['level'] !== '7'){ // Means Normal User
+    ?>
+<?php if((!isset($viewConfig['dropIngresos'])) OR (isset($viewConfig['dropIngresos']) and $viewConfig['dropIngresos'] === false)){?>
+	<div class="simpleTabsContent">
+		  <table id="<?php e(idTblHeaders);?>" class="table-responsive">
+		  <tr />
+			<td colspan="3" style="text-align:center;font-size:120%;font-weight:bold;" />Ingresos
+		  </table>
+	  <div id="divIngresos">
+	  
+		  <table id="<?php e(idTotalIndex);?>" class="table-responsive">
+			<tr />
+			<td width="520" style="text-align:center;" />
+	<!-- 		    this is going to update -->
+	<!-- 		    <div id="divArea"> -->
+				
+				<table id="<?php e(idTotalIndex);?>" class="table table-responsive" >
+				  <tr />
+					<td height="140" style="text-align:center;font-size:180%;" />
+					<?php
+						  if($AreaCorp['Area'] == 'Tijuana'){
+							e('Mexicali');
+						  }else{
+							e($AreaCorp['Area']);
+						  }
+					?>   
+					  <br />
+					<p style="text-align:center;font-size:160%;">
+					<?php
+					  if(isset($_SESSION['projections']['decimals'])){
+						e("\$ ").e(number_format($AreaCorp['ingresos_all']=$IngresosIndex, 2, '.', ','));
+					  }else{
+						e("\$ ").e(number_format(round($AreaCorp['ingresos_all']=$IngresosIndex)));
+					  }
+					?>   
+					</p>    
+				  <tr />
+					<td id="<?php e(idDateBottom);?>" />
+					  <?php e(date('Y-m-d'));?>
+				  <tr />
+					<td style="text-align:center;" />&nbsp;
+				<?php 
+	// 		      echo $this->Html->link( 
+	// 			   $this->Html->image("thumbs/bottom.png", 
+	// 			                array("alt" => "Detalles",
+	// 					      'title' => 'Detalles',
+	// 				              'width' => '320',
+	// 				              'height' => '60'
+	// 					)
+	// 			   ),
+	// 					array(
+	// 					  'action'=>'Projections',
+	// // 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='enero'
+	// 					) ,
+	// 					array('escape' => false),
+	// 					null
+	// 			);
+				?>
+				</table>
+
+			<td colspan="2" style="text-align:center;" />
+				<?php 
+				  $today = date('Y-m-d');
+				  $CurrentYear = $_SESSION['Auth']['User']['year'];
+				  echo $this->Html->link( 
+				  $this->Html->image("thumbs/daily/ingresos_".strtolower($_SESSION['Auth']['User']['empresa'])."_".$CurrentYear.".png", 
+								array(	"alt" => "Detalles",
+										'class'=>'img-responsive',
+										'title' => 'Detalles',
+										'width' => '680',
+										'height' => '180'
+						)
+				  ),
+						array(
+						  'action'=>'IngresosDetail',
+						  $CurrentYear,
+						  $all='0',
+						  $fraccion = '1'
+	// 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='var'
+						) ,
+						array('escape' => false),
+						null
+				);
+				?>
+				
+			<span style="float:right;margin-top:10px;">
+			<?php
+	// 		  e($flt[$key][0]);
+			  echo $this->Html->link("detalles",
+						array(
+	// 					  'title'=>'test',
+						  'action'=>'IngresosDetail',
+						  $CurrentYear,
+						  $all='0',
+						  $fraccion = '0'
+	// 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='var'
+						),
+						array(
+							'class'=>'btn btn-default button_link',
+							'title'=>'Ver Detalle de las Flotas',
+							'alt'=>'Ver Detalles de las Flotas'
+						)
+						);
+			?>
+			</span>
+		
+		  </table>
+
+	  </div> <!--End of divIngresos-->
+	</div> <!--End of simpleTabsContent=>Ingresos-->
+<?php }//end filterIngresos?>
+<?php
+		//} // end dropIngresos
+// 	  } // end the Op filter
+?>
+
+
+<?php if((!isset($viewConfig['dropViajes'])) OR (isset($viewConfig['dropViajes']) and $viewConfig['dropViajes'] === false)){?>
+	<div class="simpleTabsContent">
+		  <table id="<?php e(idTblHeaders);?>" class="table-responsive">
+		  <tr />
+			<td colspan="3" style="text-align:center;font-size:120%;font-weight:bold;" />Viajes
+		  </table>
+
+	  <div id="divTrips">
+
+		  <table id="<?php e(idTotalIndex);?>" class="table-responsive">
+			<tr />
+			<td width="520" style="text-align:center;" />
+				<table id="<?php e(idTotalIndex);?>" class="table table-responsive">
+				  <tr />
+					<td height="140" style="font-size:180%;"  />
+					<?php
+						e($AreaCorp['Area']);
+					?>   
+					  <br />
+					<p style="text-align:center;font-size:160%;">
+					<?php
+					  if(isset($_SESSION['projections']['decimals'])){
+						e(number_format($tripsAll=$ViajesIndex, 2, '.', ','));
+					  }else{
+						e(number_format(round($tripsAll=$ViajesIndex)));
+					  }
+					?>
+					</p>
+				  <tr />
+					<td id="<?php e(idDateBottom);?>" />
+					  <?php e(date('Y-m-d'));?>
+				  <tr />
+					<td style="text-align:center;" />&nbsp;
+
+				</table>
+
+			<td colspan="2" style="text-align:center;" />
+				<?php 
+				  $today = date('Y-m-d');
+				  $CurrentYear = $_SESSION['Auth']['User']['year'];
+				  echo $this->Html->link( 
+				  $this->Html->image("thumbs/daily/viajes_".strtolower($_SESSION['Auth']['User']['empresa'])."_".$CurrentYear.".png",
+								array("alt" => "Detalles",
+												'class'=>'img-responsive',
+												'title' =>  'Detalles',
+												'width' =>  '680',
+												'height' => '180'
+						)
+				  ),
+						array(
+						  'action'=>'ViajesDetail',
+						  $CurrentYear,
+						  $all='0',
+						  $fraccion = '1'
+	// 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='var'
+						) ,
+						array('escape' => false),
+						null
+				);
+				?>
+			<span style="float:right;margin-top:10px;">
+			<?php
+	// 		  e($flt[$key][0]);
+			  echo $this->Html->link("detalles",
+						array(
+	// 					  'title'=>'test',
+						  'action'=>'ViajesDetail',
+						  $CurrentYear,
+						  $all='0',
+						  $fraccion = '0'
+	// 					  $consulta[$key]['Padre']['id_padre'],
+	// 					  $date='var'
+						),
+						  array(
+							  'class'=>'btn btn-default button_link',
+							  'title'=>'Ver Detalle de las Flotas',
+							  'alt'=>'Ver Detalles de las Flotas'
+						  )
+						);
+			?>
+			</span>
+		
+		  </table>
+	  </div> <!--End of divTrips-->
+	</div> <!--End of simpleTabsContent=>Trips-->
+<?php }//End filterViajes?>
+
+<?php if((!isset($viewConfig['dropProjection'])) OR (isset($viewConfig['dropProjection']) and $viewConfig['dropProjection'] === false)){?>
+	<div class="simpleTabsContent">
+	  <div id="divTachion">
+
+	<?php
+		/** ALERT WARNING Calendar Options
+		 *  @param <for add a calendar selection toolbox jus uncomment the next div tag  with id = "calendarOptions" >
+		 */
+	?>
+
+			<div id="calendarOptions"> <?php //add calendarized selector ?>
+				<?php
+					echo $this->element('calendarBox',array( // Options for calendar box
+															'control'=>'Projections', //Controller
+															'action' =>'ModalProjections', //Action
+															'update' => 'divProjection', //div to Update
+															'paramA'=>'id_mes', // param to pass to controller
+															'calType' => 'month', // calendar type for google
+															'calTitle' => 'Meses Anteriores' // title for the calendar
+															)
+										);
+				?> 
+			</div>
+
+<!--			<table id="<?php e(idTotalIndex);?>" >
+			  <tr />
+					<td />Meses Anteriores
+					<td widht="40%" />
+					<?php
+						  e($this->Form->text('Projections.id_mes',
+								  array('type' => 'month',
+									'label'=>false,
+									'class'=>'in_cal',
+									'value'=>date('Y-m-d'),
+									'dateFormat' => 'DMY',
+									'min' => '2010-08-14',
+									'max' => '2036-12-31',
+									'separator'=>'/',
+			  // 					  'onclick'=>"confirmInput()",
+									"onKeyPress"=>"return soloNumeros(event)",
+			  // 					  'value'=>null,
+									'placeholder'=>'Buscar registro => Ingresa Fecha en formato (yy-mm-dd) (alt+shift+b)'
+								  )
+								  )
+						  );
+						  e($ajax->observeField('ProjectionsIdMes',
+									  array("url"=>array("controller"=>"Projections",
+														"action"=>"ModalProjections",
+												  ),
+											'update' => 'divProjection'
+									  )
+								  )
+						  );
+					?>
+					<td width="10%" />&nbsp;
+			</table>-->
+			<div id="divProjection" >
+			  <?php
+				echo $this->element('modal_projections',array('projeccion'=>$this->requestAction('projections/ModalProjections')));
+			  ?> <!--dinamic update -->
+			</div>
+
+	  </div> <!--End of divTachion-->
+	</div> <!--End of simpleTabsContent=>Tachion-->
+<?php } //end FilterProjection?>
+
+<?php if((!isset($viewConfig['dropAcumulado'])) OR (isset($viewConfig['dropAcumulado']) and $viewConfig['dropAcumulado'] === false)){?>
+	<div class="simpleTabsContent">
+	  <div id="divAcumulado">
+			  <?php
+				App::Import('Controller','Projections');
+				echo $this->element('acumulado');
+	// 			echo $this->element('projection',array('projection',$this->requestAction('Projections/projection/')));
+	// 		    App::import('Controller', 'RemoteTimer');
+	// 		    echo $this->element('chronos');
+	// 		    echo $this->element('chronos',array('mkdiv',$this->requestAction('RemoteTimer/mkdiv/')));
+
+			  ?> <!--dinamic update -->
+		<?php
+	// 	  pr($_SESSION['projections']['currentProjectionsWorkingDays']);
+		?>
+	  </div> <!--End of divTachion-->
+	</div> <!--End of simpleTabsContent=>Tachion-->
+<?php }//end filterAcumulado?>
+
+	<?php if((isset($viewConfig['dropConfig']) and $viewConfig['dropConfig'] === false)){
+	?>
+
+ <div class="simpleTabsContent"> 
+   <div id="divPrograms"> <!--this is for Controller-->
+	  <table id="<?php e(idTotalIndexGray);?>" class="table-responsive table-hover table-condensed table-bordered table-striped">
+		<tr>
+		  <td>
+			<?php
+				  echo $this->Html->link( 
+				  $this->Html->image("icons/user-4.png",
+								array("alt" => "users",
+							  'title' => 'users',
+								  'width' => '15',
+								  'height' => '15'
+						)
+				  ),
+									array(
+										  'controller'=>'Users',
+										  'action'=>'index',
+										  'alt'=>'Users',
+										  'title'=>'users'
+										 ) ,
+						array('escape' => false),
+						null
+				);
+			?>
+		  </td>
+		  <td>
+			<?php
+			  e($this->Html->link('Configuracion de Usuarios',
+									array(
+										  'controller'=>'Users',
+										  'action'=>'index',
+										  'alt'=>'Users',
+										  'title'=>'users'
+										 )
+								  )
+			   );
+			?>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+			<?php
+				  echo $this->Html->link( 
+				  $this->Html->image("icons/pen.png",
+								array("alt" => "users",
+							  'title' => 'users',
+								  'width' => '15',
+								  'height' => '15'
+						)
+				  ),
+									array(
+										  'controller'=>'Users',
+										  'action'=>'index',
+										  'alt'=>'Users',
+										  'title'=>'users'
+										 ) ,
+						array('escape' => false),
+						null
+				);
+			?>
+		  </td>
+		  <td>
+			<?php
+			  e($this->Html->link('Presupuesto',
+									array(
+										  'controller'=>'Projections',
+										  'action'=>'presupuesto',
+										  'alt'=>'Presupuesto',
+										  'title'=>'Presupuesto'
+										 )
+								  )
+			   );
+			?>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+			<?php
+				  echo $this->Html->link( 
+				  $this->Html->image("icons/pen.png",
+								array("alt" => "users",
+							  'title' => 'users',
+								  'width' => '15',
+								  'height' => '15'
+						)
+				  ),
+									array(
+										  'controller'=>'Projections',
+										  'action'=>'modelTest',
+										  'alt'=>'debug',
+										  'title'=>'debug'
+										 ) ,
+						array('escape' => false),
+						null
+				);
+			?>
+		  </td>
+		  <td>
+			<?php
+			  e($this->Html->link('Detalle Toneladas',
+									array(
+										  'controller'=>'Projections',
+										  'action'=>'modelTest',
+										  'alt'=>'debug',
+										  'title'=>'debug'
+										 )
+								  )
+			   );
+			?>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+			<?php
+				  echo $this->Html->link( 
+				  $this->Html->image("icons/pen.png",
+								array("alt" => "users",
+							  'title' => 'users',
+								  'width' => '15',
+								  'height' => '15'
+						)
+				  ),
+									array(
+										  'controller'=>'Projections',
+										  'action'=>'debugViajes',
+										  'alt'=>'debug',
+										  'title'=>'debug'
+										 ) ,
+						array('escape' => false),
+						null
+				);
+			?>
+		  </td>
+		  <td>
+			<?php
+			  e($this->Html->link('Detalle Viajes',
+									array(
+										  'controller'=>'Projections',
+										  'action'=>'debugViajes',
+										  'alt'=>'debug',
+										  'title'=>'debug'
+										 )
+								  )
+			   );
+			?>
+		  </td>
+		</tr>
+	  </table>
+   </div> <!--End of divPrograms-->
+</div> <!--End of simpleTabsContent=>Programs-->
+
+<?php }?>
+
+  <div class="simpleTabsContent">
+   <div id="divChgPass"> <!--this is for Controller-->
+
+   </div> <!--End of divPrograms-->
+  </div> <!--End of simpleTabsContent=>Programs-->
+  
+</div> <!-- Ends div SimpleTabs container-->
+
+
+<?php
+// 	e($form->submit('Actualizar'));
+	e($form->end());
+?>
+
+  </div> <!--End hide-->

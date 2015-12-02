@@ -1,0 +1,99 @@
+<?php
+  class MssqlUnidadesAsignadasTbk extends AppModel{
+	var $name = 'MssqlUnidadesAsignadasTbk';
+	var $useTable = 'mtto_unidades';
+	var $primaryKey = 'id_operador';
+// 	var $uses = array('DespStatus');
+	var $hasOne = array(
+		'MssqlPersonalPersonalTbk' => array(
+			'className' => 'MssqlPersonalPersonalTbk',
+			'foreignKey'=> 'id_personal',
+			'fields' => array(
+							  'MssqlPersonalPersonalTbk.id_personal',
+							  'MssqlPersonalPersonalTbk.id_area',
+							  'MssqlPersonalPersonalTbk.id_empresa',
+							  'MssqlPersonalPersonalTbk.nombre'
+						)
+		  )
+	  );
+	
+	function getUnidades($id_area=null,$id_flota=null,$status=null){
+
+// 	  status_unidad, estatus, id_flota,id_operador,id_area,id_status
+// 	  $conditions['MssqlPersonalPersonalTbk.id_area'] = $id_area;
+	  $config = array('personal','unidades');
+	  $fields = array(
+	  			$config['0'] => array(
+							  '1' => 'MssqlPersonalPersonalTbk.id_personal',
+							  '2' => 'MssqlPersonalPersonalTbk.id_area',
+							  '3' => 'MssqlPersonalPersonalTbk.id_empresa',
+							  '4' => 'MssqlPersonalPersonalTbk.nombre'
+						)
+				);
+	  $conditions = null;
+	  
+	  $getPersonal = $this->MssqlPersonalPersonalTbk->find('all',array(
+															'fields'=>array(
+																			$fields[$config['0']]['1'],
+																			$fields[$config['0']]['2'],
+																			$fields[$config['0']]['3'],
+																			$fields[$config['0']]['4']
+																			),
+															'conditions'=>$conditions
+									   )
+							);
+
+	  foreach($getPersonal as $upKey => $Data){
+		  $getPersonal = Set::combine($getPersonal, '{n}.'.$fields[$config['0']]['1'], '{n}');
+	  }
+
+		$tiposUnidad = array('TiposUnidad'=>array('9','1'));
+		
+		$field = array('fields'=>array('id_unidad',
+										'tipo_unidad',
+										'status_unidad',
+										'estatus',
+										'id_flota',
+										'id_operador',
+										'id_area',
+										'id_status'
+								  )
+				);
+		$conditions['MssqlUnidadesAsignadasTbk.tipo_unidad'] = $tiposUnidad['TiposUnidad'];
+		$conditions['MssqlUnidadesAsignadasTbk.estatus'] = 'A';
+		if(!empty($status)){
+		  $conditions['MssqlUnidadesAsignadasTbk.id_status'] = $status;
+		}
+		if(!empty($id_flota)){
+		  $conditions['MssqlUnidadesAsignadasTbk.id_flota'] = $id_flota;
+		}
+		if(!empty($id_area)){
+		  $conditions['MssqlUnidadesAsignadasTbk.id_area'] = $id_area;
+		}
+
+		$getUnidades = $this->find('all',array('fields'=>$field['fields'],
+												'conditions'=>$conditions,
+												'order'=>'id_status'
+												)
+								   );
+	  $operCount = null;
+	  foreach($getUnidades as $upKey => $Data){
+		if(!isset($getUnidades[$upKey]['MssqlUnidadesAsignadasTbk']['nombre_operador'])){
+		  $getUnidades[$upKey]['MssqlUnidadesAsignadasTbk']['nombre_operador'] = null;
+		}
+		if(isset($getPersonal[$getUnidades[$upKey]['MssqlUnidadesAsignadasTbk']['id_operador']]['MssqlPersonalPersonalTbk']['nombre'])){
+		  $getUnidades[$upKey]['MssqlUnidadesAsignadasTbk']['nombre_operador'] = utf8_encode($getPersonal[$getUnidades[$upKey]['MssqlUnidadesAsignadasTbk']['id_operador']]['MssqlPersonalPersonalTbk']['nombre']);
+		}
+		if(isset($getPersonal[$getUnidades[$upKey]['MssqlUnidadesAsignadasTbk']['id_operador']]['MssqlPersonalPersonalTbk']['nombre'])){
+		  $operCount++;
+		}
+	  }
+
+// 	$unidades['personal'] = $getPersonal;
+	$unidades['personalCount'] = $operCount;
+	$unidades['unidades'] = $getUnidades;
+	  return $unidades;
+	}//End MssqlUnidadesAsignadasTbk
+
+  }
+?>

@@ -1,0 +1,15 @@
+<?php
+// missing_table.ctp
+//   pr( Debugger::trace() );
+
+?>
+
+<table>
+
+	<tr />
+	  <td />The Db.Table is Missing
+	  <td />
+	<tr />
+	  <td />Cant' find it 
+	  <td />
+</table>

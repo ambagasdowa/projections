@@ -1,0 +1,92 @@
+/* Subsection Tabs
+--------------------*/
+
+#prototabs ul.subsection_tabs {
+	list-style:none;
+	margin:0 0 5px 0;
+	padding:0;
+	clear:both;
+	border-bottom:1px solid #ccc;
+	height:20px;
+	clear:both;
+}
+
+#prototabs ul.subsection_tabs li.tab {
+	float:left;
+	margin-right:7px;
+	text-align:center;
+}
+
+#prototabs ul.subsection_tabs li.tab a {
+	display:block;
+	height:20px;
+	padding:0 6px 0 6px;
+	background-color:#F0F0F0;
+	color:#666;
+	width:93px;
+}
+
+#prototabs ul.subsection_tabs li.tab a:hover {
+	color:#666;
+}
+
+#prototabs ul.subsection_tabs li.tab a.active {
+    border-color: #3072b3;
+    border-bottom-color: #2a65a0;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    color: #fff;
+    background-color: #3c8dde;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+    background-image: -moz-linear-gradient(#599bdc, #3072b3);
+    background-image: -o-linear-gradient(#599bdc, #3072b3);
+    background-image: linear-gradient(#599bdc, #3072b3);
+}
+
+#prototabs ul.subsection_tabs li.source_code {
+	float:right;
+}
+
+/* images section */
+		.tabbed_images {
+			list-style:none;
+			margin:0;
+			padding:0;
+			clear:both;
+		}
+
+		.tabbed_images li {
+			list-style:none;
+			float:left;
+			margin:0;
+			padding:0;
+		}
+
+		.tabbed_images li a {
+			border:1px solid #ccc;
+			display:block;
+			float:left;
+			margin:0 10px 0 0;
+		}
+
+		.tabbed_images li a.active,
+		.tabbed_images li a:hover {
+			border:1px solid #333;
+		}
+
+		.tabbed_images li a img {
+			border:none;
+			padding:2px;
+			margin:0;
+			margin-bottom:-5px;
+		}
+
+		#image_1,
+		#image_2,
+		#image_3,
+		#image_4,
+		#image_5 {
+			margin-top:10px;
+			padding:2px;
+			border:1px solid #ccc;
+		}

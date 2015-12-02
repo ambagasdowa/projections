@@ -1,0 +1,11 @@
+
+
+			<?php 
+				echo $form->input('User.id_empresa',
+								  array("label"=>false,
+										'empty'=>'Select',
+										'options' => array('1' => '23','2'=>'A2tm','3'=>'23isa','4'=>'455ST')
+								  )
+					); 
+			?>
+

@@ -1,0 +1,278 @@
+<?php
+// DailyReport
+// pr($area);
+// pr($DailyReport);
+// pr($mes);
+// pr($area);
+// pr($filter);
+e($ajax->form(array("type"=>"post",
+                    "options"=>array("model"=>"Projections",
+                    "update"=>"divComp",
+                    "url"=>array("controller"=>'Projections',"action"=>"select"),
+			       )
+                   )
+             )
+ );
+ 
+$conceptos = array('1'=>'Toneladas','2'=>'Kilometros','3'=>'Ingresos');
+
+$compare = array('1'=>'current','2'=>'all'); // for update fields
+
+?>
+
+<?php
+// setlocale(LC_MONETARY, 'es_MX');
+
+?>
+  <table id="menu_info_small" >
+  
+  
+  <?php
+  foreach($compare as $key => $data){
+  ?>
+    <td colspan="14" />
+    <?php
+	/** TODO : fix this with cakephp make a translation of input
+	 *  ALERT: For now this is already a working stuff!!
+	 */
+	 
+    ?>
+    <label name="data[Id][<?php e($key); ?>][id]"
+	    class="switch switch-green"
+	    accesskey="A"
+    >
+
+    <input name="data[Id][<?php e($key); ?>][id]"
+	    type="checkbox"
+	    class="switch-input"
+	    value="<?php e($compare[$key]);?>"
+	    id="Supplies<?php e($compare[$key]);?>Id" >
+    <span class="switch-label"
+	   data-on="On"
+	   data-off="Off">
+    </span>
+    </label>
+    <?php
+//     $AgentId = $this->data['Id'];
+      } // End foreach
+    ?>
+    
+    <th colspan="13" style="border-bottom:none;" />&nbsp;
+    <?php
+	e($form->input('ProjectionsCompare',
+			array('type'=>'select',
+			      'selected'=>'empty',
+			      'label'=>false,
+			      'options'=>$compare,
+// 			      'empty'=>'Seleccionar Area'
+			)
+		      )
+	);
+			
+// 	    e($form->end());
+	e($ajax->observeField('ProjectionsCompare',
+	    array("url"=>array("controller"=>"Projections",
+			       "action"=>"UpCompare"
+// 			       "model"=>"Ingresos"
+			      ),
+		  "update" => "divCompare"
+		 )
+	    )
+	);
+
+// 	e($ajax->observeField('ProjectionsCompare', // if another div update
+// 				array("url"=>array("controller"=>"Projections",
+// 						   "action"=>"otherAction"
+// // 				        	   "model"=>"Ingresos"
+// 					      ),
+// 				      "update" => "divoter"
+// 				     )
+// 				)
+// 	);
+    ?>
+    <tr />
+    <th colspan="14"  style="text-align:center;" />
+	<?php
+	  e('<h1>'.$filter['mes'].'<h1>');
+	  e('<h1>'.$filter['area'].'<h1>');
+// 	  if($filter['area'] == false && $filter['flota'] == false){
+// 	    e('Detalle Anual');
+// 	  }elseif($filter['area'] == true && $filter['flota'] == false){
+// 	    e('Detalle Mensual');
+// 	  }elseif($filter['flota'] == true && $filter['area'] == true){
+// 	    e('Detalle Mensual '.$filter['fleet_name']);
+// 	  }
+	
+	?>
+      <tr />
+	<td colspan="14" style="text-align:center;" />
+		    <?php 
+// 		      $today = date('Y-m-d');
+// 		      echo $this->Html->link( 
+// 			   $this->Html->image("thumbs/graph_".$filter['year']."_".$filter['area'].".png", 
+// 			                array("alt" => "Volver al Inicio",
+// 					      'title' => 'Volver al Inicio',
+// 				              'width' => '820',
+// 				              'height' => '210'
+// 					)
+// 			   ),
+// 					array(
+// 					  'action'=>'index'
+// // 					  $consulta[$key]['Padre']['id_padre'],
+// // 					  $date='var'
+// 					) ,
+// 					array('escape' => false),
+// 					null
+// 			);
+		    ?>
+      <tr />
+	<td colspan="14"/> <!--Make the calendar-->
+	
+<!-- 	This section is going update -->
+	  <div id="divCompare"> <!--Update section-->
+	    <table>
+		<tr /> <!--Make the headers-->
+		  <th colspan="2" style="text-align:center;" width="10%"/>Dia
+		  <?php
+		    foreach($conceptos as $id_concepto => $concepto){
+		      if($concepto == 'Toneladas'){
+			  $colspan = 'colspan="5"';
+		      }else{
+			  $colspan = null;
+		      }
+		      e('<th '.$colspan.' style="text-align:center;" />'.$concepto);
+		    }
+		  ?>
+		<tr />
+		  <td colspan="2" />&nbsp;
+		  
+		  <td colspan="1" style="text-align:center;font-weight:800;" width="10%" />Granel
+		  <td colspan="1" style="text-align:center;font-weight:800;" width="10%" />Envasado
+		  <td colspan="1" style="text-align:center;font-weight:800;" width="10%" />Agregados
+		  <td colspan="1" style="text-align:center;font-weight:800;" width="10%" />Caja Seca
+		  <td colspan="1" style="text-align:center;font-weight:800;" width="10%" />Productos Varios
+<!-- 		  fixed -->
+		  <td colspan="1" />&nbsp;
+		  <td colspan="1" />&nbsp;
+
+		  <?php
+
+		    foreach($filter['toneladas'] as $id_dia => $datos){
+			e('<tr />');
+			if($datos['num_week'] == 7){
+			  e('<td style="text-align:left;color:#B2B200;" />'.$datos['spanish']);
+			  e('<td style="text-align:center;color:#B2B200;" />'.$id_dia);
+			}else{
+			  e('<td style="text-align:left;" />'.$datos['spanish']);
+			  e('<td style="text-align:center;" />'.$id_dia);
+			}
+			if(isset($datos['Granel'])){
+			  e('<td style="text-align:center;background-color:#19D5BC;font-weight:800;" width="10%" />'.$datos['Granel']);
+			}else{
+			  e('<td style="text-align:center;" width="10%" />&nbsp;');
+			}if(isset($datos['Envasado'])){
+			  e('<td style="text-align:center;background-color:#B3925D;font-weight:800;" />'.$datos['Envasado']);
+			}else{
+			  e('<td style="text-align:center;" />&nbsp;');
+			}if(isset($datos['Agregados'])){
+			  e('<td style="text-align:center;background-color:#C0C0FF;font-weight:800;" />'.$datos['Agregados']);
+			}else{
+			  e('<td style="text-align:center;" />&nbsp;');
+			}if(isset($datos['Caja Seca'])){
+			  e('<td style="text-align:center;background-color:#A1D6A1;font-weight:800;" />'.$datos['Caja Seca']);
+			}else{
+			  e('<td style="text-align:center;" />&nbsp;');
+			}if(isset($datos['Productos Varios'])){
+			  e('<td style="text-align:center;background-color:#00AEAE;font-weight:800;" />'.$datos['Productos Varios']);
+			}else{
+			  e('<td style="text-align:center;" />&nbsp;');
+			}
+		    }
+		  ?>
+	    </table>
+
+	  </div> <!--End of divCompare update-->
+
+<!-- next	   -->
+      <tr />
+	<td colspan="14"/>&nbsp;
+	
+	
+	
+	<?php
+// 	    e('<th style="text-align:center;" />Fracci&oacute;n');
+// 	    foreach($months as $key => $data){
+// 		e('<th style="text-align:center;" />');
+// 		    e($this->Html->link($months[$key]['spanish'],
+// 			array(
+// 			      'controller'=>'projections',
+// 			      'action'=>'DailyReport',
+// 			      $months[$key]['num'],
+// 			),
+// 			array(
+// 			      'escape' => false,
+// 			      'target'=>'_blank',
+// 			      'alt'=>'Detalles Diarios',
+// 			      'title' => 'Detalles Diarios'
+// 			)
+// 			// set msj to confirm
+// // 			"Are you sure of this??"
+// 		    )
+// 		);
+// 	    }
+// 	    e('<th style="text-align:center;" />Total');
+	?>
+      
+	<?php
+	    // firsts reset the control variables
+// 	    $key = null ; $data = null ;
+// 	    foreach($fraccion as $k => $data){
+// 		e('<tr /><td />'.$data);
+// 		    foreach($months as $ky => $dt){
+// // 		get the totals for month and fraction
+// 			if(!empty($toneladas[$dt['short']])){
+// 			    $num = money_format('%i',$toneladas[$dt['short']][$data]);
+// 			    e('<td style="text-align:center;" />'.number_format($num, 2, '.', ','));
+// 			}else{
+// 			    e('<td />&nbsp;');
+// 			}
+// 		    } // End months
+// 		e('<td style="text-align:center;" />'.number_format(money_format('%i',$Totales['TotalByFraction'][$data]), 2, '.', ','));
+// 	    } // End Fraction
+// 	    e('<tr /><td colspan="1" />Mensual');
+// 	    foreach($months as $key => $value){
+// 		if(!empty($Totales['TotalByMonth'][$value['short']])){
+// 		    e('<td style="text-align:center;" />'.number_format(money_format('%i',$Totales['TotalByMonth'][$value['short']]), 2, '.', ','));
+// 		}else{
+// 		    e('<td />&nbsp;');
+// 		}
+// 	    }
+// 	    e('<td colspan="1" />&nbsp;');
+// 	    e('<tr /><td colspan="12" />&nbsp;');
+// 	    e('<td colspan="1" />TOTAL');
+// 	    e('<td style="text-align:center;" />'.number_format(money_format('%i',$Totales['TotalByYear']), 2, '.', ','));
+	    
+// 	    foreach($fraccion as $k => $data){
+// 		e('<tr /><td />'.$data);
+// // 		get the totals for month and fraction
+// 		foreach($toneladas as $key => $value){ 
+// 		      if(!empty($value[$data])){
+// 			$num = money_format('%i',$value[$data]);
+// 			e('<td style="text-align:center;" />'.number_format($num, 2, '.', ','));
+// 		      }else{
+// 			e('<td />&nbsp;');
+// 		      }
+// 		}
+// 	    }
+	?>
+      
+  </table>
+
+  <?php
+	e($form->submit('Send'));
+	e($form->end());
+  ?>
+  
+    <div id='divComp'>...<?php //include('show_phones.ctp');?></div>
+    
+    

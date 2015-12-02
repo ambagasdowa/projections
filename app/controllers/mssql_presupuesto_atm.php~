@@ -1,0 +1,16 @@
+<?php
+	class MssqlIntegraappViewPresupuestoAtmController extends AppController{
+		
+		var $name = 'MssqlIntegraappViewPresupuestoAtm';
+		var $components = array('RequestHandler','Session');
+		var $helpers = array('Html','Form','Ajax','Javascript','Js','GoogleMap','Pdf','GChart');
+		var $uses = array('MssqlIntegraappViewPresupuestoAtm');
+		
+		
+		function index(){
+			pr($this->MssqlIntegraappViewPresupuestoAtm->find('all'));
+		}
+		
+		
+	}//End MssqlIntegraappViewPresupuestoAtm
+?> 

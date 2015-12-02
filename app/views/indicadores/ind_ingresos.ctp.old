@@ -1,0 +1,288 @@
+	<?php 
+		$indicadores = array('1'=>'viajes','2'=>'unidades','3'=>'operadores','4'=>'km-ruta','5'=>'Unidades Designadas','6'=>'Unidades Disponibles','7'=>'Personal Asignado');
+		foreach($indicadores as $idIndicadores => $indName){
+		  if($idIndicadores > 4){
+			unset($indicadores[$idIndicadores]);
+		  }
+		}
+		$width = array('1'=>'5%','2'=>'20%','3'=>'12.5%','4'=>'75%');
+	?>
+
+	<table id="<?php e(idTblHeaders);?>">
+	  <tr />
+		<td colspan="3" style="text-align:center;font-size:120%;font-weight:bold;" />Indicadores Ingresos
+	</table>
+	
+	<?php
+		foreach($indicadores as $id_indicadores => $indicador){
+	?>
+
+	<table id="<?php e(idTotalIndex);?>" >
+		<td style="text-align:center;font-size:12px;font-variant:small-caps;"/>
+			<a href="#" onclick="Effect.toggle('divIngresos<?php e(ucfirst($indicador));?>', 'appear'); return false;">
+			  &#9660; Ingresos por <?php e(ucfirst($indicador));?> &#9660;
+			</a>
+	</table>
+
+	<div id="divIngresos<?php e(ucfirst($indicador));?>" style="display:none;">
+
+	  <table id="<?php e(idTotalIndex);?>" >
+
+	<?php
+		  foreach($ind_ingresos['viajes'] as $areas => $meses){
+	?>
+		  <tr />
+		    <td width="<?php e($width['1']);?>" id="<?php e(idTotalIndex);?>" />&nbsp;
+			<td width="<?php e($width['2']);?>" id="<?php e(idTotalIndex);?>" style="text-align:center;font-size:12px;font-variant:small-caps;" />
+				<a href="#" onclick="Effect.toggle('divIngresos<?php e($areas).e(ucfirst($indicador));?>', 'appear'); return false;">
+				  &#9660; <?php e($areas);?> &#9660;
+				</a>
+			<td id="<?php e(idTotalIndex);?>" width="<?php e($width['4']);?>" colspan="6" />
+		  <tr />
+			<td colspan="8" /><!--Contains the data row by row inside in a table-->
+			<div style="display:none;background-color:black;" id="divIngresos<?php e($areas).e(ucfirst($indicador));?>">
+
+			<table>
+	<?php
+			foreach($meses as $mesesName => $fracciones){
+	?>
+		  <tr />
+		    <td width="<?php e($width['1']);?>" id="<?php e(idTotalIndex);?>" />&nbsp;
+			<td width="<?php e($width['2']);?>" id="<?php e(idTotalIndex);?>" />&nbsp;
+			<td width="<?php e($width['3']);?>" id="<?php e(idTotalIndex);?>" style="text-align:center;font-size:12px;font-variant:small-caps;" />
+				<a href="#" onclick="Effect.toggle('divIngresos<?php e($mesesName.ucfirst($areas).ucfirst($indicador));?>', 'appear'); return false;">
+				  &#9660; <?php e(ucfirst($mesesName));?> &#9660;
+				</a>
+			<td id="<?php e(idTotalIndex);?>" width="62.5%" colspan="5" />
+		 <tr />
+			<td colspan="8" /><!--Contains the data row by row inside in a table-->
+			<div style="display:none;background-color:black;" id="divIngresos<?php e($mesesName.ucfirst($areas).ucfirst($indicador));?>">
+			
+			<table>
+	<?php
+			  foreach($fracciones as $fraccionesName => $dias){
+				if(isset($dias)){
+	?>
+		  <tr />
+		    <td width="<?php e($width['1']);?>" id="<?php e(idTotalIndex);?>" />&nbsp;
+			<td width="<?php e($width['2']);?>" id="<?php e(idTotalIndex);?>" />&nbsp;
+			<td width="<?php e($width['3']);?>" id="<?php e(idTotalIndex);?>" />&nbsp;
+			<td width="<?php e($width['3']);?>" id="<?php e(idTotalIndex);?>" style="text-align:center;font-size:12px;font-variant:small-caps;" />
+				<a href="#" onclick="Effect.toggle('divIngresos<?php e($mesesName.ucfirst($areas).ucfirst($fraccionesName).ucfirst($indicador));?>', 'appear'); return false;">
+				  &#9660; <?php e(ucfirst($fraccionesName));?> &#9660;
+				</a>
+			<td id="<?php e(idTotalIndex);?>" width="60%" colspan="4" />
+		  <tr />
+			<td colspan="8" /><!--Contains the data row by row inside in a table-->
+			<div style="display:none;background-color:black;" id="divIngresos<?php e($mesesName.ucfirst($areas).ucfirst($fraccionesName).ucfirst($indicador));?>">
+			<table>
+		<tr />
+		  <th width="<?php e($width['1']);?>" />&gt;
+		  <th width="<?php e($width['2']);?>" />Area
+		  <th width="<?php e($width['3']);?>" />Fraccion
+		  <th width="<?php e($width['3']);?>" />Mes
+		  <th width="<?php e($width['3']);?>" />D&iacute;a
+		  <th width="<?php e($width['3']);?>" />Ingresos
+		  <th width="<?php e($width['3']);?>" /><?php e(ucfirst($indicador));?>
+		  <th width="<?php e($width['3']);?>" />Ingresos/<?php e(ucfirst($indicador));?>
+
+	<?php
+				  foreach($dias as $id_dia => $dataDias){
+	?>
+					<tr />
+					  <td width="<?php e($width['1']);?>"/>&nbsp;
+					  <td width="<?php e($width['2']);?>"/><?php e($areas);?>
+					  <td width="<?php e($width['3']);?>"/><?php e($fraccionesName);?>
+					  <td width="<?php e($width['3']);?>"/><?php e($mesesName);?>
+					  <td width="<?php e($width['3']);?>"/><?php e((int)$id_dia);?>
+					  <td width="<?php e($width['3']);?>"/><?php e(round($ind_ingresos['ingresos'][$areas][$mesesName][$fraccionesName][$id_dia]));?>
+					  <td width="<?php e($width['3']);?>"/><?php e((int)$dataDias);?>
+					  <td width="<?php e($width['3']);?>"/>
+	<?php 
+						if(isset($ind_ingresos['ingresos'.ucfirst($indicador)])){
+						  e($ind_ingresos['ingresos'.ucfirst($indicador)][$areas][$mesesName][$fraccionesName][$id_dia]);
+						}else{
+						  e('&nbsp;');
+						}
+	?>
+
+	<?php
+				  }//foreach $dias
+	?>
+			</table>
+			</div>
+	<?php
+				}//isset $dias
+			  }//foreach $Fracciones
+	?>
+			</table>
+			</div>
+	<?php
+			}//foreach $meses
+	?>
+			</table>
+			</div>
+	<?php
+		  }//foreach $ind_ingresos['n-1']
+	?>
+	  </table>
+
+	</div> <!--divIngresos<?php e(ucfirst($indicador));?>-->
+
+	<?php
+		}//End foreach
+	?>
+	
+	
+	<?php
+	  reset($indicadores);
+	  reset($ind_ingresos['viajes']);
+		foreach($indicadores as $id_indicador => $indicador){
+	?>
+	  <table id="<?php e(idTotalIndex);?>" >
+		  <td style="text-align:center;font-size:12px;font-variant:small-caps;"/>
+			  <a href="#" onclick="Effect.toggle('divingresos<?php e(ucfirst($indicador));?>', 'appear'); return false;">
+				&#9660; Ingresos por <?php e(ucfirst($indicador));?> &#9660;
+			  </a>
+	  </table>
+
+	  <div id="divingresos<?php e(ucfirst($indicador));?>" style="display:none;">
+
+	  <table id="<?php e(idTotalIndex);?>" >
+		<tr />
+			<?php foreach($_SESSION['projections']['projeccion']['flotasDesc'] as $areasDescName => $flotasDesc){ ?>
+			<td style="text-align:center;font-size:12px;font-variant:small-caps;"/>
+				<a href="#" onclick="Effect.toggle('divingresos<?php e(ucfirst($indicador).$areasDescName);?>', 'appear'); return false;">
+				  &#9660; <?php e($areasDescName); ?> &#9660;
+				</a>
+			<?php
+			  }//end foreach area?>
+	  </table>
+
+	<div class="simpleTabss"> <!--one tab foreach area-->
+
+	  <table id="<?php e(idTotalIndex);?>" >
+			<?php foreach($_SESSION['projections']['projeccion']['flotasDesc'] as $areasDescName => $flotasDesc){ ?>
+		<tr />
+			<td />
+			  <table id="<?php e(idTotalIndex);?>">
+				<tr />
+				  <td />
+					<div style="display:none;background-color:white;" id="divingresos<?php e(ucfirst($indicador).ucfirst($areasDescName));?>"> <!--display and area header-->
+
+
+				  <table>
+					<tr />
+					  <td />
+					  <ul class="simpleTabsNavigations">
+						<?php foreach($_SESSION['projections']['months'] as $id_month => $monthContainer){ ?>
+						  <li><a href="#"><?php e($monthContainer['spanish']);?></a></li>
+						<?php } ?>
+					  </ul>
+
+
+					  <?php reset($_SESSION['projections']['months']);?>
+					  <?php foreach($_SESSION['projections']['months'] as $idxMonth => $monthCnt){?>
+						  <div class="simpleTabsContents">
+							<div id="warning"><span><?php e($monthCnt['spanish']);?></span></div>
+						  </div>
+					  <?php }//End monthContainer?>
+				  </table>
+					</div> <!--End of display and area header-->
+			  </table>
+			<?php }//end foreach area?>
+	  </table>
+
+
+	</div> <!--end class="simpleTabss"-->
+
+
+	  </div> <!--end divingresos$indicador-->
+	<?php
+		}//End indicadores
+	?>
+
+	
+	<?php $ind=array('1'=>'ingresos','2'=>'costos');?>
+  <div id="AcumWeekly">
+	<div id="carousel-wrapper_ingresos">
+	  <div id="carousel-content_ingresos" >
+	  
+	  <?php
+		foreach($ind as $num => $Data){
+	  ?>
+		<div class="slide_ingresos" >
+	  <!-- code from hir -->
+		  <div><span><?php e($Data);?></span></div>
+	  <!-- to hir -->
+		</div> <!--end class slide-->
+	  <?php
+		} // End foreach => acumulado[accountByWeek]
+	  ?>
+	  </div>
+	</div>
+  
+
+	  <script type="text/javascript">
+	      new Carousel('carousel-wrapper_ingresos',
+			$$('#carousel-content_ingresos .slide_ingresos'),
+			$$('a.carousel-control', 'a.carousel-jumper'),
+			{
+			transition: 'spring',
+// 			selectedClassName:'carousel-jumper',
+			effect: 'fade',
+			duration: 0.4,
+			wheel: false
+			}
+		  );
+	 </script>
+	  <div style="margin:10px;"></div>
+		<a href="javascript:" class="carousel-control icon arrowright" rel="next" style="float: right">Siguiente</a>
+		<a href="javascript:" class="carousel-control icon arrowleft" rel="prev">Anterior</a>
+  </div> <!--end AcumWeekly-->
+
+
+	  <div style="margin:10px;"></div>
+<!--   a:link, a:hover, a:active and a:visited -->
+<!-- <a href="#" class="button icon arrowright">Siguiente</a> -->
+	  <style>
+		  .linksToleft{
+			text-align:left;
+			font-weight:bold;
+			border:solid 1px;
+			margin-left:5px;
+			background-color:white;
+			padding:2px;
+		  }
+		  .show:link{
+			color:black;
+		  }
+		  .show:hover{
+			color:black;
+		  }
+
+	  </style>
+
+	<?php
+// 	  pr($ind_ingresos['viajes']);
+// 	  pr($_SESSION['projections']['projeccion']['flotasDesc']);
+// 	  pr($ind_ingresos['viajes']);
+// 	  pr($_SESSION['projections']['months']);
+	?>
+<!--		  <div class="simpleTabss">
+		    <ul class="simpleTabsNavigations">
+		      <li><a href="#">1</a></li>
+		      <li><a href="#">2</a></li>
+		      <li><a href="#">3</a></li>
+		    </ul>
+		    
+		    <div class="simpleTabsContents">
+		    test1
+		    </div>
+		    <div class="simpleTabsContents">
+		    test2
+		    </div>
+		    <div class="simpleTabsContents">
+		    test3
+		    </div>
+		  </div>-->

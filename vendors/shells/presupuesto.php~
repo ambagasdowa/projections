@@ -1,0 +1,9 @@
+<?php
+	class PresupuestoShell extends Shell{
+		var $uses = array('MssqlIntegraappViewPresupuestoAtm');
+
+		function main(){
+			$this->MssqlIntegraappViewPresupuestoAtm->getRealPresupuesto();
+		}
+	}//PREp
+?> 

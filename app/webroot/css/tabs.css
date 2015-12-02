@@ -1,0 +1,33 @@
+/* general styles */
+html {
+	font-size: 12px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+}
+
+
+/* tabs */
+#tabs{
+    width:670px;
+    border: solid #CCC;
+    border-width: 0 0 1px 0;
+    height: 26px;
+}
+
+#tabs span{
+    display: block;
+    width: 150px;
+    float: left;
+    height: 20px;
+    text-align: center;
+    padding: 6px 5px 0 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#tabs span.selected{
+    border: solid #CCC;
+    border-width: 1px;
+    padding: 5px 4px 0 4px;
+    border-bottom-color: #fff;
+    background: #eee;
+}

@@ -1,0 +1,35 @@
+<?php //concept_a.ctp ?>
+<?php
+  if(!isset($inputanxA)){
+?>
+					  <?php
+						  e($form->input('Anxa.concepto',
+										array('type'=>'select',
+											  'label'=>false,
+											  'disabled'=>false,
+											  'options'=>$getConceptAnexoA
+// 											  'placeholder'=>'Concreto',
+// 								  			  'value'=>$estimate['Ingresos']['FlujoIngresos']['concreto']
+										)
+									)
+						  );
+					  ?>
+<?php
+  }else{
+?>
+					  <?php
+						  e($form->input('Anxa.concepto',
+										array('type'=>'text',
+											  'label'=>false,
+											  'disabled'=>false
+// 											  'options'=>$getConceptAnexoA
+// 											  'placeholder'=>'Concreto',
+// 								  			  'value'=>$estimate['Ingresos']['FlujoIngresos']['concreto']
+										)
+									)
+						  );
+					  ?>
+
+<?php
+  }
+?>

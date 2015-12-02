@@ -1,0 +1,26 @@
+1517500802
+a:26:{s:7:"id_area";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:6:"nombre";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:40;}s:9:"direccion";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:50;}s:6:"ciudad";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:15;}s:6:"estado";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:5;}s:2:"cp";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:8:"telefono";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:15;}s:3:"fax";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:15;}s:8:"areacont";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:18:"consecutivo_poliza";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:5:"idcia";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:5:"idsuc";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:7:"montosm";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:6:"cuenta";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:5;}s:9:"subcuenta";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:5;}s:9:"auxiliar1";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:5;}s:6:"activa";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:8:"id_razon";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:8:"segmento";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:20;}s:11:"nombrecorto";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:39:"
+CREATE DEFAULT Set_To_Empty
+	AS ''
+";s:6:"length";i:10;}s:9:"id_nivel1";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:9:"id_nivel2";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:9:"id_nivel4";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:9:"id_nivel5";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:9:"id_nivel6";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:7:"id_pais";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}}

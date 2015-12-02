@@ -1,0 +1,188 @@
+<?php
+//   viewConfig
+// pr($view);
+?>
+
+<?php
+	foreach($view['accounts'] as $id_realms_class => $realms_class){
+?>
+
+<table id="menu_info_small" >
+	<tr />
+	  <th /><?php e($id_realms_class);?>
+	  <th width="50%"/>
+		<?php 
+			e($form->input("RealmsClases.$id_realms_class.realms_class",
+									array('type'=>'text',
+										  'label'=>false,
+										  'value'=>$realms_class['RealmsClass']['realms_class'],
+										  'class'=>'header',
+										  'placeholder'=>$realms_class['RealmsClass']['realms_class']
+									)
+					)
+			);
+		?>
+	  <th style="text-align:center;" />Descripci&oacute;n / Concepto
+	  <th style="text-align:right;" />Estado
+	  <th style="text-align:right;" />
+		<label name="data[RealmsClass][<?php e($id_realms_class); ?>]"
+			class="switch switch-green"
+			accesskey="A"
+		  > <!--end label-->
+
+		  <input name="data[RealmsClass][<?php e($id_realms_class); ?>]"
+			type="checkbox"
+			class="switch-input"
+			value=<?php e($realms_class['RealmsClass']['status']);?>
+			<?php
+			  if($realms_class['RealmsClass']['status'] == 'Active'){
+				e($checked="checked");
+			  }
+			?>
+		  > <!--end input-->
+		  <span class="switch-label"
+			data-on="on"
+			data-off="off">
+		  </span>
+		</label>
+<!-- 	  <th />Estado -->
+<?php
+	$idx=1;
+	foreach($realms_class['Accounts'] as $id_accounts => $accounts){
+?>
+	<tr />
+	  <!--<td />--><?php //e($accounts['id_accounts']);?>
+	  <td /><?php e($id_realms_class);?><?php e('.');?><?php e($idx);?>
+	  <td style="background-color:white;"/>
+		  <?php
+			  e($form->input("Account.$id_accounts.account",
+									array('type'=>'text',
+										  'label'=>false,
+										  'value'=>$accounts['account'],
+										  'placeholder'=>$accounts['account']
+									)
+					)
+			  );
+			  e($form->input("Account.$id_accounts.year",
+									array('type'=>'hidden',
+										  'label'=>false,
+										  'value'=>date('Y')
+// 										  'placeholder'=>$accounts['year']
+									)
+					)
+			  );
+		  ?>
+	  <td style="background-color:white;"/>
+		  <?php
+			if(isset($accounts['description'])){
+			  $description = $accounts['description'];
+			}else{
+			  $description = null;
+			}
+			  e($form->input("Account.$id_accounts.description",
+									array('type'=>'text',
+										  'label'=>false,
+										  'value'=>$description,
+										  'placeholder'=>$description
+									)
+					)
+			  );
+		  ?>
+    <td colspan="2" style="text-align:right;background-color:white;" />
+    <?php
+	/** TODO : fix this with cakephp make a translation of input
+	 *  ALERT: For now this is already a working stuff!!
+	 */
+    ?>
+    <?php e('<span style="font-variant:small-caps;font-size:12px;font-weight:bold;">'.$data=null.'</span>');?>
+    <label name="data[Accounts][<?php e($id_accounts); ?>]"
+	    class="switch switch-green"
+	    accesskey="A"
+    >
+
+    <input name="data[Accounts][<?php e($id_accounts); ?>]"
+	    type="checkbox"
+	    class="switch-input"
+	    value=<?php e($accounts['status']);?>
+	    <?php
+		  if($accounts['status']=='Active'){
+			e($checked="checked");
+		  }
+	    ?>
+    >
+    <span class="switch-label"
+	   data-on="On"
+	   data-off="Off">
+    </span>
+    </label>
+    
+    
+	<!--   ################################################   -->
+<?php $idx++;
+	} // End's interview
+?>
+
+</table>
+
+<div id="<?php e($realms_class['RealmsClass']['div']);?>"></div>
+
+  <?php $updateDiv = $realms_class['RealmsClass']['div']; ?>
+	<table style="background:none;">
+		<tr />
+		  <td />
+		  <td style="text-align:right;"/>
+			<?php
+			/**
+			  @description => open the edition inputs
+			**/
+			e($this->Ajax->link('Agregar',
+			array(
+			      'controller'=>'Config',
+			      'action'=>'AddRow',
+				  $id_realms_class
+			),
+			array(
+			      'escape' => false,
+			      "class" => 'link_blue',
+			      "update" => $updateDiv,
+			      "complete" => "Effect.SlideDown($updateDiv,{duration: 1.5});",
+// 			      "before" =>"window.location.reload();",
+			      'alt'=>'Agregar Cuenta',
+			      'title' => 'Agregar Cuenta'
+			)
+			// set msj to confirm
+// 			"Are you sure of this??"
+		    )
+		);
+
+			  e($form->input("Row.$id_realms_class.id_realms_class",
+									array('type'=>'hidden',
+										  'label'=>false,
+										  'value'=>$realms_class['RealmsClass']['id_realms_class']
+// 										  'placeholder'=>$description
+									)
+					)
+			  );
+			  e($form->input("Row.$id_realms_class.id_realms",
+									array('type'=>'hidden',
+										  'label'=>false,
+										  'value'=>$realms_class['RealmsClass']['id_realms']
+// 										  'placeholder'=>$description
+									)
+					)
+			  );
+
+		?>
+
+	</table>
+
+<div style="text-align:right;">
+<?php
+	e($form->button('Guardar',array('class'=>'button_blue')));
+	e($form->end());
+?>
+</div>
+<div id="space" style="display:block;padding-bottom:10px;pading-right:5px;"></div>
+<?php
+	} // End's foreach $view
+?>

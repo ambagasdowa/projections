@@ -1,0 +1,17 @@
+<?php
+  class MssqlFlotasAtm extends AppModel{
+	var $name = 'MssqlFlotasAtm';
+	var $useDbConfig = 'mssqlAtm';
+	var $useTable = 'desp_flotas';
+	var $primaryKey = 'id_flota';
+	
+/** NOTE the function removeString comes from appConfig*/
+
+	function getFlotasAtm(){
+	  $flotas = $this->find('all');
+	  unset($flotas[0]);
+	return removeString($arrayString=$flotas,$string='.',$model='MssqlFlotasAtm',$field='nombre');
+	}
+	
+  }
+?>

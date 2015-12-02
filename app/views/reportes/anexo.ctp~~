@@ -1,0 +1,306 @@
+<?php // Reportes/anexo_a.ctp?>
+<?php
+  /** @update => from database
+	  @package => From Flujo de Marzo.xls
+  **/
+?>
+<?php
+				  e($ajax->observeField('AnexoNombre',
+							  array("url"=>array("controller"=>"Reportes",
+													  "action"=>"concept"
+						// 						       "model"=>"Ingresos"
+												),
+										"update" => "divConcepts"
+								   )
+						  )
+				  );
+
+$status = false;
+$anexo = null;
+if(!isset($accounts)){
+  $anx = $GetAccounts;
+}else{
+  $anx = $accounts;
+}
+// var_dump($anx);
+?>
+<div id="divConceptos"></div>
+<?php 
+if(isset($titleAnexo)){ 
+?>
+  
+      <table id="menu_info">
+	  <tr />
+	    <td colspan="3" style="text-align:center;font-size:120%;font-weight:bold;" /><?php e($titleAnexo);?>
+      </table>
+
+<?php }?>
+
+      <table>
+	    <tr />
+		<td width="320" style="text-align:center;" />
+			<table>
+			  <tr />
+			    <td height="140" style="text-align:center;font-size:180%;" />
+				  <div id="ingresos">
+				  <?php
+					  e('$'.number_format(money_format('%i',$estimate['Ingresos']['FlujoIngresos']['total_ingresos']), 2, '.', ','));
+				  ?>
+				  </div>
+			  <tr />
+			    <td style="text-align:center;font-size:120%;" />Pago a Proveedores
+			  <tr />
+			    <td style="text-align:center;" />test
+			</table>
+		<td width="320" style="text-align:center;" />
+			<table>
+			  <tr />
+			    <td height="140" style="text-align:center;font-size:180%;" />$3,098.271
+			  <tr />
+			    <td style="text-align:center;font-size:120%;" />Total de Egresos
+			  <tr />
+			    <td style="text-align:center;" />test
+			</table>
+		<td width="320" style="text-align:center;" />
+			<table>
+			  <tr />
+			    <td height="140" style="text-align:center;font-size:180%;" />$1,090.585
+			  <tr />
+			    <td style="text-align:center;font-size:120%;" />Saldo Disponible
+			  <tr />
+			    <td style="text-align:center;" />test
+			</table>
+		<td width="320" style="text-align:center;" />
+			<table>
+			  <tr />
+			    <td height="140" style="text-align:center;font-size:180%;" />$4,188.856
+			  <tr />
+			    <td style="text-align:center;font-size:120%;" />Efectivo Disponible
+			  <tr />
+			    <td style="text-align:center;" />test
+			</table>
+	  </table>
+<?php
+/** @Description => If empty record in db show an input arrow
+ *
+ */
+?>
+
+	  <table id="menu_info_small">
+		<tr />
+		  <?php
+		  if(!empty($anx)){
+		  ?>
+				  <td />
+					  <?php
+						
+						  e($form->input('Anexo.nombre',
+										array('type'=>'select',
+											  'label'=>false,
+											  'disabled'=>$status,
+											  'empty' => '· CUENTAS',
+											  'options'=>$anx
+// 											  'placeholder'=>'Concreto',
+// 								  			  'value'=>$estimate['Ingresos']['FlujoIngresos']['concreto']
+										)
+									)
+						  );
+
+					  ?>
+				  <td />
+					<div id="divConcepts" >
+					  <?php
+						  e($form->input('Anx.concepto',
+										array('type'=>'select',
+											  'label'=>false,
+											  'disabled'=>true,
+											  'options'=>array('Seleccionar un Concepto')
+// 											  'options'=>$estimate['conceptsA']
+// 											  'placeholder'=>'Concreto',
+// 								  			  'value'=>$estimate['Ingresos']['FlujoIngresos']['concreto']
+										)
+									)
+						  );
+					  ?>
+					</div>
+				  <td style="background:none;" />
+					  <?php
+						  e($form->input('AnexoImp.importe_prep',
+										array('type'=>'text',
+											  'label'=>false,
+											  'disabled'=>$status,
+											  'placeholder'=>'Cantidad',
+								  			  'value'=>$estimate['Ingresos']['FlujoIngresos']['concreto']
+										)
+									)
+						  );
+// 						  e($form->end());
+					  ?>
+		  <?php }else{ ?>
+			
+				  <td />
+					  <?php
+						
+						  e($form->input('Anexo.nombre',
+										array('type'=>'text',
+											  'label'=>false,
+											  'disabled'=>$status,
+											  'placeholder'=>'  Nombre de la Cuenta'
+// 								  			  'value'=>$estimate['Ingresos']['FlujoIngresos']['concreto']
+										)
+									)
+						  );
+						  
+
+					  ?>
+				  <td />
+					  <?php
+						  e($form->input('Anexo.concepto',
+										array('type'=>'text',
+											  'label'=>false,
+											  'disabled'=>$status,
+											  'options'=>$anx,
+											  'placeholder'=>'  Nombre del Concepto'
+// 								  			  'value'=>$estimate['Ingresos']['FlujoIngresos']['concreto']
+										)
+									)
+						  );
+					  ?>
+				  <td style="background:none;" />
+					  <?php
+						  e($form->input('AnexoImp.importe_prep',
+										array('type'=>'text',
+											  'label'=>false,
+											  'disabled'=>$status,
+											  'placeholder'=>'  Cantidad',
+								  			  'value'=>$estimate['Ingresos']['FlujoIngresos']['concreto']
+										)
+									)
+						  );
+// 						  e($form->end());
+					  ?>
+		  <?php } //end else?>
+
+	  </table>
+	  
+	  <table>
+		<tr />
+		  <th />Nombre
+		  <th />Importe Real
+		  <th />Importe Presupuesto
+		  <th />Concepto
+	  </table>
+	  
+	  
+      <table id="menu_info_small" >
+	    <tr />
+		<td width="520" style="text-align:center;" />
+<!-- 		    this is going to update -->
+<!-- 		    <div id="divArea"> -->
+			
+			<table> <!--Inside of the main table and align to right-->
+			  <tr />
+			    <td height="140" style="text-align:center;font-size:180%;font-weight:bold;" />
+				  <div id="ingresosForm">
+				  <?php
+// 					  e('$'.number_format(money_format('%i',$estimate['Ingresos']['FlujoIngresos']['total_ingresos']), 2, '.', ','));
+				  ?>
+				  </div>
+			  <tr />
+			    <td style="text-align:center;font-size:120%;font-weight:bold;" />Total para la Semana del xx-xx
+			  <tr />
+			    <td style="text-align:center;" />...
+				 
+			</table>
+
+		<td style="text-align:left;" />
+
+			<table id="menu_info_small" >
+				<tr />
+				  <td />Cuenta , S.A
+				  <td style="background:none;" />&nbsp;
+				  <td style="background:none;" />
+					  <?php
+// 						  e($this->Form->create());
+
+						  e($form->input('Anexo.concreto',
+										array('type'=>'text',
+											  'label'=>false,
+											  'disabled'=>$status,
+											  'placeholder'=>'Concreto',
+								  			  'value'=>$estimate['Anexo']['FlujoAnexo']['concreto']
+										)
+									)
+						  );
+// 						  e($form->end());
+					  ?>
+
+				<tr />
+				  <td />Cuenta Cementos Apasco , S.A
+				  <td style="background:none;" />&nbsp;
+				  <td style="background:none;" />
+					  <?php
+// 						  e($this->Form->create());
+
+						  e($form->input('Anexo.cemento',
+										array('type'=>'text',
+											  'label'=>false,
+											  'placeholder'=>'Cemento',
+											  'disabled'=>$status,
+								  			  'value'=>$estimate['Anexo']['FlujoAnexo']['cemento']
+										)
+									)
+						  );
+// 						  e($form->end());
+					  ?>
+
+				<tr />
+				  <td />Cuenta Otros Clientes
+				  <td style="background:none;"/>&nbsp;
+				  <td style="background:none;" />
+					  <?php
+// 						  e($this->Form->create());
+
+						  e($form->input('Anexo.otros',
+										array('type'=>'text',
+											  'label'=>false,
+											  'placeholder'=>'Otros',
+											  'disabled'=>$status,
+								  			  'value'=>$estimate['Anexo']['FlujoAnexo']['otros']
+										)
+									)
+						  );
+// 						  e($form->end());
+					  ?>
+
+				<tr />
+				  <td />Otros Cuenta / Traspasos
+				  <td style="background:none;"/>&nbsp;
+				  <td style="background:none;" />
+					  <?php
+// 						  e($this->Form->create());
+						  e($form->input('Anexo.traspaso',
+										array('type'=>'text',
+											  'label'=>false,
+											  'placeholder'=>'Traspasos',
+											  'disabled'=>$status,
+								  			  'value'=>$estimate['Anexo']['FlujoAnexo']['traspaso']
+										)
+									)
+						  );
+// 						  e($form->end());
+					  ?>
+
+			</table>
+
+	  </table> <!--End of idMenu-Info-->
+
+		<div style="text-align:right;">
+			<?php
+			  	e($form->button('Guardar',
+								  array('class'=>'button_blue')
+						)
+				);
+				e($form->end());
+			?>
+		</div><br />

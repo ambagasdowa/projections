@@ -1,0 +1,1 @@
+=CONCATENATE(MID($H1;7;4);"-";MID($H1;4;2);"-";MID($H1;1;2))

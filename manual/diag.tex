@@ -1,0 +1,83 @@
+\documentclass{book}
+\usepackage{pgf,tikz}
+\usetikzlibrary{shapes,arrows,calc,positioning}
+
+% comnado para trazar las rectas verticales dentro de las figuras
+% \newcommand*\Paral[2][0.3]{%
+%  \draw[thick] ($(#2.north east)-(#1,0)$) -- ($(#2.south east)-(#1,0)$);
+%  \draw[thick] ($(#2.north west)+(#1,0)$) -- ($(#2.south west)+(#1,0)$);
+% }
+
+\begin{document}
+
+\begin{tikzpicture}
+[auto, node distance = 1cm and -1cm,
+ every node/.style = {%
+  draw = black, thick, fill = white!50,inner sep = 3pt, text badly centered},
+ rectangulo/.style = {%
+  rectangle, text width=2.5cm, minimum size = 1.5cm},
+ rectanguloredo/.style = {rectangle, rounded corners = 10pt},
+ line/.style = {draw, thick, -latex,shorten >=1pt},
+]
+
+ \node (a) [rectanguloredo, text width=3.5cm, minimum size=1.2cm]
+  {Reunion Preliminar};
+ \Paral[0.55]{a}
+%  \node (b) [rectangulo, below left=of a] {Presentacion del Cronograma de Presupuestos};
+%  \Paral{b} 
+ \node (b) [rectangulo, below =of a, text width=3cm] {Presentacion del Cronograma de Presupuestos};
+ \Paral{b} 
+ \node (c) [rectangulo, below =of b, text width=3cm] {Elaboracion de Bases del Presupuesto};
+ \Paral{c}
+ \node (d) [rectangulo, right =1cm of b, text width=3cm] {Analisis del Comite Gerencial};
+ \Paral{d}
+%  \node (e) [rectangulo, below =of c, text width=2.2cm] {informacion requerida para elab el Presupuesto};
+%  \Paral{e}
+ \node (f) [rectangulo, below = 6cm of a, text width=3cm] {Informacion requerida};
+ \Paral{f}
+%  \node (g) [regular polygon, regular polygon sides=4, below = of f, text width=1cm] 
+%   {Si o no};
+ \node (g) [diamond, below = of f, text width=1.5cm] 
+  {Si o no};
+ \node (h) [rectanguloredo, below = of g, rounded corners = 10pt, text width=3cm,  
+  minimum size=1cm] {Distribucion de Presupuesto};
+  
+% \newdimen\midima
+% \pgfextractx{\midima}{(a.south)}
+% \newdimen\midimb
+% \pgfextractx{\midimb}{(b.north)}
+% \newdimen\midimc
+% \pgfextractx{\midimc}{(c.north)}
+% \newdimen\midimd
+% \pgfextractx{\midimd}{(d.west)}
+% \newdimen\midime
+% \pgfextractx{\midime}{(e.south)}
+% \newdimen\midimf
+% \pgfextractx{\midimf}{(f.north)}
+% \newdimen\midimaw
+% \pgfextractx{\midimaw}{(a.west)}
+% \newdimen\midimgw
+% \pgfextractx{\midimgw}{(g.west)}
+
+ \begin{scope}[every path/.style=line]
+ \path
+  (a.south) -- ++(0,-0.4) |- ++($(\midimb,0)-(\midima,0)$) -| (b.north);
+%  \path
+%   (b.south) -- ++(0,-0.4) |- ++($(\midimc,0)-(\midima,0)$) -| (c.north);
+ \path (b) -- (c);
+ \path (c) -- (d);
+
+%  \path
+%   (d.south) -- ++(0,-0.4) |- ++($(\midimd,0)-(\midimf,0)$) -| (f.east);
+
+%  \path
+%   (e.south) -- ++(0,-0.4) |- ++($(\midime,0)-(\midimf,0)$) -| (f.north);
+  \path (d.south) -- (f.east);
+ \path (f) -- (g);
+%  \path (g.west) node[draw = none, fill = none, yshift = 0.3cm, xshift = -0.4cm] {text} 
+%   -- ++(-3.5,0) -- ++($(0,\midimaw)-(0,\midimgw)$) |- (a);
+%  \path (g) -- node[draw = none, fill = none, xshift = 0.1cm] {text} (h);
+ \end{scope}
+\end{tikzpicture}
+
+\end{document}

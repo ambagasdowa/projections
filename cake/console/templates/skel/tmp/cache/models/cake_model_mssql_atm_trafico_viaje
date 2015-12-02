@@ -1,0 +1,98 @@
+1517500802
+a:102:{s:7:"id_area";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:8:"no_viaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:9:"id_sector";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:12:"id_subsector";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:17:"confirmacion_iave";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:11:"id_area_liq";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:11:"id_personal";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"kms_camion_vacio";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:16:"kms_camion_lleno";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:12:"kms_operador";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:8:"kms_real";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:14:"no_liquidacion";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:9:"viaje_ant";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:19:"no_liquidacion_rend";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:15:"hrs_realthermo1";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:15:"hrs_realthermo2";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:13:"puntaje_viaje";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:7:"id_ruta";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:13:"no_ejes_viaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:12:"id_operador2";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"id_status_unidad";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:9:"id_origen";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:10:"id_destino";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:21:"liquidacion_operador2";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:3:"cd1";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:3:"cd2";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:12:"id_area_liq2";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:8:"id_depto";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:11:"fecha_viaje";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:15:"fecha_fin_viaje";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:16:"fecha_real_viaje";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:20:"fecha_real_fin_viaje";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:13:"fecha_ingreso";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:16:"f_prog_ini_viaje";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:16:"f_prog_fin_viaje";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:12:"f_despachado";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:15:"f_status_unidad";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:15:"sueldo_operador";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:14:"compensaciones";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:22:"compensacion_operador2";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:9:"lts_viaje";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:17:"rendimiento_viaje";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:16:"rendimiento_real";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:11:"lts_empresa";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:13:"rend_esperado";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:14:"lts_empthermo1";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:14:"lts_empthermo2";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:16:"lts_viajethermo1";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:16:"lts_viajethermo2";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:15:"rend_espthermo1";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:15:"rend_espthermo2";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:16:"rend_realthermo1";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:16:"rend_realthermo2";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:9:"ton_viaje";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:16:"sueldo_operador2";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:6:"no_kit";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:9:"id_unidad";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:12:"id_remolque1";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:12:"id_remolque2";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:8:"id_dolly";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:10:"id_ingreso";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:8;}s:7:"thermo1";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:7:"thermo2";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:12:"id_linearem1";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:12:"id_linearem2";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:12:"status_viaje";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:36:"
+CREATE DEFAULT Set_To_A
+	AS 'A'
+";s:6:"length";i:1;}s:14:"confirma_viaje";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:11:"status_desp";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:36:"
+CREATE DEFAULT Set_To_A
+	AS 'A'
+";s:6:"length";i:1;}s:11:"viajeactual";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:36:"
+CREATE DEFAULT Set_to_N
+	AS 'N'
+";s:6:"length";i:1;}s:9:"status_cs";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:15:"id_confirmacion";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"num_confirmacion";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:8:"liberado";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:12:"centro_costo";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:15:"capacidad_cajas";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:16:"no_tarjeta_llave";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:25;}s:21:"id_configuracionviaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:11:"tipo_pago01";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:5:"batch";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:25;}s:11:"tipo_pago02";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:12:"id_tipoviaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:12:"num_shipment";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:25;}s:9:"kms_viaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:18:"observacionesviaje";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:39:"
+CREATE DEFAULT Set_To_Empty
+	AS ''
+";s:6:"length";i:255;}s:12:"id_area_conc";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:12:"id_areaviaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:11:"id_areapago";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:19:"rendimiento_reseteo";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:18:"proporcional_flete";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:16:"no_transferencia";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:15:"status_liberado";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:12:"tipo_cargado";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:10:"tipo_vacio";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:12:"tipo_tractor";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:11:"lts_reseteo";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:14:"id_statusviaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:12:"f_ini_status";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:0;s:7:"default";s:44:"
+CREATE DEFAULT Set_to_Hoy
+	AS GETDATE()
+";s:6:"length";N;}s:17:"cargadovacio_rem1";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:45:"
+CREATE DEFAULT SET_To_CadenaVacia
+	AS ''
+";s:6:"length";i:1;}s:17:"cargadovacio_rem2";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:45:"
+CREATE DEFAULT SET_To_CadenaVacia
+	AS ''
+";s:6:"length";i:1;}s:11:"id_contrato";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:16:"id_tipo_servicio";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:12:"pagar_sueldo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}}

@@ -1,0 +1,31 @@
+\documentclass{article}
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1pt\hfill \kern \z@}
+\def\maketitle{%
+  \null
+  \thispagestyle{empty}%
+  \vskip 1cm
+  \begin{flushright}
+    \normalfont\Large\@author
+  \end{flushright}
+  \vfil
+  \hrule height 2pt
+  \par
+  \begin{center}
+    \huge \strut \@title \par
+  \end{center}
+  \hrule height 2pt
+  \par
+  \vfil
+  \vfil
+  \null
+  \cleardoublepage
+  }
+\makeatother
+\author{Isidore Ducasse, Comte de Lautréamont}
+\author{Lautréamont}
+\title{Les Chants de Maldoror}
+\date{1874}
+\begin{document}
+\maketitle
+\end{document}

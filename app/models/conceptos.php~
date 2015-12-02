@@ -1,0 +1,11 @@
+<?php
+
+  class FlujoConceptos extends AppModel{
+
+	var $name = 'FlujoConceptos';
+	var $useTable = 'conceptos';
+	var $useDbConfig = 'flujo';
+	var $primaryKey = 'id_concepto';
+	
+  }
+?>

@@ -1,0 +1,24 @@
+<?php ?>
+    <div id="waiting" style="display:none;">
+	<table id="<?php e(idTotalIndexGray);?>">
+	  <tr />
+		  <td width="20%"/>&nbsp;
+	      <td />Actualizando ...
+		    <?php 
+// 				echo $html->image("loaders/loader_text.gif",
+// 					      array("width"=>280,
+// 						    "height"=>10,
+// 					      )
+// 				); 
+		    ?>
+	      <td />
+		    <?php echo $html->image("loaders/loading.gif"/*,
+					      array("width"=>280,
+						    "height"=>10,
+					      )*/
+				); 
+		    ?>
+<!-- 		</div> -->
+	      <td />&nbsp;
+	</table>
+    </div>

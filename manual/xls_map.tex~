@@ -1,0 +1,249 @@
+% Rule based diagram
+% Author: Remus Mihail Prunescu
+\documentclass{minimal}
+\usepackage[a4paper,margin=1cm,landscape]{geometry}
+\usepackage{tikz}
+
+%%%<
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+\usepackage[dvipdfm hidelinks]{hyperref}
+%  usage :example
+% \textcolor{Cyan}{\underline{\url{http://www.latex-project.org/}}} 
+% \href{http://www.latex-project.org/}{\textcolor{Cyan}{\underline{latex project}}}
+% working and tested examples
+% 	  \href{run:file.xlsx}{excel}
+% 	  \color{kblue}{\url{http://www.latex-project.org/}} 
+% 	  \href{http://www.latex-project.org/}{\color{oblue}{{latex project}}}
+
+\hypersetup{colorlinks,backref,%
+pdftitle=Mapa de C\'edulas,pdfauthor=GST Departamento de Sistemas,pdfsubject=Quantum Chaos%
+% pdfpagemode=FullScreen%
+}
+
+
+\definecolor{kblue}{HTML}{29576B}
+\definecolor{kgreen}{HTML}{1A3931}
+\definecolor{oblue}{HTML}{09D4FF}
+\definecolor{kgray}{HTML}{EEEEEC}
+\definecolor{sqblue}{HTML}{5886BD}
+\definecolor{alert}{HTML}{C21B4D}
+\definecolor{lavander}{cmyk}{0,0.48,0,0}
+\definecolor{violet}{cmyk}{0.79,0.88,0,0}
+\definecolor{burntorange}{cmyk}{0,0.52,1,0}
+\def\lav{lavander!80}
+\def\oran{orange!30}
+
+\begin{comment}
+:Title:  Rule based diagram
+
+\end{comment}
+
+\usetikzlibrary{positioning,shadows,arrows}
+
+\begin{document}
+\begin{center}
+\begin{tikzpicture}[
+    inicio/.style={rectangle, draw=black, rounded corners=2mm, fill=white, drop shadow,
+        text centered, anchor=north, text=black},
+	himself/.style={rectangle, draw=black, rounded corners=1mm, fill=kgray, drop shadow,
+        text centered, anchor=north, text=black},
+	himself_child/.style={rectangle, draw=kgray, rounded corners=1mm, fill=white, drop shadow,
+        text centered, anchor=north, text=gray},
+	himself_child_north/.style={rectangle, draw=kgray, rounded corners=1mm, fill=white, drop shadow,
+        text centered, anchor=north, text=gray},
+    square_white/.style={rectangle, draw=black, rounded corners=1mm, fill=white, drop shadow,
+        text centered, anchor=north, text=black},
+    square_blue/.style={rectangle, draw=black, rounded corners=1mm, fill=blue, drop shadow,
+        text centered, anchor=north, text=white},
+    square_orange/.style={rectangle, draw=black, rounded corners=1mm, fill=orange, drop shadow,
+        text centered, anchor=north, text=white},
+    square_red/.style={rectangle, draw=black, rounded corners=1mm, fill=red, drop shadow,
+        text centered, anchor=north, text=white},
+	square_lav/.style={rectangle, draw=lavander, rounded corners=1mm, fill=\lav, drop shadow,
+        text centered, anchor=north, text=black},
+    circle_orange/.style={circle, draw=none, fill=orange, circular drop shadow,
+        text centered, anchor=north, text=white},
+    circle_red/.style={circle, draw=none, fill=red, circular drop shadow,
+        text centered, anchor=north, text=white},
+    level distance=2cm, growth parent anchor=south
+]
+
+% \node[draw,fill=black,text=white] (Antithesis) at (2.3,3) {Antithesis};
+\node (Test00) at (2.3,3) [inicio] {$\href{run:source/Pres-2014-V 0 (TBK Ori V 3.0).xlsx}{\color{black}{Pres-2014-V\ 0\ (TBK\ Ori\ V\ 3.0).xlsx}}$} [sibling distance=9cm] [->];
+
+% \draw node[vertex] (Joint) at (1,0) {};
+\draw[->,draw=blue] (Test00) to[in=180,out=180] (State00);
+
+\node (State00) [inicio] {$\href{run:source/Pres-2014-V 0 (TBK Ori V 3.0).xlsx}{\color{black}{Pres-2014-V\ 0\ (TBK\ Ori\ V\ 3.0).xlsx}}$} [sibling distance=9cm] [->]
+
+	  child{[sibling distance=9cm]%nodo padre
+          node (State01) [square_blue] {${Edo\ de\ Resultados\ Por\ UN\ Mayo\ 2014.xlsx}$}
+      }
+      child{ [distance=1cm]%nodo
+          node (State02) [himself_child] {${Pres-2014-V\ 0\ (TBK\ Ori\ V\ 3.0).xlsx}$}
+             child{ [sibling distance=6cm]%nodo child sheet 
+                  node (Node01) at (2,16) [himself_child_north] {Premisas\ Presupuesto\ 2014}
+                       child{
+                            node (Child01) [circle_orange] {Hojas}
+							  child{
+								  node (Child02) [square_red] {Informaci\'on\ Op.\ 2013}
+							  }
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child sheet
+                  node (Child02) [himself] {Edo.Res.detalle}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+								child{
+								  node (Child04) [square_red] {Presupuesto\ Otros}
+									  child{
+										  node (Child05) [square_red] {Vol\ e\ Ingresos\ 2014}
+											  child{
+												  node (Child06) [square_red] {Gastos\ de\ Operaci\'on}
+													  child{
+														  node (Child07) [square_red] {Gtos\ Transp\ 2014}
+													  }
+											  }
+									  }
+								}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Gtos\ Transp\ 2014}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+								child{
+								  node (Child04) [square_red] {Vol\ e\ Ingresos\ 2014}
+									  child{
+										  node (Child05) [square_red] {Premisas\ Presupuesto\ 2014}
+											  child{
+												  node (Child06) [square_red] {Costo\ op\ 2013}
+											  }
+									  }
+								}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Presupuesto\ Otros}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+								child{
+								  node (Child04) [square_red] {Gtos\ Transp\ 2014}
+									  child{
+										  node (Child05) [square_red] {Gtos\ Mtto\ 2014}
+											  child{
+												  node (Child06) [square_red] {Presupuesto\ Otros}
+											  }
+									  }
+								}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Costo\ op\ 2013}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Cat.cuentas}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Informaci\'on\ Op.\ 2013}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child sheet 
+                  node (Node01) [himself] {{Vol\ e\ Ingresos\ 2014}}
+                       child{
+                            node (Child01) [circle_orange] {Hojas}
+							  child{
+								node (Child02) [square_red] {Premisas\ Presupuesto\ 2014}
+								  child{
+									node (Child02) [square_red] {Informaci\'on\ Op.\ 2013}
+								  }
+							  }
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Gtos\ Mtto\ 2014(Otros)}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+								child{
+								  node (Child04) [square_red] {Gtos\ Transp\ 2014(Otros)}
+									  child{
+										  node (Child05) [square_red] {Vol\ e\ Ingresos\ 2014}
+									  }
+								}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Gtos\ Transp\ 2014}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+								child{
+								  node (Child04) [square_red] {Presupuesto\ Otros}
+									  child{
+										  node (Child05) [square_red] {Premisas\ Presupuesto\ 2014}
+											  child{
+												  node (Child06) [square_red] {Gtos\ Transp\ 2014}
+											  }
+									  }
+								}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Gastos\ de\ Operacion}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+								child{
+								  node (Child04) [square_red] {Gtos\ Mtto\ 2014}
+									  child{
+										  node (Child05) [square_red] {Gtos\ Mtto\ 2014\ (Otros)}
+											  child{
+												  node (Child06) [square_red] {Cat.cuentas}
+													  child{
+														  node (Child07) [square_red] {Gtos\ Transp\ 2014}
+															child{
+																node (Child08) [square_red] {Gtos\ Transp\ 2014\ (Otros)}
+																  child{
+																	node (Child09) [square_red] {Premisas\ Presupuesto\ 2014}
+																  }
+															}
+													  }
+											  }
+									  }
+								}
+                       }
+             }
+             child{ [sibling distance=6cm]%nodo child
+                  node (Child02) [himself] {Gtos\ Mtto\ 2014}
+                       child{
+                            node (Child03) [circle_orange] {$hojas$}
+								child{
+								  node (Child04) [square_red] {Cat.\ cuentas}
+									  child{
+										  node (Child05) [square_red] {Vol\ e\ Ingresos\ 2014}
+											  child{
+												  node (Child06) [square_red] {Costo\ op\ 2013}
+													  child{
+														  node (Child07) [square_red] {Gtos\ Transp\ 2014}
+													  }
+											  }
+									  }
+								}
+                       }
+             }
+	  }
+;
+\end{tikzpicture}
+\end{center}
+\end{document}

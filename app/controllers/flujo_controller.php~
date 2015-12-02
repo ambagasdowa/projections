@@ -1,0 +1,35 @@
+<?php
+  class FlujoController extends AppController{
+	  var $name = 'Flujo';
+      var $components = array('RequestHandler','Session');
+      var $helpers = array('Html','Form','Ajax','Javascript','Js','GoogleMap','Pdf');
+      var $uses = array(
+						'DirAnexos',
+						'Anexos',
+						'Accounts',
+						'Realms',
+						'RealmsClass',
+						'Flujo',
+						'FlujoSaldo'
+				  );
+
+	function anexos(){
+	  $anx = $this->DirAnexos->find('list',array('fields'=>array('id_dir_anexo','nombre')));
+	  return $anx;
+	}
+	
+	function flujo(){
+	  
+	}
+	
+	function index(){
+	  
+	  
+	  
+	  
+	  
+	  $this->set('AnX',$this->anexos()); // set anexos vars
+	}
+	
+  }
+?>

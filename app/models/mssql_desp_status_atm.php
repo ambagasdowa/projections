@@ -1,0 +1,14 @@
+<?php
+  class MssqlDespStatusAtm extends AppModel{
+	var $name = 'MssqlDespStatusAtm';
+	var $useTable = 'desp_status';
+	var $useDbConfig = 'mssqlAtm';
+	var $primaryKey = 'id_status';
+	
+	function getStatus(){
+	  $getStatus = removeString($arrayString=$this->find('all'),$string='',$model='MssqlDespStatusAtm',$field='nombre',true);
+	  return $getStatus;
+	}
+	
+  }
+?>

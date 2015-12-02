@@ -1,0 +1,657 @@
+/*                          Description 
+
+                          Carousel is a highly configurable Prototype.js extension that creates a nice way of presenting content that is
+                          logically broken into several pieces / steps / etc. It's:
+
+                            • Lightweight - 4.3 KB minified
+                            • Cross-browser - Tested on Internet Explorer 6/7/8, Firefox 2/3, Google Chrome, Opera 9.64
+
+                          Examples 
+
+                          Some of the most important features are presented on this page, the rest will be explained and discussed here.
+
+                          Requirements 
+
+                          Carousel.js needs both the Prototype JavaScript framework and the Script.aculo.us effects library to work.
+
+                          Usage 
+
+                            • Download carrousell.js or carrousell-min.js
+                            • Include the script in your page, after the Prototype and Script.aculo.us libraries:
+
+                              <script type="text/javascript" src="prototype.js"></script>
+                              <script type="text/javascript" src="scriptaculous.js"></script>
+                              <script type="text/javascript" src="carrousell.js"></script>
+
+                          Markup 
+
+                          The minimum markup and styling are:
+
+                          <div id="carrousell-wrapper">
+                              <div id="carrousell-content">
+                                  <div class="slide"></div>
+                                  <div class="slide"></div>
+                                  ...
+                                  <div class="slide"></div>
+                              </div>
+Project Information       </div>
+
+#carrousell-wrapper {
+	    width: 500px;
+	    height: 500px;
+	    overflow: hidden;
+}
+#carrousell-content {
+	    width: 2500px;
+}
+#carrousell-content .slide {
+	    float: left;
+            width: 500px;
+	    height: 500px;
+}
+
+  • This will generate a 500x500px Carousel with horizontal movement. Switching to vertical movement is as simple as
+                          setting #carrousell-content's width to 500px, the width of a single slide.
+
+			  Initialization 
+
+			      You initialize Carousel by:
+ 
+			    new Carousel(wrapper, slides, triggers, {options});
+ 
+                          For example, for the markup above:
+
+                          new Carousel('carrousell-wrapper', $$('#carrousell-content .slide'), $$('a.carrousell-control', 'a.carrousell-jumper'));
+
+		    •Triggers 
+		    •
+                          There are two categories of elements that trigger the carrousell's movement: the ones that trigger a direct jump
+                          to a selected slide (jump to slide "x"), and the ones that start a relative jump (jump to first/last/previous/
+                          next slide). The combination of a trigger's rel and class attributes decide the Carousel's behavior. For
+                          example, clicking on:
+
+                          <a href="javascript:" class="carrousell-jumper" rel="slide-1">Jump to slide 1</a>
+
+                          Will jump to the slide that has the id "slide-1". And:
+
+                          <a href="javascript:" class="carrousell-control" rel="prev">Previous slide</a>
+
+                          Will jump to the previous slide. Available options for the rel attribute are first, last, prev and next.
+
+                          Available options 
+
+                          Options ar given as the last parameter in the initialization as hash: {option: value, option: value}
+
+                          Options           Default           Description
+                          duration          1                 The duration of a full jump
+                          auto              false             When true the Carousel will move on it's own without needing triggers.
+                                                              Useful for slideshows
+                          frequency         3                 When auto is true, this dictates how long a slides stays put before the next
+                                                              jump
+                          visibleSlides     1                 Even though multiple slides can be made visible at once by styling, this
+                                                              parameters is needed in some calculations
+                                                              By default when the first/last slide is reached, calling prev/next does
+                          circular          false             nothing. If you want the effect to continue, you must do two things: Set the
+                                                              circular parameter true and duplicate the first slide in the HTML. It's the
+                                                              only way of giving the impression of a continous movement.
+                          wheel             true              Whether or not to slide when using the mouse wheel over the slides
+                                                              You can choose between scroll and fade. When using fade, circular and
+                          effect            scroll            duplicating the first slide is no longer necessary (see Example 3 for the
+                                                              fade effect)
+                          transition        sinoidal          The two supported transitions are sinoidal and spring (see Example 2 for
+                                                              spring)
+                                                              When triggering a jump by using a carrousell-jumper trigger (jumps to
+                          selectedClassName carrousell-selected specified slide), this CSS class is added to the trigger, to help you in
+                                                              visually highlighting it (see Examples for tab-navigation example)
+                          beforeMove        null              User function that will be executed before a jump is started. For example:
+                                                              {beforeMove: function () { alert("Here i go!"); }}
+                          afterMove         null              Just like beforeMove, only it's called after the move is completed
+
+*/
+
+#carrousell-wrapper {
+    width: 100%;
+    height: 220px; 
+    overflow: hidden;
+}
+
+#carrousell-content {
+    width: 100%;
+}
+
+#carrousell-content .slide {
+    float: left;
+    width: 100%;
+    height: 220px;
+} 
+
+
+/*  Setting for Section Flujo  */
+
+#carrousell-wrapper_flujo {
+    width: 100%;
+    height: 480px; 
+    overflow: hidden;
+}
+
+#carrousell-content_flujo {
+    width: 100%;
+}
+
+#carrousell-content_flujo .slide_flujo {
+    float: left;
+    width: 100%;
+    height: 480px;
+	overflow-x:hidden;
+	 overflow-y:scroll;
+} 
+
+/*   end of the srettings of the flujo Section */
+
+/*  Setting for Section Indicadores/ingresos */
+
+#carrousell-wrapper_ingresos{
+    width: 100%;
+    height: 480px; 
+    overflow: hidden;
+}
+
+#carrousell-content_ingresos{
+    width: 100%;
+}
+
+#carrousell-content_ingresos .slide_ingresos{
+    float: left;
+    width: 100%;
+    height: 480px;
+	overflow-x:hidden;
+	 overflow-y:scroll;
+} 
+
+/*   end of the srettings of the Indicadores/ingresos Section */
+
+/*Copyright (c) 2011 Chad Mazzola
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.*/
+
+/*.carrousell-control{
+  background-color: #52a8e8;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52a8e8), color-stop(100%, #377ad0));
+  background-image: -webkit-linear-gradient(top, #52a8e8, #377ad0);
+  background-image: -moz-linear-gradient(top, #52a8e8, #377ad0);
+  background-image: -ms-linear-gradient(top, #52a8e8, #377ad0);
+  background-image: -o-linear-gradient(top, #52a8e8, #377ad0);
+  background-image: linear-gradient(top, #52a8e8, #377ad0);
+  border-top: 1px solid #4081af;
+  border-right: 1px solid #2e69a3;
+  border-bottom: 1px solid #20559a;
+  border-left: 1px solid #2e69a3;
+  -webkit-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
+  moz-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
+  box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
+  color: #fff;
+  font: normal 11px/1 "lucida grande", sans-serif;
+  padding: 3px 5px;
+  text-align: center;
+  text-shadow: 0 -1px 1px #3275bc;
+  -webkit-background-clip: padding-box;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+.carrousell-control:hover {
+    color:#fff;
+    background-color: #3e9ee5;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3e9ee5), color-stop(100%, #206bcb));
+    background-image: -webkit-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
+    background-image: -moz-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
+    background-image: -ms-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
+    background-image: -o-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
+    background-image: linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
+    border-top: 1px solid #2a73a6;
+    border-right: 1px solid #165899;
+    border-bottom: 1px solid #07428f;
+    border-left: 1px solid #165899;
+    -webkit-box-shadow: inset 0 1px 0 0 #62b1e9;
+    box-shadow: inset 0 1px 0 0 #62b1e9;
+    cursor: pointer;
+    text-shadow: 0 -1px 1px #1d62ab;
+    -webkit-background-clip: padding-box; 
+}
+.carrousell-control:active {
+    background: #3282d3;
+    border: 1px solid #154c8c;
+    border-bottom: 1px solid #0e408e;
+    -webkit-box-shadow: inset 0 0 6px 3px #1657b5, 0 1px 0 0 white;
+    -moz-box-shadow: inset 0 0 6px 3px #1657b5, 0 1px 0 0 white;
+    box-shadow: inset 0 0 6px 3px #1657b5, 0 1px 0 0 white;
+    text-shadow: 0 -1px 1px #2361a4;
+    -webkit-background-clip: padding-box; 
+}*/
+
+/* ------------------------------------------
+ * CSS3 GITHUB BUTTONS (Nicolas Gallagher)
+ * Licensed under Unlicense
+ * http://github.com/necolas/css3-github-carrousell-controls
+ * --------------------------------------- */
+
+
+/* =============================================================================
+   Base Button
+   ========================================================================== */
+
+.carrousell-control {
+    position: relative;
+    overflow: visible;
+    display: inline-block;
+    padding: 0.5em 1em;
+    border: 1px solid #d4d4d4;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0 #fff;
+    font:11px/normal sans-serif;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    background-color: #ececec;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -ms-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+    -moz-background-clip: padding; /* for Firefox 3.6 */
+    background-clip: padding-box;
+    border-radius: 0.2em;
+    /* IE hacks */
+    zoom: 1;
+    *display: inline;
+}
+
+.carrousell-control:hover,
+.carrousell-control:focus,
+.carrousell-control:active,
+.carrousell-control.active {
+    border-color: #3072b3;
+    border-bottom-color: #2a65a0;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    color: #fff;
+    background-color: #3c8dde;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+    background-image: -moz-linear-gradient(#599bdc, #3072b3);
+    background-image: -o-linear-gradient(#599bdc, #3072b3);
+    background-image: linear-gradient(#599bdc, #3072b3);
+}
+
+.carrousell-control:active,
+.carrousell-control.active {
+    border-color: #2a65a0;
+    border-bottom-color: #3884cd;
+    background-color: #3072b3;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3072b3), to(#599bdc));
+    background-image: -moz-linear-gradient(#3072b3, #599bdc);
+    background-image: -ms-linear-gradient(#3072b3, #599bdc);
+    background-image: -o-linear-gradient(#3072b3, #599bdc);
+    background-image: linear-gradient(#3072b3, #599bdc);
+}
+
+/* overrides extra padding on carrousell-control elements in Firefox */
+.carrousell-control::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+
+/* =============================================================================
+   Button icons
+   ========================================================================== */
+
+.carrousell-control.icon:before {
+    content: "";
+    position: relative;
+    top: 1px;
+    float:left;
+    width: 12px;
+    height: 12px;
+    margin: 0 0.75em 0 -0.25em;
+    background: url(../img/buttons/gh-icons.png) 0 99px no-repeat;
+}
+
+.carrousell-control.arrowup.icon:before { background-position: 0 0; }
+.carrousell-control.arrowup.icon:hover:before,
+.carrousell-control.arrowup.icon:focus:before,
+.carrousell-control.arrowup.icon:active:before { background-position: -12px 0; }
+
+.carrousell-control.arrowdown.icon:before { background-position: 0 -12px; }
+.carrousell-control.arrowdown.icon:hover:before,
+.carrousell-control.arrowdown.icon:focus:before,
+.carrousell-control.arrowdown.icon:active:before { background-position: -12px -12px; }
+
+.carrousell-control.arrowleft.icon:before { background-position: 0 -24px; }
+.carrousell-control.arrowleft.icon:hover:before,
+.carrousell-control.arrowleft.icon:focus:before,
+.carrousell-control.arrowleft.icon:active:before { background-position: -12px -24px; }
+
+.carrousell-control.arrowright.icon:before { float:right; margin: 0 -0.25em 0 0.5em; background-position: 0 -36px; }
+.carrousell-control.arrowright.icon:hover:before,
+.carrousell-control.arrowright.icon:focus:before,
+.carrousell-control.arrowright.icon:active:before { background-position: -12px -36px; }
+
+.carrousell-control.approve.icon:before { background-position: 0 -48px; }
+.carrousell-control.approve.icon:hover:before,
+.carrousell-control.approve.icon:focus:before,
+.carrousell-control.approve.icon:active:before { background-position: -12px -48px; }
+
+.carrousell-control.add.icon:before { background-position: 0 -288px; }
+.carrousell-control.add.icon:hover:before,
+.carrousell-control.add.icon:focus:before,
+.carrousell-control.add.icon:active:before { background-position: -12px -288px; }
+
+.carrousell-control.remove.icon:before { background-position: 0 -60px; }
+.carrousell-control.remove.icon:hover:before,
+.carrousell-control.remove.icon:focus:before,
+.carrousell-control.remove.icon:active:before { background-position: -12px -60px; }
+
+.carrousell-control.log.icon:before { background-position: 0 -72px; }
+.carrousell-control.log.icon:hover:before,
+.carrousell-control.log.icon:focus:before,
+.carrousell-control.log.icon:active:before { background-position: -12px -72px; }
+
+.carrousell-control.calendar.icon:before { background-position: 0 -84px; }
+.carrousell-control.calendar.icon:hover:before,
+.carrousell-control.calendar.icon:focus:before,
+.carrousell-control.calendar.icon:active:before { background-position: -12px -84px; }
+
+.carrousell-control.chat.icon:before { background-position: 0 -96px; }
+.carrousell-control.chat.icon:hover:before,
+.carrousell-control.chat.icon:focus:before,
+.carrousell-control.chat.icon:active:before { background-position: -12px -96px; }
+
+.carrousell-control.clock.icon:before { background-position: 0 -108px; }
+.carrousell-control.clock.icon:hover:before,
+.carrousell-control.clock.icon:focus:before,
+.carrousell-control.clock.icon:active:before { background-position: -12px -108px; }
+
+.carrousell-control.settings.icon:before { background-position: 0 -120px; }
+.carrousell-control.settings.icon:hover:before,
+.carrousell-control.settings.icon:focus:before,
+.carrousell-control.settings.icon:active:before { background-position: -12px -120px; }
+
+.carrousell-control.comment.icon:before { background-position: 0 -132px; }
+.carrousell-control.comment.icon:hover:before,
+.carrousell-control.comment.icon:focus:before,
+.carrousell-control.comment.icon:active:before { background-position: -12px -132px; }
+
+.carrousell-control.fork.icon:before { background-position: 0 -144px; }
+.carrousell-control.fork.icon:hover:before,
+.carrousell-control.fork.icon:focus:before,
+.carrousell-control.fork.icon:active:before { background-position: -12px -144px; }
+
+.carrousell-control.like.icon:before { background-position: 0 -156px; }
+.carrousell-control.like.icon:hover:before,
+.carrousell-control.like.icon:focus:before,
+.carrousell-control.like.icon:active:before { background-position: -12px -156px; }
+
+.carrousell-control.favorite.icon:before { background-position: 0 -348px; }
+.carrousell-control.favorite.icon:hover:before,
+.carrousell-control.favorite.icon:focus:before,
+.carrousell-control.favorite.icon:active:before { background-position: -12px -348px; }
+
+.carrousell-control.home.icon:before { background-position: 0 -168px; }
+.carrousell-control.home.icon:hover:before,
+.carrousell-control.home.icon:focus:before,
+.carrousell-control.home.icon:active:before { background-position: -12px -168px; }
+
+.carrousell-control.key.icon:before { background-position: 0 -180px; }
+.carrousell-control.key.icon:hover:before,
+.carrousell-control.key.icon:focus:before,
+.carrousell-control.key.icon:active:before { background-position: -12px -180px; }
+
+.carrousell-control.lock.icon:before { background-position: 0 -192px; }
+.carrousell-control.lock.icon:hover:before,
+.carrousell-control.lock.icon:focus:before,
+.carrousell-control.lock.icon:active:before { background-position: -12px -192px; }
+
+.carrousell-control.unlock.icon:before { background-position: 0 -204px; }
+.carrousell-control.unlock.icon:hover:before,
+.carrousell-control.unlock.icon:focus:before,
+.carrousell-control.unlock.icon:active:before { background-position: -12px -204px; }
+
+.carrousell-control.loop.icon:before { background-position: 0 -216px; }
+.carrousell-control.loop.icon:hover:before,
+.carrousell-control.loop.icon:focus:before,
+.carrousell-control.loop.icon:active:before { background-position: -12px -216px; }
+
+.carrousell-control.search.icon:before { background-position: 0 -228px; }
+.carrousell-control.search.icon:hover:before,
+.carrousell-control.search.icon:focus:before,
+.carrousell-control.search.icon:active:before { background-position: -12px -228px; }
+
+.carrousell-control.mail.icon:before { background-position: 0 -240px; }
+.carrousell-control.mail.icon:hover:before,
+.carrousell-control.mail.icon:focus:before,
+.carrousell-control.mail.icon:active:before { background-position: -12px -240px; }
+
+.carrousell-control.move.icon:before { background-position: 0 -252px; }
+.carrousell-control.move.icon:hover:before,
+.carrousell-control.move.icon:focus:before,
+.carrousell-control.move.icon:active:before { background-position: -12px -252px; }
+
+.carrousell-control.edit.icon:before { background-position: 0 -264px; }
+.carrousell-control.edit.icon:hover:before,
+.carrousell-control.edit.icon:focus:before,
+.carrousell-control.edit.icon:active:before { background-position: -12px -264px; }
+
+.carrousell-control.pin.icon:before { background-position: 0 -276px; }
+.carrousell-control.pin.icon:hover:before,
+.carrousell-control.pin.icon:focus:before,
+.carrousell-control.pin.icon:active:before { background-position: -12px -276px; }
+
+.carrousell-control.reload.icon:before { background-position: 0 -300px; }
+.carrousell-control.reload.icon:hover:before,
+.carrousell-control.reload.icon:focus:before,
+.carrousell-control.reload.icon:active:before { background-position: -12px -300px; }
+
+.carrousell-control.rss.icon:before { background-position: 0 -312px; }
+.carrousell-control.rss.icon:hover:before,
+.carrousell-control.rss.icon:focus:before,
+.carrousell-control.rss.icon:active:before { background-position: -12px -312px; }
+
+.carrousell-control.tag.icon:before { background-position: 0 -324px; }
+.carrousell-control.tag.icon:hover:before,
+.carrousell-control.tag.icon:focus:before,
+.carrousell-control.tag.icon:active:before { background-position: -12px -324px; }
+
+.carrousell-control.trash.icon:before { background-position: 0 -336px; }
+.carrousell-control.trash.icon:hover:before,
+.carrousell-control.trash.icon:focus:before,
+.carrousell-control.trash.icon:active:before { background-position: -12px -336px; }
+
+.carrousell-control.user.icon:before { background-position: 0 -360px; }
+.carrousell-control.user.icon:hover:before,
+.carrousell-control.user.icon:focus:before,
+.carrousell-control.user.icon:active:before { background-position: -12px -360px; }
+
+
+/* =============================================================================
+   Button extensions
+   ========================================================================== */
+
+/* Primary carrousell-control
+   ========================================================================== */
+
+.carrousell-control.primary {
+    font-weight: bold;
+}
+
+/* Danger carrousell-control
+   ========================================================================== */
+
+.carrousell-control.danger {
+    color: #900;
+}
+
+.carrousell-control.danger:hover,
+.carrousell-control.danger:focus,
+.carrousell-control.danger:active {
+    border-color: #b53f3a;
+    border-bottom-color: #a0302a;
+    color: #fff;
+    background-color: #dc5f59;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dc5f59), to(#b33630));
+    background-image: -moz-linear-gradient(#dc5f59, #b33630);
+    background-image: -ms-linear-gradient(#dc5f59, #b33630);
+    background-image: -o-linear-gradient(#dc5f59, #b33630);
+    background-image: linear-gradient(#dc5f59, #b33630);
+}
+
+.carrousell-control.danger:active,
+.carrousell-control.danger.active {
+    border-color: #a0302a;
+    border-bottom-color: #bf4843;
+    background-color: #b33630;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b33630), to(#dc5f59));
+    background-image: -moz-linear-gradient(#b33630, #dc5f59);
+    background-image: -ms-linear-gradient(#b33630, #dc5f59);
+    background-image: -o-linear-gradient(#b33630, #dc5f59);
+    background-image: linear-gradient(#b33630, #dc5f59);
+}
+
+/* Pill carrousell-control
+   ========================================================================== */
+
+.carrousell-control.pill {
+    border-radius: 50em;
+}
+
+/* Disabled carrousell-control
+   ========================================================================== */
+
+.carrousell-control.disable {
+    opacity: 0.5;
+}
+
+/* Big carrousell-control
+   ========================================================================== */
+
+.carrousell-control.big {
+    font-size: 14px;
+}
+
+.carrousell-control.big.icon:before {
+    top: 0;
+}
+
+
+/* =============================================================================
+   Button groups
+   ========================================================================== */
+
+/* Standard group
+   ========================================================================== */
+
+.carrousell-control-group {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* IE hacks */
+    zoom: 1;
+    *display: inline;
+}
+
+.carrousell-control + .carrousell-control,
+.carrousell-control + .carrousell-control-group,
+.carrousell-control-group + .carrousell-control,
+.carrousell-control-group + .carrousell-control-group {
+    margin-left: 15px;
+}
+
+.carrousell-control-group li {
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.carrousell-control-group .carrousell-control {
+    float: left;
+    margin-left: -1px;
+}
+
+.carrousell-control-group > .carrousell-control:not(:first-child):not(:last-child),
+.carrousell-control-group li:not(:first-child):not(:last-child) .carrousell-control {
+    border-radius: 0;
+}
+
+.carrousell-control-group > .carrousell-control:first-child,
+.carrousell-control-group li:first-child .carrousell-control {
+    margin-left: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.carrousell-control-group > .carrousell-control:last-child,
+.carrousell-control-group li:last-child > .carrousell-control {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Minor group
+   ========================================================================== */
+
+.carrousell-control-group.minor-group .carrousell-control {
+    border: 1px solid #d4d4d4;
+    text-shadow: none;
+    background-image: none;
+    background-color: #fff;
+}
+
+.carrousell-control-group.minor-group .carrousell-control:hover,
+.carrousell-control-group.minor-group .carrousell-control:focus {
+    background-color: #599bdc;
+}
+
+.carrousell-control-group.minor-group .carrousell-control:active,
+.carrousell-control-group.minor-group .carrousell-control.active {
+    background-color: #3072b3;
+}
+
+.carrousell-control-group.minor-group .carrousell-control.icon:before {
+    opacity: 0.8;
+}
+
+/* =============================================================================
+   Button container (mixing carrousell-controls and groups, e.g., nav bar)
+   ========================================================================== */
+
+.carrousell-control-container .carrousell-control,
+.carrousell-control-container .carrousell-control-group {
+    vertical-align: top;
+}
+

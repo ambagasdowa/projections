@@ -1,0 +1,11 @@
+1517500802
+a:6:{s:8:"id_flota";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:6:"nombre";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:40;}s:7:"alarmas";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:15:"qtracs_groupnum";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:39:"
+CREATE DEFAULT Set_To_Empty
+	AS ''
+";s:6:"length";i:10;}s:21:"trafico_local_foraneo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:12:"id_areaflota";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}}

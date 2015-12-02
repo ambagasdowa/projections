@@ -1,0 +1,143 @@
+1517500802
+a:206:{s:9:"id_unidad";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:10;}s:13:"total_llantas";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:11:"tipo_unidad";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:13:"id_tipo_motor";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:15:"id_marca_unidad";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:14:"id_tipo_unidad";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:14:"kms_acumulados";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:5:"r_f_v";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:15:"id_centro_costo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:14:"llantas_extras";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:10:"no_permiso";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"no_inciso_seguro";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:11:"id_operador";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:19:"kms_servicio_ultimo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"kms_servicio_sig";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:7:"id_area";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:8:"id_depto";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"kms_inicio_ciclo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"secuencia_inicio";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:5:"idcia";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"hrs_inicio_ciclo";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:12:"no_cilindros";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:15:"prov_carroceria";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:13:"secuencia_ult";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:13:"secuencia_sig";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:10:"no_circula";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:16:"doble_no_circula";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:10:"id_tercero";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:9:"id_status";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:11:"status_comm";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:8:"msg_pend";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:7:"id_ruta";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:13:"id_area_viaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:8:"no_viaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:9:"id_pedido";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:8:"id_flota";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:9:"id_origen";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:10:"id_destino";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:12:"id_remitente";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:15:"id_destinatario";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:12:"id_macro_ult";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:14:"costo_tenencia";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:9:"no_poliza";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:10:"prima_neta";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:8:"recargos";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:10:"der_poliza";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:3:"iva";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:12:"costo_unidad";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:16:"costo_carroceria";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:15:"ultima_tenencia";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:15:"ultimo_refrendo";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:14:"ultimo_permiso";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:12:"vence_seguro";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:9:"fecha_kms";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:21:"fecha_servicio_ultimo";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:18:"fecha_servicio_sig";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:17:"fecha_adquisicion";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:16:"fecha_ultima_rev";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:18:"fecha_inicio_ciclo";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:13:"fecha_emision";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:11:"fecha_desde";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:11:"fecha_hasta";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:14:"fecha_adq_carr";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:13:"fecha_estatus";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:10:"fecha_baja";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:7:"posdate";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:13:"f_real_salida";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:14:"f_prog_llegada";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:15:"f_entrada_patio";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:10:"f_mismapos";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:3:"TEA";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:20:"rendimiento_esperado";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:15:"lts_combustible";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:10:"lts_aceite";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:11:"kms_por_dia";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:9:"dim_ancho";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:9:"dim_largo";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:10:"dim_altura";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:18:"rendimiento_aceite";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:14:"hrs_acumuladas";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:11:"hrs_por_dia";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:19:"hrs_servicio_ultimo";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:16:"hrs_servicio_sig";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:9:"proveedor";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:13:"peso_unidades";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:11:"lts_relleno";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:13:"lts_saldocomb";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:8:"no_serie";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:6:"modelo";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:15;}s:19:"id_ciclo_preventivo";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:6;}s:6:"placas";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:8;}s:13:"observaciones";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:150;}s:12:"no_economico";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:18:"id_servicio_ultimo";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:6;}s:15:"id_servicio_sig";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:6;}s:18:"id_servicio_inicio";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:6;}s:19:"tarjeta_circulacion";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:10:"no_factura";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:10:"tipo_motor";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:14:"potencia_motor";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:8;}s:16:"pulgadas_cubicas";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:6;}s:8:"no_motor";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:5:"color";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:13:"no_carroceria";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:14:"obs_carroceria";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:200;}s:18:"fecha_vence_placas";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:6:"poliza";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:40;}s:20:"fecha_vence_tenencia";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:13:"status_unidad";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:2;}s:5:"viaje";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:35;}s:18:"fecha_vence_seguro";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:9:"id_thermo";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:24:"fecha_vence_verificacion";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:6:"no_kit";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:15:"desc_marcamotor";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:25;}s:19:"desc_provcarroceria";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:80;}s:15:"desc_provunidad";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:80;}s:13:"tarjeta_llave";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:16:"no_tarjeta_llave";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:25;}s:9:"mctnumber";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:50;}s:8:"posicion";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:39:"
+CREATE DEFAULT Set_To_Empty
+	AS ''
+";s:6:"length";i:250;}s:6:"poslat";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:6:"poslon";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:8:"operador";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:40;}s:12:"id_unidad_as";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:12:"id_remolque1";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:8:"id_dolly";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:12:"id_remolque2";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:6:"origen";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:30;}s:7:"destino";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:30;}s:14:"id_despachador";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:10;}s:16:"tipo_combustible";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:0:"";s:6:"length";i:1;}s:6:"estado";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:18:"estado_adquisicion";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:15:"datos_generales";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:255;}s:11:"tipo_moneda";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:10:"forma_pago";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:7:"kms_hrs";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:15:"hrs_automaticas";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:7:"estatus";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:17:"tipo_programacion";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:16:"equipo_omnitracs";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:7:"tercero";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:36:"
+CREATE DEFAULT Set_to_N
+	AS 'N'
+";s:6:"length";i:1;}s:10:"causa_baja";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:4:"tipo";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:6:"status";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:12:"status_caja1";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:12:"status_caja2";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:8:"en_patio";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:8:"mismapos";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:15:"f_status_unidad";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:6:"subcta";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:25;}s:13:"tipomacro_ult";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:12:"kms_actuales";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:4:"ruta";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:50;}s:10:"peso_bruto";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:17:"fecha_instalacion";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:20:"kmshrsinicialaparmed";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:10:"no_medidor";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:4;}s:11:"tipo_medida";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:1;}s:12:"id_operador2";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:12:"hrs_actuales";a:4:{s:4:"type";s:5:"float";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:9;}s:10:"id_ingreso";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:15;}s:13:"fecha_ingreso";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:16:"kms_hrs_actuales";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:16:"fecha_disponible";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:15:"id_plazadestino";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:17:"id_tipo_operacion";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:13:"id_movimiento";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:8:"clas_uni";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:11:"cta_consumo";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:13:"id_status_rem";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:22:"ultimo_id_destinatario";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:20:"ultimo_id_area_viaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:15:"ultimo_no_viaje";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:11:"id_estacion";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:20:"ultimo_id_areapedido";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:16:"ultimo_id_pedido";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:13:"origen_status";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:12:"cargadovacio";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:45:"
+CREATE DEFAULT SET_To_CadenaVacia
+	AS ''
+";s:6:"length";i:1;}s:14:"kms_ultima_rev";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:14:"id_transponder";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:8;}s:11:"num_soporte";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:8;}s:10:"vehunitnum";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:21;}s:12:"nacionalidad";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:19:"id_localidaddestino";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:11:"id_circuito";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:11:"id_compania";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:10:"kms_arribo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:18:"ultimo_id_pedidopk";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:13:"alarmasnuevas";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:14:"mensajesnuevos";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:12:"id_linearem1";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:39:"
+CREATE DEFAULT Set_To_Empty
+	AS ''
+";s:6:"length";i:10;}s:12:"id_linearem2";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:39:"
+CREATE DEFAULT Set_To_Empty
+	AS ''
+";s:6:"length";i:10;}s:6:"modulo";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:13:"id_asignacion";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";s:37:"
+CREATE DEFAULT Set_To_Zero
+	AS 0
+";s:6:"length";i:4;}s:13:"modelo_unidad";a:4:{s:4:"type";s:6:"string";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:20;}s:5:"madre";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:36:"
+CREATE DEFAULT Set_to_N
+	AS 'N'
+";s:6:"length";i:1;}s:4:"hija";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:36:"
+CREATE DEFAULT Set_to_N
+	AS 'N'
+";s:6:"length";i:1;}s:8:"asignado";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:36:"
+CREATE DEFAULT Set_to_N
+	AS 'N'
+";s:6:"length";i:1;}s:15:"unidad_asignado";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:36:"
+CREATE DEFAULT Set_to_N
+	AS 'N'
+";s:6:"length";i:11;}s:13:"hija_asignada";a:4:{s:4:"type";s:6:"string";s:4:"null";b:0;s:7:"default";s:36:"
+CREATE DEFAULT Set_to_N
+	AS 'N'
+";s:6:"length";i:11;}s:15:"FECHA_LOGISTICA";a:4:{s:4:"type";s:8:"datetime";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";N;}s:15:"valor_convenido";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:15:"deducible_xrobo";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}s:22:"deducible_xdmateriales";a:4:{s:4:"type";s:5:"float";s:4:"null";b:1;s:7:"default";s:0:"";s:6:"length";i:9;}}

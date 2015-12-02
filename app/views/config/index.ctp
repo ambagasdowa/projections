@@ -1,0 +1,3 @@
+<?php
+//   Config/index.ctp
+?>

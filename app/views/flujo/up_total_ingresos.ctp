@@ -1,0 +1,3 @@
+<?php
+  e('$'.number_format(money_format('%i',$estimate['Ingresos']['FlujoIngresos']['total_ingresos']), 2, '.', ','));
+?> 

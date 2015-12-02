@@ -1,0 +1,21 @@
+#logo {
+  position:relative;
+/*   background:#dbdbdb; */
+}
+#logo a {
+/*   color: #525252; */
+  font-family: "Righteous",cursive;
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+  background: url(../img/icons/user4_16.png) right 10px no-repeat;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+#logo a:hover {
+  background-position: right 4px;
+  text-decoration: none;
+}
+

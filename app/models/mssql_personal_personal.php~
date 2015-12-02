@@ -1,0 +1,13 @@
+<?php
+  class MssqlPersonalPersonal extends AppModel{
+	var $name = 'DespStatus';
+	var $useTable = 'desp_status';
+	var $primaryKey = 'id_status';
+	
+	function getStatus(){
+	  $getStatus = removeString($arrayString=$this->find('all'),$string='',$model='DespStatus',$field='nombre',true);
+	  return $getStatus;
+	}
+	
+  }
+?>

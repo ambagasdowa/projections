@@ -1,0 +1,348 @@
+<?php
+/**
+You should use Cakephp Shell in order to do something in cron. The question was talked in How to setup cronjobs in cake php? .
+
+EDIT: If you need to use something both in your controller and shell, I would suggest to move it to component. In your shell you can do
+
+App::import('Component', 'Meteor');
+$this->Meteor = new MeteorComponent();
+$this->Meteor->flash('New York');
+In controller
+
+$components = array('Meteor');
+
+public function your_action() {
+  // code
+  $this->Meteor->flash('Paris');
+}
+*/
+
+  class TachionShell extends Shell{
+
+      var $name = 'Tachion';
+      var $uses = null;
+			
+    
+    function test(){
+		App::Import('Shell', 'Shell');
+		App::Import('Vendor',array('shells/sniffer_data'));
+		$myShell = new SnifferDataShell(new Object());
+		$myShell->initialize();
+	// 	Select the method to call
+		$Shell = $myShell->main($view=true,$debug=false);
+    }
+    
+  /** @function month()
+   ** @param <var returned> <vars set in view> <the year> 
+   ** TODO use this as global research about controller::method import use AppController
+   ** for now will generate an array
+   **/    
+   function months($return=null,$set=null,$year=null){
+      
+      // firts make the month and classified according to given year
+      // this is going to define section
+      $translate = array(
+		'1'=>'Enero',
+		'2'=>'Febrero',
+		'3'=>'Marzo',
+		'4'=>'Abril',
+		'5'=>'Mayo',
+		'6'=>'Junio',
+		'7'=>'Julio',
+		'8'=>'Agosto',
+		'9'=>'Septiembre',
+		'10'=>'Octubre',
+		'11'=>'Noviembre',
+		'12'=>'Diciembre'
+      );
+      for($i=1;$i<=12;$i++){
+     	$months[$i]['spanish'] = $translate[$i];
+		$months[$i]['large'] = date('F',mktime('0','0','0',$i,'01',$year));
+		$months[$i]['short'] = date('M',mktime('0','0','0',$i,'01',$year));
+		$months[$i]['numeric'] = date('m',mktime('0','0','0',$i,'01',$year));
+		$months[$i]['num'] = date('n',mktime('0','0','0',$i,'01',$year));
+		$months[$i]['days'] = date('t',mktime('0','0','0',$i,'01',$year));
+		$months[$i]['leap'] = date('L',mktime('0','0','0',$i,'01',$year));
+      }
+      // Now select if set the vars to the view or return the vars to the controller
+      if($return == false && $set == true){
+	  $this->set('months',$months);
+      }elseif($return == true && $set == false){
+	  return $months;
+      }
+   } // End's function months()
+
+
+// 	this can come from a db record
+// 	  $year = date('Y');
+/**
+
+Object oriented style
+---sub
+$date = new DateTime('2000-01-20');
+$date->sub(new DateInterval('P10D'));
+echo $date->format('Y-m-d') . \"\n\";
+---add
+$date = new DateTime('2000-01-01');
+$date->add(new DateInterval('P10D'));
+echo $date->format('Y-m-d') . \"\n\";
+
+Procedural style
+---sub
+$date = date_create('2000-01-20');
+date_sub($date, date_interval_create_from_date_string('10 days'));
+echo date_format($date, 'Y-m-d');
+----add
+$date = date_create('2000-01-01');
+date_add($date, date_interval_create_from_date_string('10 days'));
+echo date_format($date, 'Y-m-d');
+
+period:
+P1Y2M3DT1H2M3S
+
+period time:
+PT1H2M3S
+
+**/
+// DB?
+// pr($year);exit();
+      function GetNationalMexicanHolidays($year=null){
+		  $HolyMonth['sub']['AshesWednesday']= 'P46D';
+		  $HolyMonth['sub']['PalmSunday']= 'P7D';
+		  $HolyMonth['sub']['HolyThursday']= 'P3D';
+		  $HolyMonth['sub']['GoodFriday']= 'P2D';
+		  $HolyMonth['sub']['SaturdayOfGlory']= 'P1D';
+		  $HolyMonth['add']['AscentionOfMigthyLord']= 'P39D';
+		  $HolyMonth['add']['Pentecostes']= 'P49D';
+		  $HolyMonth['add']['HolynessTrinity']= 'P56D';
+		  $HolyMonth['add']['CorpusChristi']= 'P60D';
+		
+		  $GetEaster = $this->get_easter_datetime($year)->format('Y-m-d');
+      
+		  foreach($HolyMonth['sub'] as $DayCeleb => $celebration ){
+			$date = new DateTime($GetEaster);
+			$date->sub(new DateInterval($celebration));
+			$BeforeEaster[$DayCeleb] = $date->format('Y-m-d');
+		  }foreach($HolyMonth['add'] as $DayCeleb => $celebration){
+			$date = new DateTime($GetEaster);
+			$date->add(new DateInterval($celebration));
+			$AfterEaster[$DayCeleb] = $date->format('Y-m-d');
+		  }
+
+      
+      
+		  $MxBankHolidays = array( 
+					'NewYearsDay' => $year.'-01-01',
+					'BattleOfPuebla' => ''.date('Y-m-d',strtotime('first Monday of February'.$year)),
+					'JuarezBirthday' => ''.date('Y-m-d',strtotime('third Monday of March'.$year)),
+					'LabourDay' => $year.'-05-01',
+					'IndependenceDay' => $year.'-09-16',
+					'MexicanRevolution' => ''.date('Y-m-d',strtotime('third Monday of November'.$year)),
+					'Christmas' => $year.'-12-25'
+		  );
+
+      
+		  $MxMexicanHolidays = array( 
+					'HolyThursday' => $BeforeEaster['HolyThursday'],// Holy Thursday
+					'GoodFriday' => $BeforeEaster['GoodFriday'], // Good Friday
+					'HolySaturday' => $BeforeEaster['SaturdayOfGlory'], // Holy Saturday
+					'AllSoulsDay' => $year.'-11-02', // All Souls'Day
+					'OurLadyOfGuadalupe' => $year.'-12-12' // Our Lady of Guadalupe
+		  );
+		  
+	//       array_push($MxBankHolidays,$BeforeEaster['GoodFriday']);
+	//       array_push($MxBankHolidays,$MxMexicanHolidays['AllSoulsDay']);
+		  
+		  $MexicanoHolidays['holiday'] = $MxBankHolidays;
+		  $MexicanoHolidays['holiday']['GoodFriday'] = $BeforeEaster['GoodFriday'];
+		  $MexicanoHolidays['holiday']['SaturdayOfGlory'] = $BeforeEaster['SaturdayOfGlory'];
+		  $MexicanoHolidays['holiday']['AllSoulsDay'] = $MxMexicanHolidays['AllSoulsDay'];
+		  $MexicanoHolidays['mexican'] = $MxMexicanHolidays;
+		  $MexicanoHolidays['easter'] = $GetEaster;
+		  $MexicanoHolidays['holymonth'] = $HolyMonth;
+		  $MexicanoHolidays['beforeeaster'] = $BeforeEaster;
+		  $MexicanoHolidays['aftereaster'] = $AfterEaster;
+
+		  return $MexicanoHolidays;
+      }
+      
+      function GetWorkingDays($startDate=null,$endDate=null,$MexicanoHolidays=null,$debug=null){
+
+	  $holidays = $MexicanoHolidays['holiday'];
+		$work = 0;
+		$nowork = 0;
+		$dayx = strtotime($startDate);
+		$endx = strtotime($endDate);
+		if($debug){
+		  echo '<h1>get_working_days</h1>';
+		  echo 'startDate: '.date('r',strtotime( $startDate)).'<br>';
+		  echo 'endDate: '.date('r',strtotime( $endDate)).'<br>';
+		  pr($holidays);
+  // 	  foreach($holidays as $date){
+  // 	  pr(key($holidays));
+  // 	  next($holidays);
+  // 	  }
+		  echo '<p>Go to work...</p>';
+		}
+	  
+		  while($dayx <= $endx){
+			$day = date('N',$dayx);
+			$date = date('Y-m-d',$dayx);
+		  if($debug)echo '<br />'.date('r',$dayx).' ';
+		  
+		  if($day > 6 || in_array($date,$holidays)){
+			$nowork++;
+			  if($debug){
+				if($day > 6)echo '<span style="background-color:#4ECA06;display:inline;">weekend</span>';
+				else echo '<span style="background-color:yellow;display:inline;">holiday</span>';
+				if($date){
+				$get_holiday = array_keys($holidays,$date);
+					foreach($get_holiday as $key => $desc){
+					  echo '=><span style="background-color:yellow;display:inline;">'.$desc.'</span>';
+					}
+				}
+			  }
+		  } else $work++;
+		  $dayx = strtotime($date.' +1 day');
+		}
+		
+		if($debug){
+		  echo '<p>No work: '.$nowork.'<br>';
+		  echo 'Work: '.$work.'<br>';
+		  echo 'Work + no work: '.($nowork+$work).'<br>';
+		  echo 'All seconds / seconds in a day: '.floatval(strtotime($endDate)-strtotime($startDate))/floatval(24*60*60);
+		  echo '</p>';
+		}
+		return $work;
+	} // GetWorkingDays end's
+
+/**
+easter_date() relies on your system's C library time functions, rather than using PHP's internal date and time functions. As a consequence, easter_date() uses the TZ environment variable to determine the time zone it should operate in, rather than using PHP's default time zone, which may result in unexpected behaviour when using this function in conjunction with other date functions in PHP.
+As a workaround, you can use the easter_days() with DateTime and DateInterval to calculate the start of Easter in your PHP time zone as follows:
+**/
+      function get_easter_datetime($year=null){
+		  $base = new DateTime("$year-03-21");
+		  $days = easter_days($year);
+		return $base->add(new DateInterval("P{$days}D"));
+      }
+
+      function EasterDate($year = null){
+		if(!isset($year)){
+		  $year = date('Y'); //Takes Default as current year
+		}
+		$GetEaster = $this->get_easter_datetime($year)->format('Y-m-d');
+	// 	$GetEasterDatetime = explode('-',$easter);
+		$easter = explode('-',$GetEaster);
+// 	  foreach (range(2012, 2015) as $year) {
+// 	    printf("HolyWeek of year %d => %s\n<br />",$year,$Holiday->get_easter_datetime($year)->format('F j'));
+// 	  }
+      return $easter;
+      }
+
+//       function index(){
+// 
+//       }
+      /**
+	  @param => This function is called for print in the view
+      **/
+
+      function RetrieveHolidays($startDate = null, $endDate = null, $debug = null, $year= null,$currentWDays = null){
+		if(!isset($year)){ // if no year are specific then use current year
+			$year = date('Y');
+		}
+	  return $this->GetWorkingDays( $startDate,$endDate,$this->GetNationalMexicanHolidays($year),$debug);
+      } // End RetrieveHolidays();
+
+    
+  	function tachion($debug=null,$year=null,$session=null){
+// 		$debug = true;
+		if($debug){
+			$time1 = microtime(true);
+		}
+		  if(empty($year)){
+			$year = date('Y');
+		  }
+		  /** TODO make the calculation if no $_SESSION['Projections']['workingDays']
+				This means tha you starting the program
+			*/
+// 		  if(!isset($_SESSION['projections']['workingDays'])){
+		  if(!empty($session) OR !isset($_SESSION['Projections']['workingDays'])){
+
+			  $months = $this->months($return=true,$set=false,$year);
+
+			  foreach($months as $numMonth => $monthValue){
+				  $startDate = date('Y-m-d',mktime('0','0','0',$months[$numMonth]['numeric'],'01',$year));
+				  $endDate = date('Y-m-d',mktime('0','0','0',$months[$numMonth]['numeric'],$months[$numMonth]['days'],$year));
+				  $workingDays[$months[$numMonth]['short']] = $this->RetrieveHolidays($startDate,$endDate,$debug,$year);
+			  }
+			  $_SESSION['projections']['workingDays'] = $workingDays;
+// 			  $saveWorkingDays = &$workingDays;
+		  }else{
+// 			if(!isset($_SESSION['projections']['workingDays'])){
+// 			  $_SESSION['projections']['workingDays'] = $saveWorkingDays;
+// 			}else{
+			  $workingDays = $_SESSION['projections']['workingDays'];
+// 			}
+		  }
+		  if($debug){
+			pr($workingDays);
+			$time2 = microtime(true);
+			echo "script execution time: ".($time2-$time1); //value in seconds
+		  }
+		  return $workingDays;
+// 			exit();
+	  }//End tachion();
+
+	  function workingDays($debug=null,$year=null,$month=null,$session=null){
+// 		  $debug = true;
+// 		  $month='02';
+		  if(empty($year)){
+			$year = date('Y');
+		  }if(empty($month)){
+			$month = date('m');
+		  }
+		  if((int)$month === (int)date('m') and ((int)$year === (int)date('Y'))){
+			$currentDay = date('d');
+		  }else{
+			//the Current day must be the last day of the given month
+			$currentDay = date('t',mktime('0','0','0',$month,'01',$year));
+		  }
+		  $monthIdx = date('M',mktime('0','0','0',$month,'01',$year));
+// 		  App::import('Controller', 'Holiday');
+// 		  $Holiday = new HolidayController;
+// 		  $Holiday->constructClasses();
+// 		  $workingDays['currentWorkDays'] = $Holiday->RetrieveHolidays($startDate=date('Y-m-d',mktime('0','0','0',date('m'),'01',date('Y'))),$endDate=date('Y-m-d'),$debug,date('Y'));
+// 		  $workingDays['totalCurrentWorkingDays'] = $_SESSION['projections']['workingDays'][date('M')];
+
+		  $workingDays['currentWorkDays'] = $this->RetrieveHolidays($startDate=date('Y-m-d',mktime('0','0','0',$month,'01',$year)),$endDate=date('Y-m-d',mktime('0','0','0',$month,$currentDay,$year)),$debug,$year);
+		  /** TODO this must come from tachion */ /** NOTE  add fix with tachion */
+		  if(!empty($session)){
+			$workingDays['totalCurrentWorkingDays'] = $this->tachion(false,$year,true)[$monthIdx];
+		  }else{
+			$workingDays['totalCurrentWorkingDays'] = $_SESSION['projections']['workingDays'][$monthIdx];
+		  }
+		
+			  if($debug){
+				echo '<pre>Start Current Working Days</pre>';
+				  pr($workingDays);
+				echo '<pre>End Current Working Days</pre>';
+				echo '<pre>Start Current Total Working Days</pre>';
+				  pr($_SESSION['projections']['workingDays'][date('M')]);
+				echo '<pre>End Current Total Working Days</pre>';
+			  }
+			$_SESSION['projections']['currentProjectionsWorkingDays'] = $workingDays;
+// 			$this->presupuesto();
+		  return $workingDays;
+// 		  exit();
+	  }
+
+
+    function main(){
+
+      pr($this->tachion($debug=false,$year='2015',$session=true));
+      $this->out($this->workingDays($debug=false,$year='2015',$month='01',$session=true));
+
+    }
+
+  }
+?>

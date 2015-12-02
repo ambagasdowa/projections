@@ -1,0 +1,1 @@
+../reportes/view_totals.ctp

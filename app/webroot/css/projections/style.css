@@ -1,0 +1,264 @@
+/* full background */
+
+body {
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #f2f2f2 0%, #fff 100%);
+  background: linear-gradient(to bottom right, #f2f2f2 0%, #fff 100%);
+}
+
+
+/**== LOGIN SECTION ==**/
+/* @import "bourbon"; */
+
+/*body {
+	background: #eee !important;
+}*/
+
+/*.wrapper {	
+  margin-top: 80px;
+  margin-bottom: 80px;*/
+/*   background: #eee !important; */
+/* } */
+
+/*.form-signin {
+				max-width: 380px;
+				padding: 15px 35px 45px;
+				margin: 0 auto;
+				background-color: #fff;
+				border: 1px solid rgba(0,0,0,0.1);  
+
+				.form-signin-heading,
+					.checkbox {
+					margin-bottom: 30px;
+					}
+
+					.checkbox {
+					font-weight: normal;
+					}
+
+					.form-control {
+					position: relative;
+					font-size: 16px;
+					height: auto;
+					padding: 10px;
+						@include box-sizing(border-box);
+
+						&:focus {
+						z-index: 2;
+						}
+					}
+
+					input[type="text"] {
+					margin-bottom: -1px;
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+					}
+
+					input[type="password"] {
+					margin-bottom: 20px;
+					border-top-left-radius: 0;
+					border-top-right-radius: 0;
+					}
+}*/
+/**== LOGIN SECTION ==**/
+
+
+/**== ADD SECTION ==**/
+
+/**== ADD SECTION ==**/
+
+
+
+/* FIX SECTIONS */
+
+/* sparkline fix tooltip */
+/* this happend when you add bootstrap css */
+.jqstooltip {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* sparkline fix tooltip */
+
+/* background with icon  */
+.image-bg-fluid-height,
+.image-bg-fixed-height {
+text-align: center;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+background-size: cover;
+-o-background-size: cover;
+}
+
+.img-center {
+margin: 0 auto;
+}
+
+
+@media(max-width:768px) {
+section {
+padding-top: 25px;
+padding-bottom: 25px;
+}
+.section-heading {
+font-size: 2em;
+}
+}
+/* background with icon  */
+
+/* DEVOOPS SECTION */
+/* checkbox from devoops theme */
+.radio, .checkbox, .radio-inline, .checkbox-inline {
+  position: relative; padding-left: 20px;
+}
+.radio label, .checkbox label, .radio-inline label, .checkbox-inline label {
+  font-weight: normal;
+  cursor: pointer;
+  padding-left: 8px;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+.radio + .radio, .checkbox + .checkbox {
+  margin-top: 10px;
+}
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+.checkbox i, .checkbox-inline i, .radio i, .radio-inline i {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 24px;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+.checkbox i.small, .checkbox-inline i.small, .radio i.small, .radio-inline i.small {
+  font-size: 18px;
+  top:2px;
+}
+.checkbox input[type=checkbox]:checked + i:before, .checkbox-inline input[type=checkbox]:checked + i:before {
+  content:"\f046";
+}
+.radio input[type=radio]:checked + i:before, .radio-inline input[type=radio]:checked + i:before {
+  content:"\f192";
+}
+.toggle-switch {
+  position: relative;
+  width: 60px;
+}
+.toggle-switch input {
+  display: none;
+}
+.toggle-switch label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+.toggle-switch-inner {
+  width: 200%;
+  margin-left: -100%;
+  -webkit-transition: margin 0.3s ease-in 0s;
+  -moz-transition: margin 0.3s ease-in 0s;
+  -o-transition: margin 0.3s ease-in 0s;
+  transition: margin 0.3s ease-in 0s;
+}
+.toggle-switch-inner:before, .toggle-switch-inner:after {
+  float: left;
+  width: 50%;
+  height: 20px;
+  padding: 0;
+  line-height: 20px;
+  font-size: 12px;
+  text-shadow: 1px 1px 1px #FFFFFF;
+  color:#929292;
+  background-color: #F5F5F5;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+.toggle-switch-inner:before {
+  content: "ON";
+  padding-left: 15px;
+  -webkit-border-radius: 20px 0 0 20px;
+  -moz-border-radius: 20px 0 0 20px;
+  border-radius: 20px 0 0 20px;
+}
+.toggle-switch-inner:after {
+  content: "OFF";
+  padding-right: 15px;
+  text-align: right;
+  -webkit-border-radius: 0 20px 20px 0;
+  -moz-border-radius: 0 20px 20px 0;
+  border-radius: 0 20px 20px 0;
+}
+.toggle-switch-switch {
+  width: 20px;
+  margin: 0;
+  border: 2px solid #d8d8d8;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 40px;
+  color: #f8f8f8;
+  line-height: 1em;
+  text-shadow: 0 0px 1px #ADADAD;
+  text-align: center;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
+  background-color: #f0f0f0;
+  background-image: -webkit-linear-gradient(top, #f0f0f0, #dfdfdf);
+  background-image:    -moz-linear-gradient(top, #f0f0f0, #dfdfdf);
+  background-image:     -ms-linear-gradient(top, #f0f0f0, #dfdfdf);
+  background-image:      -o-linear-gradient(top, #f0f0f0, #dfdfdf);
+  background-image:         linear-gradient(to bottom, #f0f0f0, #dfdfdf);
+}
+.toggle-switch input:checked + .toggle-switch-inner {
+  margin-left: 0;
+}
+.toggle-switch input:checked + .toggle-switch-inner + .toggle-switch-switch {
+  right: 0px; 
+}
+.toggle-switch-danger input:checked + .toggle-switch-inner + .toggle-switch-switch {
+  border:2px solid #D15E5E;
+  background: #D15E5E;
+}
+.toggle-switch-warning input:checked + .toggle-switch-inner + .toggle-switch-switch {
+  border:2px solid #DFD271;
+  background: #DFD271;
+}
+.toggle-switch-info input:checked + .toggle-switch-inner + .toggle-switch-switch {
+  border:2px solid #7BC5D3;
+  background: #7BC5D3;
+}
+.toggle-switch-success input:checked + .toggle-switch-inner + .toggle-switch-switch {
+  border:2px solid #63CC9E;
+  background: #63CC9E;
+}
+.toggle-switch-primary input:checked + .toggle-switch-inner + .toggle-switch-switch {
+  border:2px solid #6AA6D6;
+  background: #6AA6D6;
+}
+/*  file button section */
+
+/* checkbox from devoops theme */
+ 

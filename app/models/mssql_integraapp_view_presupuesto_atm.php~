@@ -1,0 +1,12 @@
+<?php
+// select * from dbo.getRealPresupuesto('ATMMAC','2015','AG','BW','201501|201502|201503|201504|201505|201506|201507|201508|201509|2015010|201511|201512','5E','|') order by NoCta
+	class MssqlIntegraappViewPresupuestoAtm extends AppModel{
+		var $name = 'MssqlIntegraappViewPresupuestoAtm';
+		var $useDbConfig = 'integraapp';
+		var $useTable = "fetchViewRealPresupuestoAtm";
+
+		function getRealPresupuesto(){
+			pr($this->find('all'));
+		}
+	}//MssqlFecthPrepReal
+?>

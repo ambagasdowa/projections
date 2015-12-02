@@ -1,0 +1,171 @@
+<?php
+$filter['backgroundColor']['Granel'] = '#BFD9FF';
+$filter['backgroundColor']['Envasado'] = '#BFFFBF';
+$filter['backgroundColor']['Agregados'] = '#FFFFBF';
+$filter['backgroundColor']['Caja Seca'] = '#F8FFBF';
+$filter['backgroundColor']['Productos Varios'] = '#EEEEEE';
+$filter['backgroundColor']['Clinker'] = '#E0E0E0';
+$filter['backgroundColor']['Otros'] = '#E6E6E6';
+//   pr($conceptos);
+//   pr($filter);
+//   pr($months);
+//   $colspan = 'colspan="5"';
+
+$fraction = $_SESSION['projections']['fraction'];
+$colspan = 'colspan="'.count($fraction).'"';
+// pr($_SESSION['projections']['fraction']);
+?>
+
+<?php
+  if(!isset($conceptos)){
+    $conceptos = null;
+?>
+	<div id="warning"><span>Debe Seleccionar al menos un criterio </span></div>
+<?php
+  exit();
+  }else{
+?>
+<!-- 	This section is going update -->
+<!--	  <div id="divCompare">--> <!--Update section-->
+<!-- 	<table id="menu_info_small"> -->
+<?php
+	      foreach($conceptos as $id_concepto => $concepto){
+?>
+	<table id="menu_info_small" style="color:black;"> <!--fix of the default css from menu_info_small-->
+		<tr /> <!--Make the headers-->
+		  <th colspan="2" style="text-align:center;" width="10%"/><h4>Dia</h4>
+<?php
+		      e('<th '.$colspan.' style="text-align:center;" /><h4>'.$concepto.'</h4>');
+?>
+		<tr />
+		  <td colspan="2" />&nbsp;
+		  <?php foreach($fraction as $idFraction => $fractionName){ ?>
+		  <td colspan="1" style="text-align:center;font-weight:800;" width="10%" /><?php e($fractionName);?>
+		  <?php } ?>
+<!-- 		  fixed -->
+
+<?php
+
+		    if(isset($filter[strtolower($concepto)])){
+		    foreach($filter[strtolower($concepto)] as $id_dia => $datos){
+			e('<tr />');
+			if($datos['num_week'] == 7){
+			  e('<td style="text-align:left;color:red;" />'.$datos['spanish']);
+			  e('<td style="text-align:center;color:red;" />'.$id_dia);
+			}else{
+			  e('<td style="text-align:left;" />'.$datos['spanish']);
+			  e('<td style="text-align:center;" />'.$id_dia);
+			}
+			
+			foreach($fraction as $idFraction => $fractionName){
+			
+			  if(isset($datos[$fractionName]) AND $datos[$fractionName] > 0 ){
+				if($id_concepto == '3'){
+				  if(isset($_SESSION['projections']['decimals'])){
+					e('<td style="text-align:center;background-color:'.$filter['backgroundColor'][$fractionName].';font-weight:800;" width="10%" />'."\$ ".number_format(money_format('%i',$datos[$fractionName]), 2, '.', ','));
+				  }else{
+					e('<td style="text-align:center;background-color:'.$filter['backgroundColor'][$fractionName].';font-weight:800;" width="10%" />'."\$ ".number_format(round($datos[$fractionName])));
+				  }
+				}else{
+				  if(isset($_SESSION['projections']['decimals'])){
+					e('<td style="text-align:center;background-color:'.$filter['backgroundColor'][$fractionName].';font-weight:800;" width="10%" />'.number_format(money_format('%i',$datos[$fractionName]), 2, '.', ','));
+				  }else{
+					e('<td style="text-align:center;background-color:'.$filter['backgroundColor'][$fractionName].';font-weight:800;" width="10%" />'.number_format(round($datos[$fractionName])));
+				  }
+				}
+			  }else{
+				e('<td style="text-align:center;" width="10%" />&nbsp;');
+			  }
+			}
+// 			  if(isset($datos['Granel']) AND $datos['Granel'] > 0 ){
+// 				if($id_concepto == '3'){
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Granel'].';font-weight:800;" width="10%" />'."\$ ".number_format(money_format('%i',$datos['Granel']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Granel'].';font-weight:800;" width="10%" />'."\$ ".number_format(round($datos['Granel'])));
+// 				  }
+// 				}else{
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Granel'].';font-weight:800;" width="10%" />'.number_format(money_format('%i',$datos['Granel']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Granel'].';font-weight:800;" width="10%" />'.number_format(round($datos['Granel'])));
+// 				  }
+// 				}
+// 			  }else{
+// 				e('<td style="text-align:center;" width="10%" />&nbsp;');
+// 			  }if(isset($datos['Envasado']) AND $datos['Envasado'] > 0){
+// 				if($id_concepto == '3'){
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Envasado'].';font-weight:800;" />'."\$ ".number_format(money_format('%i',$datos['Envasado']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Envasado'].';font-weight:800;" />'."\$ ".number_format(round($datos['Envasado'])));
+// 				  }
+// 				}else{
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Envasado'].';font-weight:800;" />'.number_format(money_format('%i',$datos['Envasado']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Envasado'].';font-weight:800;" />'.number_format(round($datos['Envasado'])));
+// 				  }
+// 				}
+// 			  }else{
+// 				e('<td style="text-align:center;" />&nbsp;');
+// 			  }if(isset($datos['Agregados']) AND $datos['Agregados'] > 0){
+// 				if($id_concepto == '3'){
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Agregados'].';font-weight:800;" />'."\$ ".number_format(money_format('%i',$datos['Agregados']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Agregados'].';font-weight:800;" />'."\$ ".number_format(round($datos['Agregados'])));
+// 				  }
+// 				}else{
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Agregados'].';font-weight:800;" />'.number_format(money_format('%i',$datos['Agregados']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Agregados'].';font-weight:800;" />'.number_format(round($datos['Agregados'])));
+// 				  }
+// 				}
+// 			  }else{
+// 				e('<td style="text-align:center;" />&nbsp;');
+// 			  }if(isset($datos['Caja Seca']) AND $datos['Caja Seca'] > 0){
+// 				if($id_concepto == '3'){
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Caja Seca'].';font-weight:800;" />'."\$ ".number_format(money_format('%i',$datos['Caja Seca']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Caja Seca'].';font-weight:800;" />'."\$ ".number_format(round($datos['Caja Seca'])));
+// 				  }
+// 				}else{
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Caja Seca'].';font-weight:800;" />'.number_format(money_format('%i',$datos['Caja Seca']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Caja Seca'].';font-weight:800;" />'.number_format(round($datos['Caja Seca'])));
+// 				  }
+// 				}
+// 			  }else{
+// 				e('<td style="text-align:center;" />&nbsp;');
+// 			  }if(isset($datos['Productos Varios']) AND $datos['Productos Varios'] > 0){
+// 				if($id_concepto == '3'){
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Productos Varios'].';font-weight:800;" />'."\$ ".number_format(money_format('%i',$datos['Productos Varios']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Productos Varios'].';font-weight:800;" />'."\$ ".number_format(round($datos['Productos Varios'])));
+// 				  }
+// 				}else{
+// 				  if(isset($_SESSION['projections']['decimals'])){
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Productos Varios'].';font-weight:800;" />'.number_format(money_format('%i',$datos['Productos Varios']), 2, '.', ','));
+// 				  }else{
+// 					e('<td style="text-align:center;background-color:'.$filter['backgroundColor']['Productos Varios'].';font-weight:800;" />'.number_format(round($datos['Productos Varios'])));
+// 				  }
+// 				}
+// 			  }else{
+// 				e('<td style="text-align:center;" />&nbsp;');
+// 			  }
+		     } // End foreach conceptos
+		    } // End toneladas
+?>
+		    </table>
+<?php
+	    } // End conceptos
+?>
+
+<?php
+  } // end if conceptos
+?>

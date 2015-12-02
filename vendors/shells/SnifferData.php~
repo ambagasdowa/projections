@@ -1,0 +1,604 @@
+<?php
+class SnifferDataShell extends Shell {
+      var $uses = array('Empresas',
+			'Areas',
+			'AreasAtm',
+			'AreasTei',
+			'Flotas',
+			'FlotasAtm',
+			'FlotasTei',
+			'TipoOperacion',
+			'Fraccion',
+			'TonelajeCurrent',
+			'TonelajeCurrentAtm',
+			'TonelajeCurrentTei',
+			'KmsCurrent',
+			'KmsCurrentAtm',
+			'KmsCurrentTei',
+			'IngresosCurrent',
+			'IngresosCurrentAtm',
+			'IngresosCurrentTei'
+			);
+
+//     var $params = array('');
+
+
+  function Empresas(){
+	$EmpConditions['Empresas.active'] = '1'; // Check if the area is alive
+	$empresas = $this->Empresas->find('list',array('fields'=>array('id_empresa','empresa'),array('conditions'=>$EmpConditions)));
+	$corp = null;
+	
+	foreach($empresas as $key => $value){
+	    if($key == '1'){
+		    $_append[$key] = null;
+	    }else{
+		    $_append[$key]  = substr(ucwords(strtolower($value)),0,3);
+	    }
+	} // End foreach of empresas
+	return $_append;
+  }
+
+  /** @function areas()
+   ** @get empresas an get the areas as flotas indeed so this is root
+   ** @param <set true to return data as variable> <set true to set the variables in view> 
+   ** @var for both modes the returned var are in set mode :: $areas = array()
+   **/    
+   function areas(){
+	  $_append = $this->Empresas();
+// 	  Build the models
+	  foreach($_append as $key => $value){
+	      $model['area'][$key] = 'Areas'.$value;
+	      $FindAreas[$key] = $this->$model['area'][$key]->find('list',array('fields'=>array('id_area','nombre')));
+	  } // End main control structure foreach $_append
+	  
+	  
+	  foreach($FindAreas as $k => $value){
+// 	    $this->out(pr($value));
+	    if( $k == '1' ){ // This is for Bonampak and always will be 
+		foreach($value as $key => $data){
+		    $extracting[$k][$key] = explode('BONAMPAK',$data);
+// 		    if($extracting[$k][$key] == '1'){
+			$extract[$k][$key] = ucwords(strtolower($extracting[$k][$key]['1']));
+// 		    }
+		}
+	    }else{
+		foreach($value as $key => $data){
+		$extract[$k][$key] = explode(' ',$data);
+		  if(isset($extract[$k][$key])){ // is $extract created?
+		      if(in_array('MACUSPANA' ,$extract[$k][$key])){
+			$extract[$k][$key] = ucwords(strtolower('MACUSPANA'));
+			break;
+		      }if(in_array('ESPECIALIZADA' ,$extract[$k][$key])){
+			$extract[$k][$key] = ucwords(strtolower('TEISA'));
+			break;
+		      }
+		  } // End $extract comprobation
+		}
+	    } // End firts level struct if-else
+	  }
+	  
+	  
+	// Set the areas var
+// 	  $this->out(pr($extract));
+	  return $extract;
+   }
+  
+  /** @function fleets()
+   ** @param <set true to return data as variable> <set true to set the variables in view> 
+   ** @var for both modes the returned var are in set mode :: $fleets = array($fleet,$flota)
+   **/    
+   function fleets($return=null,$set=null){
+//       pr('FLEETS');
+	$_append = $this->Empresas();
+	$fleets = $areas = $this->areas();
+// 	$SearchFleets = $areas;
+// 	pr($fleets); 
+// 	exit();
+	foreach($fleets as $id_empresa => $data){
+	    $model[$id_empresa] = 'Flotas'.$_append[$id_empresa];
+	    foreach($data as $id_area => $area){
+// 		pr($area);
+		$flota_[$id_empresa][trim($area)] = $this->$model[$id_empresa]->find('all');
+// 		$SearchFleets[$id_empresa][trim($area)] = $flota_[$id_area]['TipoOperacion'.$_append[$id_empresa]];
+// 		$TipoOperacion[$id_empresa][$id_area] = 'TipoOperacion'.$data;
+		$Flotas[$id_empresa][$id_area] = 'Flotas'.$data;
+	    }
+	}
+	foreach($flota_ as $id_empresa => $area){
+// 	    pr($area);
+	    foreach($area as $area_name => $desc){
+// 		pr($desc);
+		foreach($desc as $key => $data){
+		
+		    foreach($data['TipoOperacion'.$_append[$id_empresa]] as $id_flota => $values){
+			$SearchFleets[$id_empresa][$area_name][$id_flota+1][$values['id_tipo_operacion']] = $values['tipo_operacion'];
+		    }
+		}
+	    }
+	
+	}
+	
+	
+	pr($SearchFleets);
+// 	pr($model);
+// 	pr($flota_);
+	exit();
+// 	pr($TipoOperacion);
+// 	pr($Flotas);
+	foreach($SearchFleets as $id_empresa => $flotas){
+	      pr($flotas);
+	  foreach($flotas as $id_flota => $flota){
+// 	    pr($id_flota);
+	    if(!isset($fleet[$id_empresa][$id_flota])){
+	      $fleet[$id_empresa][$id_flota] = null;
+	    }
+	    $fleet[$id_empresa][$flota[$Flotas[$id_empresa]]['id_flota']] = trim($flota[$Flotas[$id_empresa]]['nombre']);
+	    foreach($flota as $flotaEmp => $data){
+		if($flotaEmp == $TipoOperacion[$id_empresa]){
+		    foreach($data as $idx => $value){
+// 		    		pr($fleet[$id_empresa][$id_flota]);
+// 		    		pr($value['tipo_operacion']);
+// 		    		$fleet[$id_empresa][$id_flota] .= ','.$value['id_tipo_operacion'];
+// 			$fleet[$id_empresa] .= $value['id_tipo_operacion'];
+		    }
+		}
+
+	    }
+	    
+	  }
+	} // End of SearchFleets
+// 	pr($fleet);
+// 	pr($flt);
+	exit();
+
+// 	$flota['0'] = null;
+
+	for($i=1;$i<=count($area);$i++){
+	  $flota[$i] = null;
+	}
+
+	foreach($SearchFleets as $key => $value){
+	  if(!empty($SearchFleets[$key][$TipoOperacion])){
+	  
+	    $fleet[$SearchFleets[$key][$Flotas]['id_area']][$SearchFleets[$key][$Flotas]['id_flota']] = $SearchFleets[$key][$Flotas]['nombre'];
+	    foreach($SearchFleets[$key][$TipoOperacion] as $k => $v){
+	    
+	      $fleet[$SearchFleets[$key][$Flotas]['id_area']][$SearchFleets[$key][$Flotas]['id_flota']] .= ','.$SearchFleets[$key][$TipoOperacion][$k]['id_tipo_operacion'];
+	      
+	      $flota[$SearchFleets[$key][$Flotas]['id_area']] .= ','.$SearchFleets[$key][$TipoOperacion][$k]['id_tipo_operacion'];
+	    }
+	  }
+	}
+	
+	$fleets['fleet'] = $fleet; 
+	$fleets['flota'] = $flota;
+// 	pr($area);
+// 	pr($fleets);
+// 	exit();
+      if($return == false && $set == true){
+	  $this->set('fleets',$fleets);
+      }elseif($return == true && $set == false){
+	  return $fleets;
+      }
+   } // End's function fleets()   
+//     pr($fleets);exit();
+  /** @function month()
+   ** @param <var returned> <vars set in view> <the year> 
+   ** TODO use this as global research about controller::method import use AppController
+   ** for now will generate an array
+   **/    
+    function months($return=null,$set=null,$year=null){
+      // firts make the month and classified according to given year
+      // this is going to define section
+      $translate = array(
+		'1'=>'Enero',
+		'2'=>'Febrero',
+		'3'=>'Marzo',
+		'4'=>'Abril',
+		'5'=>'Mayo',
+		'6'=>'Junio',
+		'7'=>'Julio',
+		'8'=>'Agosto',
+		'9'=>'Septiembre',
+		'10'=>'Octubre',
+		'11'=>'Noviembre',
+		'12'=>'Diciembre'
+      );
+      for($i=1;$i<=12;$i++){
+     	$months[$i]['spanish'] = $translate[$i];
+	$months[$i]['large'] = date('F',mktime('0','0','0',$i,'01',$year));
+	$months[$i]['short'] = date('M',mktime('0','0','0',$i,'01',$year));
+	$months[$i]['numeric'] = date('m',mktime('0','0','0',$i,'01',$year));
+	$months[$i]['num'] = date('n',mktime('0','0','0',$i,'01',$year));
+	$months[$i]['days'] = date('t',mktime('0','0','0',$i,'01',$year));
+	$months[$i]['leap'] = date('L',mktime('0','0','0',$i,'01',$year));
+      }
+      // Now select if set the vars to the view or return the vars to the controller
+      if($return == false && $set == true){
+	  $this->set('months',$months);
+      }elseif($return == true && $set == false){
+	  return $months;
+      }
+    } // End's function months()
+    
+
+     function RetrieveData($year=null,$fraction=null,$model=null,$toneladas=null,$flotas=null){
+
+     $_append = $this->Empresas();
+     $areas = $this->areas();
+     $months = $this->months($return=true,$set=false,$year=date('Y'));
+     $filter['area'] = true;
+
+     foreach($areas as $key =>$value){
+       foreach( $value as $idx => $areadist){
+	foreach($months as $ky =>$dat){
+	  foreach($fraction as $llave => $dato){
+	    if($dat['num'] <= date('n')){
+		$ConditionsToneladas[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['tonelaje'].'.fecha_guia LIKE'] = "%".$year."-".$dat['numeric']."%";
+		
+		$ConditionsKms[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['kms'].'.fecha_guia LIKE'] = "%".$year."-".$dat['numeric']."%";
+		
+		$ConditionsIngresos[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['ingresos'].'.fecha_guia LIKE'] = "%".$year."-".$dat['numeric']."%";
+		
+	      if($filter['area'] == true){
+	    // Only check the area , will assume that 0 are all areas -- remenber that zero value is taken as false
+		$ConditionsToneladas[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['tonelaje'].'.id_area'] = $idx;
+		
+		$ConditionsKms[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['kms'].'.id_area'] = $idx;
+		
+		$ConditionsIngresos[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['ingresos'].'.id_area'] = $idx;
+		
+	      }
+	      
+	      if(isset($filter['flota'])){ // is $filter['flota'] over there ??
+		if($filter['flota'] == true){ // is breathing ?
+		  foreach($TpoOp as $k => $val){
+		    $ConditionsToneladas[$key][trim($areadist)][$dat['short']][$dato]['OR'][$k][$model[$key]['tonelaje'].'.id_tipo_operacion'] = $val;
+		    
+		    $ConditionsKms[$key][trim($areadist)][$dat['short']][$dato]['OR'][$k][$model[$key]['kms'].'.id_tipo_operacion'] = $val;
+		    
+		    $ConditionsIngresos[$key][trim($areadist)][$dat['short']][$dato]['OR'][$k][$model[$key]['ingresos'].'.id_tipo_operacion'] = $val;
+		  }
+		}
+	      } // already have our answer
+	      
+	    $ConditionsToneladas[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['tonelaje'].'.id_fraccion'] = $llave ;
+	    
+	    $ConditionsKms[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['kms'].'.id_fraccion'] = $llave ;
+	    
+	    $ConditionsIngresos[$key][trim($areadist)][$dat['short']][$dato][$model[$key]['ingresos'].'.id_fraccion'] = $llave ;
+	    
+	    } // End if to current month dat[num]
+
+	/** ALERT Scavenger
+	 ** @var => Sniff in the Databases
+	    @obj => Objetive Search for erroneous data in DB's only need one data to retrieve
+	 **/
+	    // See what's happend
+	    if($dat['num'] > date('n')){
+	      $ConditionsToneladasWarning[$key][trim($areadist)][date('M',mktime('0','0','0',$dat['numeric'],'01',$year))][$dato][$model[$key]['tonelaje'].'.fecha_guia LIKE'] = "%".$year."-".$dat['numeric']."%";
+	      
+	      $ConditionsToneladasWarning[$key][trim($areadist)][date('M',mktime('0','0','0',$dat['numeric'],'01',$year))][$dato][$model[$key]['tonelaje'].'.id_fraccion'] = $llave ;
+
+	      	if($filter['area'] == true){
+	    // Only check the area , will assume that 0 are all areas -- remenber that zero value is taken as false
+		  $ConditionsToneladasWarning[$key][trim($areadist)][date('M',mktime('0','0','0',$dat['numeric'],'01',$year))][$dato][$model[$key]['tonelaje'].'.id_area'] = $idx;
+		}
+	    }
+	  } // End foreach fraction
+	} //end foreach of months
+       } // End seek of area distinction
+      } // End foreach areas with fleets
+
+//       pr($ConditionsToneladasWarning['1']['Orizaba']);exit();
+
+    /** ALERT => Get the data from databases firts Toneladas then Kms and last Ingresos
+     ** @var => no vars yet
+     ** @params => unknow parameter yet
+     ** @var => Set Toneladas arrays
+     **/
+
+      $tons_sum = $report_warning = $report_day = $tonelaje = $toneladas;
+      foreach($ConditionsToneladas as $id_empresa => $area){
+	foreach($area as $id_area => $mes){ // Retrieve data for each area
+	  foreach($mes as $month_name => $fraction){ // Retrieve data by month
+	    foreach($fraction as $fraction_name => $query){ // And retrieve data for each fraction under month
+		$tonelaje[$id_empresa][trim($id_area)][$month_name][$fraction_name] = $this->$model[$id_empresa]['tonelaje']->find('all',array('conditions'=>$query));
+	    }
+	  }
+	}
+      } // End of the world for conditions Die!! areas Die!! XD!!!
+
+	$canceladas = $edicion = null;
+	foreach($tonelaje as $id_empresa => $area){
+	  foreach($area as $area_name => $mes){
+	    foreach($mes as $month_name => $GetFractionData){
+	      foreach($GetFractionData as $FractionName => $GetData){
+		foreach($GetData as $idx => $TonelajeCurrentData){
+		  $toneladas[$id_empresa][$area_name][$month_name][$FractionName] += $TonelajeCurrentData[$model[$id_empresa]['tonelaje']]['peso'];
+
+		  /** @param => Set the tonelaje by day  **/
+		  $day = substr($TonelajeCurrentData[$model[$id_empresa]['tonelaje']]['fecha_guia'],8,2);
+		  if(!isset($report_day[$id_empresa][$area_name][$month_name][$FractionName][$day])){
+		    $report_day[$id_empresa][$area_name][$month_name][$FractionName][$day] = null;
+		  }
+		  $report_day[$id_empresa][$area_name][$month_name][$FractionName][$day] += $TonelajeCurrentData[$model[$id_empresa]['tonelaje']]['peso'];
+		  
+		/** @param => Check if peso is zero **/
+		  if($TonelajeCurrentData[$model[$id_empresa]['tonelaje']]['peso'] == '0'){
+		    if(!isset($report_warning[$id_empresa][$area_name][$month_name][$FractionName][$day])){
+			$report_warning[$id_empresa][$area_name][$month_name][$FractionName][$day][] = $TonelajeCurrentData[$model[$id_empresa]['tonelaje']]['num_guia'];
+		    }
+		  }
+		  // Marauder
+		  /** @param => Check if tonelaje is overcharged  **/
+		  if($TonelajeCurrentData[$model[$id_empresa]['tonelaje']]['peso'] > 60){
+		    $ToneladasWarningData[$id_empresa][$area_name][$month_name][$FractionName][] = $TonelajeCurrentData[$model[$id_empresa]['tonelaje']];
+		  }
+// 		  ByDay
+// 		  ByFleet
+		}
+	      }
+	    }
+	  }
+	}
+//       pr($ToneladasWarningData);
+//       pr($toneladas);
+//       pr($report_day);
+// 	 pr($report_warning);
+	foreach($toneladas as $id_empresa => $area){
+// 	      pr($area);
+	    foreach($area as $area_name => $month){
+	      foreach($month as $month_name => $fracciones){
+		$TotalByMonth[$id_empresa][$area_name][$month_name] = array_sum($fracciones);
+		  foreach($fracciones as $fraction_name => $data){
+		      if(!isset($TotalByFraction[$id_empresa][$area_name][$fraction_name])){
+			  $TotalByFraction[$id_empresa][$area_name][$fraction_name] = null;
+		      }
+		      $TotalByFraction[$id_empresa][$area_name][$fraction_name] += $data;
+		  }
+	      }
+	    }
+	}
+// 	pr($TotalByMonth);
+// 	pr($TotalByFraction);
+	foreach($TotalByMonth as $id_empresa => $area){
+// 	    pr($area);
+	    foreach($area as $area_name => $fracciones){
+		$TotalByYear[$id_empresa][$area_name] = array_sum($fracciones);
+	    }
+	}
+// 	pr($TotalByYear);
+	pr($this->fleets(true,false));
+
+	exit();
+
+// 	$TotalByYear = array_sum($TotalByMonth);
+// 	$Totales['TotalByYear'] = $TotalByYear;
+// 	$Totales['TotalByMonth'] = $TotalByMonth;
+// 	$Totales['TotalByFraction'] = $TotalByFraction;
+	$this->set('TonsIndex',$TotalByYear);
+	$this->set('Totales',$Totales);
+	$this->set('toneladas',$toneladas);
+	$this->set('months',$months);
+	$this->set('fraccion',$fraction);
+	$this->set('filter',$filter);
+     } // End of tonelada
+
+     function detail(){
+	$_append = $this->Empresas();
+	$areas =   $this->areas();
+//  ALERT this can change having the table.db
+/** ALERT  => TODO rebuild the structure according to the new approach
+    @param => This is going inside of _append loop to buid fraction for each Empresa
+**/
+	$TpoOp = explode(',',$filter['flota']=null); // this select which is calculating ALERT @param => Expecting
+	
+	$months = $this->months($return=true,$set=false,$year=date('Y'));
+	$fraction = $this->Fraccion->find('list',array('fields'=>array('id','fraccion')));
+	
+	foreach($areas as $key => $data){
+	    for($i=1;$i<=date('n');$i++){
+	      foreach($data as $idx => $content){
+		$toneladas[$key][trim($content)][date('M',mktime('0','0','0',$i,'01',$year))] = null ;
+		foreach($fraction as $h => $d ){
+		  $toneladas[$key][trim($content)][date('M',mktime('0','0','0',$i,'01',$year))][$d] = null;
+		  $TotalByFraction[$key][trim($content)][$d] = null; // pending ...
+		}
+	      }
+	    }
+	} // End of each area
+	// Building the models for each Empresa
+	foreach($_append as $k => $v){
+
+	    $model[$k]['tonelaje'] = 'TonelajeCurrent'.$_append[$k];
+	    $model[$k]['kms'] = 'KmsCurrent'.$_append[$k];
+	    $model[$k]['ingresos'] = 'IngresosCurrent'.$_append[$k];
+
+	} // End of retrieve _append Enterprise array
+	pr($this->RetrieveData($year=date('Y'),$fraction,$model,$toneladas,$flotas=null));
+	exit();
+      } // End of Detail
+
+
+    function main(){
+    $CurrentMonth = date('m');
+    $CurrentYear = date('Y');
+    $_append = $this->Empresas();
+    $areas = $this->areas();
+    $months = $this->months(true,false,$CurrentYear);
+    $ThisArea = $areas;
+      $NumDays = date('t',mktime('0','0','0',$CurrentMonth,'01',$CurrentYear));
+
+      $test = $this->detail();
+      $this->out(pr($test));
+      exit();
+
+/** ALERT From hir to work with and mega array for all areas and all fleets only for tons
+**/
+
+      if(empty($all) && !empty($KeyArea) && !empty($CurrentMonth)){ // CurrentMonth Area
+      $TonelajeConditions['TonelajeCurrent.fecha_guia LIKE'] = "%".$CurrentYear."-".$CurrentMonth."%";
+      $TonelajeConditions['TonelajeCurrent.id_area'] = $KeyArea;
+      $TonelajeConditions['TonelajeCurrent.id_fraccion'] = $Fraccion;
+      }if($all == true && $KeyArea == false && $CurrentMonth == false){ // AllYear 
+      $TonelajeConditions['TonelajeCurrent.fecha_guia LIKE'] = "%".$CurrentYear."%";
+      $TonelajeConditions['TonelajeCurrent.id_fraccion'] = $Fraccion;
+      }if($all == true && $KeyArea > 0 && $CurrentMonth == false ){ // AllYearArea
+      $TonelajeConditions['TonelajeCurrent.fecha_guia LIKE'] = "%".$CurrentYear."%";
+      $TonelajeConditions['TonelajeCurrent.id_area'] = $KeyArea;
+      $TonelajeConditions['TonelajeCurrent.id_fraccion'] = $Fraccion;
+      }
+      
+      $this->out(pr($TonelajeConditions));exit();
+      
+//       $TonelajeConditions['TonelajeCurrent.fecha_guia LIKE'] = "%".$CurrentYear."-".$CurrentMonth."%";
+//       $TonelajeConditions['TonelajeCurrent.id_area'] = $KeyArea;
+//       $TonelajeConditions['TonelajeCurrent.id_fraccion'] = $Fraccion;
+      
+//       $this->out(pr($TonelajeConditions));exit();
+      $report = $this->TonelajeCurrent->find('all',array('conditions'=>$TonelajeConditions));
+      $toneladas = null;
+      $report_day = array();
+      $report_year = array();
+//     $this->out(pr($report));exit();
+      foreach($report as $key => $data){
+	    if($data['TonelajeCurrent']['status_guia'] == ' B'){
+	      $canceladas[] = $data;
+	    }
+	    $MyMonth = date('M',mktime('0','0','0',$CurrentMonth,'01',$CurrentYear));
+// 	    $this->out(pr($data));
+// 	    $report_day['00'] = '0';
+	    if($data['TonelajeCurrent']['status_guia'] !== ' B'){
+		$toneladas += $data['TonelajeCurrent']['peso'] ;
+		$counter[] = $data['TonelajeCurrent']['peso'] ;
+		$day = substr($data['TonelajeCurrent']['fecha_guia'],8,2);
+		$report_day[$day] += $data['TonelajeCurrent']['peso'];
+	    }
+	  } // End foreach $report
+	  /** ALERT Save the result for Display in the view
+	  */
+	  
+//       $this->out(pr($report_day));exit();
+//       $this->out($NumDays);
+//       $this->out($MyMonth);
+//       exit();
+
+//       $this->out(count($counter));exit();
+         //2
+         $this->autoRender = false;
+          
+         //3                                               
+         App::import('Vendor','pData', array('file' =>'pchart'.DS.'pData.class')); 
+         App::import('Vendor','pChart', array('file' =>'pchart'.DS.'pChart.class'));
+          
+         //4
+         $fontFolder = APP.'vendors'.DS.'pchart'.DS.'Fonts';
+         $fontFolder = '..'.DS.'..'.DS.'vendors'.DS.'pchart'.DS.'Fonts';
+//          $SchemaFolder = APP.'vendors'.DS.'pchart'.DS.'schema';
+
+         //5
+         // Dataset definition
+        $DataSet = new pData;
+	$MaxTons = max($report_day);
+	$MaxTons = $MaxTons+100;
+	
+	foreach($report_day as $key => $value){
+	    $MyDay[] = (int)$key;
+	}
+	
+// 	$this->out(pr($MyDay));
+	$DataSet->AddPoint($report_day,"Serie1");
+// 	$DataSet->AddPoint('4',"Serie2");
+// 	$DataSet->AddPoint('20',"Serie3");
+// 	$DataSet->AddPoint($MyDay,"Name");
+	
+// exit();
+//         $this->out(pr($DataSet->GetData()));
+// 	$idx=0;
+//         foreach($MyDay as $key => $value){	  
+// 	  $DataSet->AddPoint($value,"Serie1");
+// 	  $DataSet->AddPoint((int)$key,"Name");
+//         }
+// 	    $this->out(pr($MyDay));
+//         $DataSet->GetData()['0']['Name']=;
+// 	  $DataSet->GetData()['0']['Name']=1;
+        $this->out(pr($DataSet->GetData()));
+        
+        $DataSet->AddAllSeries();
+        $DataSet->SetAbsciseLabelSerie();
+        $key = $value = null;
+        $DataSet->SetSerieName("Toneladas","Serie1");
+        $DataSet->SetSerieName("Dia","Serie2");        
+	$DataSet->SetYAxisName("Toneladas Dias");  
+	$DataSet->SetYAxisUnit("Ton");
+	$DataSet->SetXAxisName("Dias");
+	$DataSet->SetXAxisFormat("number");
+	  
+	
+         // Initialise the graph
+//          pr($SchemaFolder);
+	$Test = new pChart(820,260);
+	
+	$Test->setFixedScale(1,$MaxTons,5,0,$NumDays,5);
+	$Test->setDateFormat("H:m");
+	$Test->setFontProperties($fontFolder.DS."tahoma.ttf",10);
+	$Test->setColorPalette(0,115,173,207);
+	$Test->setColorPalette(1,144,196,226);
+	$Test->setColorPalette(2,174,216,240);  
+	$Test->setColorPalette(3,64,140,195);  
+	$Test->setColorPalette(4,104,188,209);  
+	$Test->setColorPalette(5,99,200,226);  
+	$Test->setColorPalette(6,82,124,148);  
+	$Test->setColorPalette(7,97,152,183);
+	$Test->setColorPalette(8,105,210,231);
+	$Test->setColorPalette(9,167,219,216);
+	$Test->setColorPalette(10,224,228,204);
+	$Test->setColorPalette(11,243,134,48);
+// 	$Test->loadColorPalette("/tmp/schema/blue.txt",",");
+	$Test->setGraphArea(100,30,790,200);
+//       $Test->drawFilledRoundedRectangle(7,7,693,223,5,240,240,240);
+     $Test->drawRoundedRectangle(5,5,810,225,5,230,230,230);
+	$Test->drawGraphArea(255,255,255,TRUE);
+// 	dibujar la grafica
+	$Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_NORMAL,150,150,150,TRUE,0,2,TRUE);
+	$Test->drawGrid(4,TRUE,230,230,230,50);
+         
+         // Draw the line graph
+
+	 // Draw the 0 line
+	$Test->setFontProperties($fontFolder.DS."tahoma.ttf",10);
+	$Test->drawTreshold(0,143,55,72,TRUE,TRUE);
+
+	   // Draw the bar graph
+ $Test->drawBarGraph($DataSet->GetData(),$DataSet->GetDataDescription(),TRUE,80);
+//  $Test->drawPlotGraph($DataSet->GetData(),$DataSet->GetDataDescription()); 
+//     $Test->drawXYPlotGraph($DataSet->GetData(),$DataSet->GetDataDescription(),"Serie1","Serie2");
+//     $Test->drawXYPlotGraph($DataSet->GetData(),$DataSet->GetDataDescription(),"Serie1","Serie3");
+//     $Test->drawXYGraph($DataSet->GetData(),$DataSet->GetDataDescription(),"Serie1","Serie2");  
+
+ 
+    // Finish the graph
+	$today = date('Y-m-d');
+// 	$Test->setFontProperties($fontFolder.DS."tahoma.ttf",8);
+//  	$Test->drawLegend(820,150,$DataSet->GetDataDescription(),255,255,255);
+	$Test->setFontProperties($fontFolder.DS."tahoma.ttf",10);
+	
+       if(empty($all) && !empty($KeyArea) && !empty($CurrentMonth)){ // CurrentMonth Area
+	$Test->drawTitle(220,22,"Toneladas $ThisArea[$KeyArea] $MyMonth $CurrentYear",50,50,50,585);
+	$Test->Render("../../app/webroot/img/thumbs/graph_".$today."_".$KeyArea."_".$Fraccion.".png");
+      }if($all == true && $KeyArea == false && $CurrentMonth == false){ // AllYear 
+	$Test->drawTitle(220,22,"Toneladas $CurrentYear",50,50,50,585);
+	$Test->Render("../../app/webroot/img/thumbs/graph_".$CurrentYear."_".$KeyArea.".png");
+      }if($all == true && $KeyArea > 0 && $CurrentMonth == false ){ // AllYearArea
+      	$Test->drawTitle(220,22,"Toneladas $ThisArea[$KeyArea] $CurrentYear",50,50,50,585);
+	$Test->Render("../../app/webroot/img/thumbs/graph_".$CurrentYear."_".$KeyArea.".png");
+      }
+     
+// 	$Test->drawTitle(220,22,"Toneladas $MyMonth $CurrentYear",50,50,50,585);
+// 	$Test->Render("../../app/webroot/img/thumbs/graph_".$today."_".$KeyArea."_".$Fraccion.".png");
+
+     } 
+
+} // End Class
+?> 

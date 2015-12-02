@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}\color {kblue} Procedimiento Presupuesto GST}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}\color {kgreen}Normas de Operaci\'on}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}\color {kgray}Diagrama de Flujo}{4}{subsection.1.2}
+\contentsline {section}{\numberline {2}\color {kblue} Cronograma}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}\color {kgreen}subsection ...}{6}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}\color {kgray}Sub---subsection ...}{6}{subsubsection.2.1.1}
+\contentsline {section}{\numberline {3}\color {kblue} Bases Fundamentales}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}\color {kgreen}Recopilar informacion de las Unidades de Negocio}{7}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}\color {kgray}Delegar Responsabilidades ...}{7}{subsubsection.3.1.1}

@@ -1,0 +1,50 @@
+<?php
+//tachion
+// pr($projection);
+?>
+
+<table id="menu_info_small">
+  <tr />
+      <td />Projecciones para el mes de <?php e($months[date('n')]['spanish']);?>
+</table>
+
+<?php
+/*
+if(isset($indicator)){
+
+}*/
+?>
+<table id="menu_info_small">
+<?php
+  foreach($projection as $id_empresa => $area){
+      if($id_empresa == $_SESSION['Auth']['User']['id_empresa']){
+	foreach($area as $area_name => $current_month ){
+	  foreach($current_month as $current_month_name => $fraccion){
+	    foreach($fraccion as $fraccion_name => $value){
+?>
+<!-- <table id="menu_info_small"> -->
+  <tr />
+      <td /><?php e($area_name);?>
+      <td /><?php e($fraccion_name);?>
+      <td /><?php e($value);?>
+      <td />
+<!-- </table> -->
+
+
+
+<?php
+	    }
+	  }
+	}
+      }
+  }
+?>
+
+<!--  <tr />
+      <td />projections
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />-->
+</table>

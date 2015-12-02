@@ -1,0 +1,86 @@
+
+<?php
+//   viewConfig
+	    e($ajax->form(array("type"=>"post",
+				"options"=>array("model"=>"Config",
+				"update"=>"divRealmsClass",
+// 				"loading" => "Element.hide('hide_div');Element.show('loading');",
+				'loading' => "load()",
+			    "complete" => "Element.hide('loading');Effect.Grow('hide_div',{duration: 2.0});",
+				"url"=>array("controller"=>'Config',"action"=>"ConfigRealmsClass"),
+						  )
+                      )
+                )
+	    );
+?>
+
+<div id="hide_div"></div>
+    <div id="loading" style="display:none;">
+	<table id="menu_info_small">
+	  <tr />
+	      <td width="40%" />&nbsp;
+	      <td />
+		    <?php echo $html->image("loaders/loading.gif"/*,
+					      array("width"=>280,
+						    "height"=>10,
+					      )*/
+				); 
+		    ?>
+<!-- 		</div> -->
+	      <td width="30%" />&nbsp;
+	</table>
+    </div>
+
+<div id="modal">
+
+
+<script type="text/javascript">
+// get this from hiden hive
+function checkChromeWeek(){
+  var val = document.getElementById("FlujoWeek").value;
+  if(val == ''){
+	var week = alert("Debe ingresar un número de Semana");
+	document.getElementById("FlujoWeek").focus();
+  }
+}// End checkChromeWeek
+
+function checkFirefoxWeek(){
+  var val = document.getElementById("FlujoWeek").value;
+  if(val == ''){
+	var week = prompt("Debe ingresar un número de Semana", "27");
+	  if(week != null){
+		document.getElementById("FlujoWeek").value = week ;
+		document.getElementById("FlujoWeek").focus();
+	  }
+  }
+} // end checkFirefoxWeek
+
+function load(e){
+		Event.stop(e);
+  		new Modal({	content: "Cargando ...",
+					cancelButton: false,
+					okButton: false,
+					duration: 0.4,
+					afterShow: function(e){container.remove(e)},
+// 					afterFinish: function(){ container.remove(e)},
+// 					ok: true,
+// 					closeEffect: function(self){ self.container.puff({ duration: 0.4, afterFinish: function(){ container.remove();}}
+		});
+}
+// 'after'=>"checkChromeWeek();",
+</script>
+<a href="#" id="demo">link</a>
+
+</div>
+
+<div id="divRealmsClass">
+<!-- this can be an Element -->
+
+<?php
+			App::Import('Controller','Config');
+// 			echo $this->element('config');
+			echo $this->element('config',array('viewConfig',$this->requestAction('Config/viewConfig')));
+?>
+
+</div>
+

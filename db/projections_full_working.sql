@@ -1,0 +1,49 @@
+-- Host: localhost    Database: flujo
+-- ------------------------------------------------------
+-- Server version	5.5.24-5
+
+-- install the database after db creation
+-- set level and user privileges
+grant usage on flujo.* to flujo@localhost identified by '@flujo#';
+grant select, insert, update, delete, drop, alter, create temporary tables on flujo.* to flujo@localhost;
+flush privileges;
+
+--
+-- Table structure for table `ingresos`
+--
+
+drop table if exists `ingresos`;
+create table `ingresos`(
+  `id_ingresos` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `decription` int(11) NULL,
+  `value` varchar(40) NULL,
+  `estatus`	boolean	not null DEFAULT true,
+  PRIMARY KEY (`id_ingresos`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- /////////////////////////////////////////////////////////////////////////////////////////
+-- Start the fetch of external data
+-- /////////////////////////////////////////////////////////////////////////////////////////
+
+drop table if exists `egresos`;
+create table `egresos`(
+  `id_egresos` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `decription` int(11) NULL,
+  `value` varchar(40) NULL,
+  `estatus`	boolean	not null DEFAULT true,
+  PRIMARY KEY (`id_egresos`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- drop table if exists `trafico_guia`;
+-- create table `trafico_guia` (
+-- 
+--  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+-- ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+--   sql.sql =>select * from Information_Schema.Columns where TABLE_NAME = 'trafico_guia';
+--   isql -v odbc-bonampakdb zam lis -bt  < /tmp/tabla.sql > /tmp/desc_tabla.sql;
+--   sed -e '1,3d' -e "s/|/\t/g" -e "s/^/null/g" -e '$d' /tmp/desc_tabla.sql > /tmp/tabla.csv
+--   open csv in excel extract the tables an paste in txt file
+--   clean and pass trhought
+--    sed -e 's/ //g' -e 's/^/`/g' -e 's/$/` varchar(255) NOT NULL,/g' -e 's/^/ /g' test >fiw.sql
+
